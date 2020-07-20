@@ -1,5 +1,5 @@
 ---
-title: "Nelson\\Nygaard R Training Home Page"
+title: "Nelson\\\\Nygaard's R Training Home Page"
 author: "Bryan Blanc"
 date: "Updated as of `r strftime(Sys.Date(),'%B %d, %Y')`"
 output: html_document
