@@ -1,0 +1,47 @@
+---
+title: "Nelson\\Nygaard R Training Home Page"
+author: "Bryan Blanc"
+date: "Updated as of `r strftime(Sys.Date(),'%B %d, %Y')`"
+output: html_document
+---
+
+```{r, include = FALSE, warning=FALSE, message=FALSE}
+require(tidyverse)
+require(readxl)
+require(lubridate)
+require(janitor)
+require(hms)
+require(DT)
+```
+
+
+# Welcome to Nelson\\Nygaard's R Training Page!
+
+Bryan Blanc has been re-hired on a temporary basis (TBD long-term) for a three month appointment, through October 13th, 2020. One of the main goals of this appointment is to train other Nelson\\Nygaard employees in using R, particularly the use of Shiny for web-based dashboards. 
+
+# Schedule
+
+```{r,echo=FALSE, warning=FALSE, message=FALSE}
+schedule = read_excel('../data/work_schedule.xlsx') %>%
+  mutate(webinar_date = ifelse(!is.na(webinar_date) & webinar_date!='TBD',
+                               strftime(excel_numeric_to_date(as.numeric(webinar_date)),'%I:%M %p'),
+                               webinar_date),
+         webinar_time = ifelse(!is.na(webinar_time) & webinar_time != 'TBD',
+                               strftime(hms(as.numeric(webinar_time)*3600*24),'%I:%M %p'),
+                               webinar_time),
+         week_start_date = strftime(week_start_date,'%B %d, %Y'),
+         week_end_date = strftime(week_end_date,'%B %d, %Y')) %>%
+  rename(`Week #`=week_num,
+         `Week Start Date`=week_start_date,
+         `Week End Date`=week_end_date,
+         `Hours Available`=hrs_available,
+         `Webinar Topic`=webinar_topic,
+         `Webinar Date`=webinar_date,
+         `Webinar Time`=webinar_time)
+
+datatable(schedule,
+          rownames=FALSE,
+          options = list(searching=FALSE,paging=FALSE,info=FALSE))
+
+```
+
