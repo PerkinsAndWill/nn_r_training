@@ -2,7 +2,9 @@
 title: "Nelson\\\\Nygaard's R Training Home Page"
 author: "Bryan Blanc"
 date: "Updated as of `r strftime(Sys.Date(),'%B %d, %Y')`"
-output: html_document
+output: 
+  html_document:
+    toc: true
 ---
 
 ```{r, include = FALSE, warning=FALSE, message=FALSE}
@@ -17,20 +19,30 @@ require(DT)
 
 # Welcome to Nelson\\Nygaard's R Training Page!
 
+## Purpose
+
 Bryan Blanc has been re-hired on a temporary basis (TBD long-term) for a three month appointment, through October 13th, 2020. One of the main goals of this appointment is to train other Nelson\\Nygaard employees in using R, particularly the use of Shiny for web-based dashboards. 
 
-# Schedule
+This document forms the work plan and content repository for Bryan's R training. The training will be structured as a 10 week 'course', which will include a ~1 hour webinar each week for 10 weeks beginning on the week of August 9th. The below topics are proposed for the course, and can be edited based on feedback. The content for each webinar (including narrative and sample code) will live in this website (in HTML files), or in the case of the Shiny apps themselves, on the shinyapps.io server (with code stored on GitHub). All content will be linked in this document.
+
+Shiny will be a recurring point of discussion during the course, with four of the ten webinars devoted exclusively to Shiny. People attending the Shiny webinars (identified in the schedule below) will be expected to identify a project of theirs with data that lends itself to a Shiny dashboard by the time of the first Shiny webinar (week of August 9th). Participants will work with their team leaders the relevant project manager to identify a project and decide if some of the time they spend on developing an example Shiny app is billable. 
+
+## Schedule
 
 ```{r,echo=FALSE, warning=FALSE, message=FALSE}
 schedule = read_excel('../data/work_schedule.xlsx') %>%
   mutate(webinar_date = ifelse(!is.na(webinar_date) & webinar_date!='TBD',
-                               strftime(excel_numeric_to_date(as.numeric(webinar_date)),'%I:%M %p'),
+                               strftime(excel_numeric_to_date(as.numeric(webinar_date)),'%B %d, %Y'),
                                webinar_date),
          webinar_time = ifelse(!is.na(webinar_time) & webinar_time != 'TBD',
                                strftime(hms(as.numeric(webinar_time)*3600*24),'%I:%M %p'),
                                webinar_time),
          week_start_date = strftime(week_start_date,'%B %d, %Y'),
-         week_end_date = strftime(week_end_date,'%B %d, %Y')) %>%
+         week_end_date = strftime(week_end_date,'%B %d, %Y'),
+         webinar_topic = ifelse(!is.na(topic_link),
+                                paste0("<a href='",topic_link,"'>",webinar_topic,"</a>"),
+                                webinar_topic)) %>%
+  select(-topic_link) %>%
   rename(`Week #`=week_num,
          `Week Start Date`=week_start_date,
          `Week End Date`=week_end_date,
@@ -40,8 +52,31 @@ schedule = read_excel('../data/work_schedule.xlsx') %>%
          `Webinar Time`=webinar_time)
 
 datatable(schedule,
-          rownames=FALSE,
+          rownames=FALSE, escape=FALSE,
           options = list(searching=FALSE,paging=FALSE,info=FALSE))
 
 ```
 
+## Topics
+
+### Shiny
+
+#### [Shiny Session 1](topics/shiny_1.html)
+
+#### [Shiny Session 2](topics/shiny_2.html)
+
+#### [Shiny Session 3](topics/shiny_3.html)
+
+#### [Shiny Session 4](topics/shiny_4.html)
+ 
+### [Tidyverse](topics/tidyverse.html)
+
+### [Geospatial Data](topics/geospatial.html)
+
+### [Census, TIGER, and LODES data]('topics/census.html')
+
+### [Introduction to Machine Learning]('topics/machine_learning.html')
+
+### [R Markdown]('topics/rmarkdown.html')
+
+### [Misc. Questions]('topics/misc_questions.html')

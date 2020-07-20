@@ -1,0 +1,6 @@
+---
+title: "Shiny Session 3"
+author: "Bryan Blanc"
+date: "Updated as of `r strftime(Sys.Date(),'%B %d, %Y')`"
+output: html_document
+---
