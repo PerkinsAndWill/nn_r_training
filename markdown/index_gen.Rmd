@@ -62,6 +62,7 @@ datatable(schedule,
 #### [Shiny Session 1](topics/shiny_1.html)
 
 This session will discuss the basics of Shiny:
+
 - What is Shiny? 
 - How is a Shiny app structured?
 - How do I write a basic Shiny application?
