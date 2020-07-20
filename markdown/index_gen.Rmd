@@ -16,9 +16,6 @@ require(hms)
 require(DT)
 ```
 
-
-# Welcome to Nelson\\Nygaard's R Training Page!
-
 ## Purpose
 
 Bryan Blanc has been re-hired on a temporary basis (TBD long-term) for a three month appointment, through October 13th, 2020. One of the main goals of this appointment is to train other Nelson\\Nygaard employees in using R, particularly the use of Shiny for web-based dashboards. 
@@ -40,7 +37,7 @@ schedule = read_excel('../data/work_schedule.xlsx') %>%
          week_start_date = strftime(week_start_date,'%B %d, %Y'),
          week_end_date = strftime(week_end_date,'%B %d, %Y'),
          webinar_topic = ifelse(!is.na(topic_link),
-                                paste0("<a href='",topic_link,"'>",webinar_topic,"</a>"),
+                                paste0("<a href=",topic_link,">",webinar_topic,"</a>"),
                                 webinar_topic)) %>%
   select(-topic_link) %>%
   rename(`Week #`=week_num,
