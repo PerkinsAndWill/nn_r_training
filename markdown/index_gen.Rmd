@@ -59,7 +59,7 @@ datatable(schedule,
 
 ### [Tidyverse](topics/tidyverse.html)
 
-The [Tidyverse](https://www.tidyverse.org/) is a 'universe' of packages designed for data science with R. They are all built with an underlying design philosophy and grammar based on the [concept of 'tidy' data](https://vita.had.co.nz/papers/tidy-data.pdf). This session will discuss the tidy data concept and its main package implementations. For me, the tidy data concept influences not just the work I do in R but how I structure spreadsheets and datasets in general, and I have found it to generally result in cleaner data analyses.
+The [Tidyverse](https://www.tidyverse.org/) is a 'universe' of packages designed for data science with R. They are all built with an underlying design philosophy and grammar based on the [concept of 'tidy' data](https://vita.had.co.nz/papers/tidy-data.pdf). This session will discuss the tidy data concept and its main package implementations. For me, the tidy data concept influences not just the work I do in R but how I structure spreadsheets and datasets in general, and I have found it to generally result in cleaner data analyses.[Tidyverse packages](https://www.tidyverse.org/packages/) are among the most used R packages, and greatly improve upon implementations of basic operations in base R. The Tidyverse chapter will greatly draw upon Hadley Wickham's (the progenitor of the Tidyverse) book (available for free online), [R for Data Science](https://r4ds.had.co.nz/).
 
 ### Shiny
 
@@ -84,7 +84,7 @@ Please come prepared with an idea of what project you will develop a basic Shiny
 
 ### [Census, TIGER, and LODES data](topics/census.html)
 
-### [Introduction to Machine Learning](topics/machine_learning.html)
+### [GTFS data](topics/machine_learning.html)
 
 ### [R Markdown](topics/rmarkdown.html)
 
