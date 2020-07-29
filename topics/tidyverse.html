@@ -393,13 +393,8 @@ summary {
 <p>You also get a condensed summary of conflicts with other packages you have loaded:</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <p>You can see conflicts created later with <code>tidyverse_conflicts()</code>:</p>
-<pre class="r"><code>library(MASS)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;MASS&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     select</code></pre>
-<pre class="r"><code>tidyverse_conflicts()</code></pre>
+<pre class="r"><code>library(MASS)
+tidyverse_conflicts()</code></pre>
 <pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x lubridate::as.difftime() masks base::as.difftime()
 ## x lubridate::date()        masks base::date()

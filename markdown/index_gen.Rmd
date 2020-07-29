@@ -9,6 +9,7 @@ output:
 
 ```{r, include = FALSE, warning=FALSE, message=FALSE}
 require(tidyverse)
+require(dplyr)
 require(readxl)
 require(lubridate)
 require(janitor)
@@ -40,7 +41,7 @@ schedule = read_excel('../data/work_schedule.xlsx') %>%
          webinar_topic = ifelse(!is.na(topic_link),
                                 paste0("<a href='",topic_link,"'>",webinar_topic,"</a>"),
                                 webinar_topic)) %>%
-  select(-topic_link) %>%
+  dplyr::select(-topic_link) %>%
   rename(`Week #`=week_num,
          `Week Start Date`=week_start_date,
          `Week End Date`=week_end_date,
@@ -87,5 +88,7 @@ Please come prepared with an idea of what project you will develop a basic Shiny
 ### [GTFS data](topics/gtfs_data.html)
 
 ### [R Markdown](topics/rmarkdown.html)
+
+R Markdown is a great way to produce a cohesive presentation of results from your R code -- in case you were wondering how this website was produced, it was produced with 🤯R Markdown🤯!
 
 ### [Misc. Questions](topics/misc_questions.html)
