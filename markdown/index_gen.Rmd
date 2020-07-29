@@ -72,7 +72,7 @@ This session will discuss the basics of Shiny:
 - How do I write a basic Shiny application?
 - How do I host a Shiny application?
 
-Please come prepared with an idea of what project you will develop a basic Shiny app for over the next eight weeks. It does not need to take you eight weeks to develop -- these apps can be very basic. Progress is expected for discussion each week. 
+Please come prepared with an idea of what project you will develop a basic Shiny app for over the next eight weeks. Work with your team leader and the relevant project manager to identify a project and decide if some of the time you spend on developing an example Shiny app is billable.  You shouldn't have to spend more than a few hours in advance of each of the four webinars -- these apps can be very basic. Progress is expected for discussion from each participant each week. 
 
 #### [Shiny Session 2](topics/shiny_2.html)
 
@@ -84,7 +84,7 @@ Please come prepared with an idea of what project you will develop a basic Shiny
 
 ### [Census, TIGER, and LODES data](topics/census.html)
 
-### [GTFS data](topics/machine_learning.html)
+### [GTFS data](topics/gtfs_data.html)
 
 ### [R Markdown](topics/rmarkdown.html)
 
