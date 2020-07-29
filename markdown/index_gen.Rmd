@@ -99,7 +99,7 @@ This session will provide an opportunity to ask any questions of Bryan related t
 
 ## Other Topics Not Included in Course
 
-### R Setup at Nelson\Nygaard
+### [R Setup at Nelson\\Nygaard](other_topics/r_setup_nn.html)
 
 Esther Needham, Oren Eshel, and Paul Leitman compiled some standards for R setup at Nelson\\Nygaard. That content is covered in [this article](other_topics/r_setup_nn.html). 
 
