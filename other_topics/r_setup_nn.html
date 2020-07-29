@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Esther Needham, Oren Eshel, and Paul Leitman" />
+<meta name="author" content="Esther Needham, Oren Eshel, Paul Leitman, and Bryan Blanc" />
 
 
 <title>R Setup at Nelson\Nygaard</title>
@@ -363,31 +363,102 @@ summary {
 
 
 <h1 class="title toc-ignore">R Setup at Nelson\Nygaard</h1>
-<h4 class="author">Esther Needham, Oren Eshel, and Paul Leitman</h4>
+<h4 class="author">Esther Needham, Oren Eshel, Paul Leitman, and Bryan Blanc</h4>
 <h4 class="date">7/29/2020</h4>
 
 </div>
 
 <div id="TOC">
 <ul>
+<li><a href="#neccessary-setup">Neccessary Setup</a><ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#installing-r">Installing R</a></li>
+<li><a href="#installing-rstudio">Installing RStudio</a></li>
+</ul></li>
+<li><a href="#optional-setup">Optional Setup</a><ul>
+<li><a href="#installing-and-configuring-git-github">Installing and Configuring Git &amp; GitHub</a></li>
+<li><a href="#installing-rtools">Installing RTools</a></li>
+</ul></li>
 <li><a href="#script-management">Script Management</a><ul>
 <li><a href="#folder-conventions">Folder Conventions</a></li>
 <li><a href="#script-titleblock-snippet">Script Titleblock Snippet</a></li>
-<li><a href="#github">GitHub</a></li>
+</ul></li>
 <li><a href="#shinyapps-web-hosting">ShinyApps Web Hosting</a><ul>
 <li><a href="#management-dashboard">Management Dashboard</a></li>
 <li><a href="#management-account">Management Account</a><ul>
 <li><a href="#password">Password</a></li>
 <li><a href="#uploading-to-shinyapps.io">Uploading to shinyapps.io</a></li>
+</ul></li>
 <li><a href="#aws-sql-server-hosting">AWS SQL Server Hosting</a></li>
 <li><a href="#google-api-access">Google API Access</a></li>
-</ul></li>
-</ul></li>
 </ul></li>
 </ul>
 </div>
 
 <p><a href="../index.html">Back to overview</a></p>
+<div id="neccessary-setup" class="section level1">
+<h1>Neccessary Setup</h1>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>The table below summarizes the software packages needed to run R. Installation files for use by IT are saved here: O:/software tools/R/Resources/Installation Files</p>
+<table>
+<thead>
+<tr class="header">
+<th>Software Package</th>
+<th>Recommended Version</th>
+<th>Download Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>R</td>
+<td>4.0.1</td>
+<td><a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a></td>
+</tr>
+<tr class="even">
+<td>RStudio</td>
+<td>1.3.959</td>
+<td><a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></td>
+</tr>
+<tr class="odd">
+<td>RTools</td>
+<td>40</td>
+<td><a href="https://cran.r-project.org/bin/windows/Rtools/" class="uri">https://cran.r-project.org/bin/windows/Rtools/</a></td>
+</tr>
+<tr class="even">
+<td>Git</td>
+<td>2.27.0</td>
+<td><a href="https://git-scm.com/download/win" class="uri">https://git-scm.com/download/win</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="installing-r" class="section level2">
+<h2>Installing R</h2>
+<p>You’ll first need to install R itself (the software environment) in order to use it.</p>
+<p><em>Install Link:</em> <a href="https://cran.r-project.org/bin/windows/base/" class="uri">https://cran.r-project.org/bin/windows/base/</a></p>
+</div>
+<div id="installing-rstudio" class="section level2">
+<h2>Installing RStudio</h2>
+<p>The basic R installation only comes with a very minimal console, so you’ll also want to install RStudio. RStudio is an Integrated Development Environment (IDE) produced and maintained by RStudio (a for-profit company).</p>
+<p><em>Install Link:</em> <a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></p>
+</div>
+</div>
+<div id="optional-setup" class="section level1">
+<h1>Optional Setup</h1>
+<div id="installing-and-configuring-git-github" class="section level2">
+<h2>Installing and Configuring Git &amp; GitHub</h2>
+<p>Git is a version control system, a tool that tracks changes to your code and shares those changes with others. Git is most useful when combined with GitHub, a website that allows you to share your code with the world, solicit improvements via pull requests and track issues. Git + GitHub is the most popular version control system for developers of R packages (thousands of R packages are hosted on GitHub) and many other types of software.</p>
+<p>Git and GitHub are generally useful for all software development and data analysis, not just R packages.</p>
+<p>To use Git/GitHub with R, you will need to set up a GitHub account and configure RStudio to interface with GitHub. Detailed instructions for this can be found <a href="http://r-pkgs.had.co.nz/git.html">here</a>.</p>
+<p><em>- To get an Enterprise P+W account:</em> - Create your own personal github account; recommend setting up using your personal e-mail - Email <a href="mailto:joel.register@perkinswill.com">Joel Register</a> your github username and ask to be added to the Nelsonteam - “Could I request to join the enterprise GitHub account? My username is XXXXX.”<br />
+- Uses Git; Esther suggests using command-line - Integration with RStudio also an option - Follow up brownbag (Esther action?) - 3/25/2020: Esther has developed resources; see PPT file and Wiki page</p>
+</div>
+<div id="installing-rtools" class="section level2">
+<h2>Installing RTools</h2>
+<p>RTools is a collection of development tools that are essential for writing and releasing packages. The latest RTools package can be downloaded from the <a href="https://cran.r-project.org/bin/windows/Rtools/">CRAN website</a>. Download the latest package and run the executable file. If everything goes well, you will have a new directory on your computer called C:/Rtools. More detailed information and instructions can be found <a href="https://cran.r-project.org/doc/manuals/R-admin.html#The-Windows-toolset">here</a>.</p>
+</div>
+</div>
 <div id="script-management" class="section level1">
 <h1>Script Management</h1>
 <div id="folder-conventions" class="section level2">
@@ -453,35 +524,17 @@ summary {
     # source(&quot;functions/summarise_data.R&quot;) #example
     ## ---------------------------</code></pre>
 </div>
-<div id="github" class="section level2">
-<h2>GitHub</h2>
-<ul>
-<li>Version control and cloud storage for collaboration</li>
-<li>Enterprise PW account
-<ul>
-<li>Create your own personal github account; recommend setting up using your personal e-mail</li>
-<li>Email <a href="mailto:joel.register@perkinswill.com">Joel Register</a> your github username and ask to be added to the Nelsonteam
-<ul>
-<li>“Could I request to join the enterprise GitHub account? My username is XXXXX.”<br />
-</li>
-</ul></li>
-<li>Uses Git; Esther suggests using command-line</li>
-<li>Integration with RStudio also an option</li>
-<li>Follow up brownbag (Esther action?)</li>
-<li>3/25/2020: Esther has developed resources; see PPT file and Wiki page</li>
-</ul></li>
-</ul>
 </div>
-<div id="shinyapps-web-hosting" class="section level2">
-<h2>ShinyApps Web Hosting</h2>
-<div id="management-dashboard" class="section level3">
-<h3>Management Dashboard</h3>
+<div id="shinyapps-web-hosting" class="section level1">
+<h1>ShinyApps Web Hosting</h1>
+<div id="management-dashboard" class="section level2">
+<h2>Management Dashboard</h2>
 <ul>
 <li><a href="https://www.shinyapps.io/admin/#/profile">https://www.shinyapps.io/admin/#/profile</a></li>
 </ul>
 </div>
-<div id="management-account" class="section level3">
-<h3>Management Account</h3>
+<div id="management-account" class="section level2">
+<h2>Management Account</h2>
 <ul>
 <li><a href="mailto:shinyapps@nelsonnygaard.com" class="email">shinyapps@nelsonnygaard.com</a></li>
 <li>This account is accessible to various people (Bryan, Tomoko, Esther, Oren)</li>
@@ -503,14 +556,14 @@ summary {
 <li>“Shinyapps Email Forwarding” Rule -&gt; Edit Rule</li>
 </ul></li>
 </ul>
-<div id="password" class="section level4">
-<h4>Password</h4>
+<div id="password" class="section level3">
+<h3>Password</h3>
 <ul>
 <li>Oren requested that this account be added to Okta, which hopefully can then be used to save our password.</li>
 </ul>
 </div>
-<div id="uploading-to-shinyapps.io" class="section level4">
-<h4>Uploading to shinyapps.io</h4>
+<div id="uploading-to-shinyapps.io" class="section level3">
+<h3>Uploading to shinyapps.io</h3>
 <ul>
 <li>Use rsconnect package in RStudio to deploy using a token in the Shiny dashboard</li>
 <li>In Shiny Dashboard, go to Account -&gt; tokens -&gt; Show -&gt; Copy to Clipboard</li>
@@ -521,20 +574,19 @@ summary {
 <li>Setwd… (may need to comment and uncomment)</li>
 </ul>
 </div>
-<div id="aws-sql-server-hosting" class="section level4">
-<h4>AWS SQL Server Hosting</h4>
+</div>
+<div id="aws-sql-server-hosting" class="section level2">
+<h2>AWS SQL Server Hosting</h2>
 <ul>
 <li>How do we charge costs do a credit card? Bryan needs to hook in a credit card for this.</li>
 </ul>
 </div>
-<div id="google-api-access" class="section level4">
-<h4>Google API Access</h4>
+<div id="google-api-access" class="section level2">
+<h2>Google API Access</h2>
 <ul>
 <li>Individual accounts needed, threshold beyond (~2500 per day) which you are billed per query</li>
 <li>Action: re-investigate central account/billing – Oren and/or Tomoko</li>
 </ul>
-</div>
-</div>
 </div>
 </div>
 
