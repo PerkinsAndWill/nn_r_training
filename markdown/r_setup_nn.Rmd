@@ -27,13 +27,13 @@ The table below summarizes the software packages needed to run R. Installation f
 
 You’ll first need to install R itself (the software environment) in order to use it.  
 
-*Install Link:* https://cran.r-project.org/bin/windows/base/ 
+**Install Link:** https://cran.r-project.org/bin/windows/base/ 
 
 ## Installing RStudio 
 
 The basic R installation only comes with a very minimal console, so you’ll also want to install RStudio. RStudio is an Integrated Development Environment (IDE) produced and maintained by RStudio (a for-profit company).  
 
-*Install Link:* https://www.rstudio.com/products/rstudio/download/ 
+**Install Link:** https://www.rstudio.com/products/rstudio/download/ 
 
 ## How to Relocate Local R Package Folder
 
@@ -80,7 +80,7 @@ Git and GitHub are generally useful for all software development and data analys
 
 To use Git/GitHub with R, you will need to set up a GitHub account and configure RStudio to interface with GitHub. Detailed instructions for this can be found [here](http://r-pkgs.had.co.nz/git.html). 
 
-*- To get an Enterprise P+W account:*
+**- To get an Enterprise P+W account:**
   - Create your own personal github account; recommend setting up using your personal e-mail
   - Email [Joel Register](mailto:joel.register@perkinswill.com) your github username and ask to be added to the Nelson\Nygaard team 
     - “Could I request to join the enterprise GitHub account? My username is XXXXX.”  
