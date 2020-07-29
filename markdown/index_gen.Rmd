@@ -101,6 +101,8 @@ This session will provide an opportunity to ask any questions of Bryan related t
 
 ### R Setup at Nelson\Nygaard
 
+Esther Needham, Oren Eshel, and Paul Leitman compiled some standards for R setup at Nelson\\Nygaard. That content is covered in [this article](other_topics/r_setup_nn.html). 
+
 ### Git and GitHub
 
-Esther Needham did a presentation to Nelson\\Nygaard staff on using Git and GitHub for R project work. A PDF of that presentation is available [here]('docs/PDF/NN GitHub 101_ Git-ting Started with Git and GitHub.pdf). 
+Esther Needham did a presentation to Nelson\\Nygaard staff on using Git and GitHub for R project work. A PDF of that presentation is available [here](docs/PDF/NN GitHub 101_ Git-ting Started with Git and GitHub.pdf). 
