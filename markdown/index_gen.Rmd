@@ -27,7 +27,7 @@ Shiny will be a recurring point of discussion during the course, with four of th
 
 ## Schedule
 
-```{r,echo=FALSE, warning=FALSE, message=FALSE}
+```{r,echo=FALSE, warning=FALSE, message=FALSE,out.width=1500}
 schedule = read_excel('../data/nn_r_info_db.xlsx') %>%
   mutate(webinar_time = strftime(as_hms(webinar_time),'%I:%M %p'),
          webinar_date = strftime(force_tz(webinar_date,tz='America/Los_Angeles'),'%B %d, %Y'),
@@ -36,19 +36,21 @@ schedule = read_excel('../data/nn_r_info_db.xlsx') %>%
          webinar_topic = ifelse(!is.na(topic_link),
                                 paste0("<a href='",topic_link,"'>",webinar_topic,"</a>"),
                                 webinar_topic)) %>%
-  dplyr::select(-topic_link,-articles,-books) %>%
+  dplyr::select(-topic_link,-articles,-books,-datacamp_courses,-hrs_available,
+                -week_end_date) %>%
   rename(`Week #`=week_num,
+         `Category`=category,
          `Week Start Date`=week_start_date,
-         `Week End Date`=week_end_date,
-         `Hours Available`=hrs_available,
          `Webinar Topic`=webinar_topic,
          `Webinar Date`=webinar_date,
-         `Webinar Time`=webinar_time,
-         `DataCamp Courses`=datacamp_courses)
+         `Webinar Time`=webinar_time)
 
 datatable(schedule,
           rownames=FALSE, escape=FALSE,
-          options = list(searching=FALSE,paging=FALSE,info=FALSE))
+          options = list(searching=FALSE,paging=FALSE,info=FALSE,
+                         autoWidth=TRUE,
+                         columnDefs = list(list(width = '150px', targets = c(2)))),
+          width='100%')
 
 ```
 
