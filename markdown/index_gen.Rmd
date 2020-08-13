@@ -28,27 +28,23 @@ Shiny will be a recurring point of discussion during the course, with four of th
 ## Schedule
 
 ```{r,echo=FALSE, warning=FALSE, message=FALSE}
-schedule = read_excel('../data/work_schedule.xlsx') %>%
-  mutate(webinar_date = ifelse(!is.na(webinar_date) & webinar_date!='TBD',
-                               strftime(excel_numeric_to_date(as.numeric(webinar_date)),'%B %d, %Y',
-                                        tz='America/Los_Angeles'),
-                               webinar_date),
-         webinar_time = ifelse(!is.na(webinar_time) & webinar_time != 'TBD',
-                               strftime(hms(as.numeric(webinar_time)*3600*24),'%I:%M %p'),
-                               webinar_time),
+schedule = read_excel('../data/nn_r_info_db.xlsx') %>%
+  mutate(webinar_time = strftime(as_hms(webinar_time),'%I:%M %p'),
+         webinar_date = strftime(force_tz(webinar_date,tz='America/Los_Angeles'),'%B %d, %Y'),
          week_start_date = strftime(force_tz(week_start_date,tz='America/Los_Angeles'),'%B %d, %Y'),
          week_end_date = strftime(force_tz(week_end_date,tz='America/Los_Angeles'),'%B %d, %Y'),
          webinar_topic = ifelse(!is.na(topic_link),
                                 paste0("<a href='",topic_link,"'>",webinar_topic,"</a>"),
                                 webinar_topic)) %>%
-  dplyr::select(-topic_link) %>%
+  dplyr::select(-topic_link,-articles,-books) %>%
   rename(`Week #`=week_num,
          `Week Start Date`=week_start_date,
          `Week End Date`=week_end_date,
          `Hours Available`=hrs_available,
          `Webinar Topic`=webinar_topic,
          `Webinar Date`=webinar_date,
-         `Webinar Time`=webinar_time)
+         `Webinar Time`=webinar_time,
+         `DataCamp Courses`=datacamp_courses)
 
 datatable(schedule,
           rownames=FALSE, escape=FALSE,
@@ -58,13 +54,13 @@ datatable(schedule,
 
 ## Topics
 
-### [Tidyverse](topics/tidyverse.html)
+### [Tidyverse](topics_output/tidyverse.html)
 
 The [Tidyverse](https://www.tidyverse.org/) is a 'universe' of packages designed for data science with R. They are all built with an underlying design philosophy and grammar based on the [concept of 'tidy' data](https://vita.had.co.nz/papers/tidy-data.pdf). This session will discuss the tidy data concept and its main package implementations. For me, the tidy data concept influences not just the work I do in R but how I structure spreadsheets and datasets in general, and I have found it to generally result in cleaner data analyses.[Tidyverse packages](https://www.tidyverse.org/packages/) are among the most used R packages, and greatly improve upon implementations of basic operations in base R. The Tidyverse chapter will greatly draw upon Hadley Wickham's (the progenitor of the Tidyverse) book (available for free online), [R for Data Science](https://r4ds.had.co.nz/).
 
 ### Shiny
 
-#### [Shiny Session 1](topics/shiny_1.html)
+#### [Shiny Session 1](topics_output/shiny_1.html)
 
 This session will discuss the basics of Shiny:
 
@@ -75,25 +71,25 @@ This session will discuss the basics of Shiny:
 
 Please come prepared with an idea of what project you will develop a basic Shiny app for over the next eight weeks. Work with your team leader and the relevant project manager to identify a project and decide if some of the time you spend on developing an example Shiny app is billable.  You shouldn't have to spend more than a few hours in advance of each of the four webinars -- these apps can be very basic. Progress is expected for discussion from each participant each week. 
 
-#### [Shiny Session 2](topics/shiny_2.html)
+#### [Shiny Session 2](topics_output/shiny_2.html)
 
 This session will cover the basics of Shiny Dashboards -- a special pa
 
-#### [Shiny Session 3](topics/shiny_3.html)
+#### [Shiny Session 3](topics_output/shiny_3.html)
 
-#### [Shiny Session 4](topics/shiny_4.html)
+#### [Shiny Session 4](topics_output/shiny_4.html)
 
-### [Geospatial Data](topics/geospatial.html)
+### [Geospatial Data](topics_output/geospatial.html)
 
-### [Census, TIGER, and LODES data](topics/census.html)
+### [Census, TIGER, and LODES data](topics_output/census.html)
 
-### [GTFS data](topics/gtfs_data.html)
+### [GTFS data](topics_output/gtfs_data.html)
 
-### [R Markdown](topics/rmarkdown.html)
+### [R Markdown](topics_output/rmarkdown.html)
 
 R Markdown is a great way to produce a cohesive presentation of results from your R code -- in case you were wondering how this website was produced, it was produced with 🤯R Markdown🤯! R Markdown is a R implementation of a popular markup language -- Markdown -- that allows for the seamless intermingling of text, R code, and results (e.g., plots, tables, HTML widgets like leaflet maps) that can be rendered into formats like PDF and HTML (other formats include Microsoft Word -- for a full list see [here](https://rmarkdown.rstudio.com/lesson-9.html))
 
-### [Misc. Questions](topics/misc_questions.html)
+### [Misc. Questions](topics_output/misc_questions.html)
 
 This session will provide an opportunity to ask any questions of Bryan related to R that were not covered in prior modules. Please submit questions through this [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSc6JMTAwDHN82RASgRUYJggEeRri67WH1euaoxNFtjgNxboqg/viewform?usp=sf_link) throughout the course that don't appear to be answered in any of the other course modules, Bryan will curate the questions into a ~1 hour presentation for this final module. Stay tuned for the presentation itself, it will be prepared before the final week. 
 
