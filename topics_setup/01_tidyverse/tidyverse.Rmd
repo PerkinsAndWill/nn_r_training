@@ -1118,6 +1118,7 @@ Viola! That is it for this lesson -- we have spent some time on tidying, transfo
 
 - [Tidyverse Fundamentals course track (5 courses, 20 hours)](https://learn.datacamp.com/skill-tracks/tidyverse-fundamentals)
 - [Intermediate Tidyverse Toolbox course track (4 courses, 16 hours)](https://learn.datacamp.com/skill-tracks/intermediate-tidyverse-toolbox?version=1)
-
+- [Working with Dates and Times in R (1 course, 4 hours)](https://learn.datacamp.com/courses/working-with-dates-and-times-in-r)
+- [Data Visualization with R course track (3 courses, 12 hours)](https://learn.datacamp.com/skill-tracks/data-visualization-with-r)
 
 
