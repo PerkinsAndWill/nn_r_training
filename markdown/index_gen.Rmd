@@ -75,8 +75,6 @@ Please come prepared with an idea of what project you will develop a basic Shiny
 
 #### [Shiny Session 2](topics_output/shiny_2.html)
 
-This session will cover the basics of Shiny Dashboards -- a special pa
-
 #### [Shiny Session 3](topics_output/shiny_3.html)
 
 #### [Shiny Session 4](topics_output/shiny_4.html)
@@ -86,10 +84,6 @@ This session will cover the basics of Shiny Dashboards -- a special pa
 ### [Census, TIGER, and LODES data](topics_output/census.html)
 
 ### [GTFS data](topics_output/gtfs_data.html)
-
-### [R Markdown](topics_output/rmarkdown.html)
-
-R Markdown is a great way to produce a cohesive presentation of results from your R code -- in case you were wondering how this website was produced, it was produced with 🤯R Markdown🤯! R Markdown is a R implementation of a popular markup language -- Markdown -- that allows for the seamless intermingling of text, R code, and results (e.g., plots, tables, HTML widgets like leaflet maps) that can be rendered into formats like PDF and HTML (other formats include Microsoft Word -- for a full list see [here](https://rmarkdown.rstudio.com/lesson-9.html))
 
 ### [Misc. Questions](topics_output/misc_questions.html)
 
@@ -104,3 +98,8 @@ Esther Needham, Oren Eshel, and Paul Leitman compiled some standards for R setup
 ### Git and GitHub
 
 Esther Needham did a presentation to Nelson\\Nygaard staff on using Git and GitHub for R project work. A PDF of that presentation is available [here](docs/PDF/NN GitHub 101_ Git-ting Started with Git and GitHub.pdf). 
+
+### R Markdown
+
+R Markdown is a great way to produce a cohesive presentation of results from your R code -- in case you were wondering how this website was produced, it was produced with 🤯R Markdown🤯! R Markdown is a R implementation of a popular markup language -- Markdown -- that allows for the seamless intermingling of text, R code, and results (e.g., plots, tables, HTML widgets like leaflet maps) that can be rendered into formats like PDF and HTML (other formats include Microsoft Word -- for a full list see [here](https://rmarkdown.rstudio.com/lesson-9.html))
+
