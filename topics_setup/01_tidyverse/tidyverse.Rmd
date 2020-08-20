@@ -21,8 +21,7 @@ There are thousands of R packages, and because of the open source nature of R, a
 
 A helpful place to start if you have a goal in mind for your R code but you don't know which packages can help is the [CRAN Task View Page](https://cran.r-project.org/web/views/). It is a well maintained list of package topics, including some narrative description of what packages do what within each topic. For example, we might want to check out the [Spatial task view](https://cran.r-project.org/web/views/Spatial.html). There we can see the many packages developed with spatial analysis in mind. 
 
-Another place to go is Google 🤓 -- there is a widespread (and well documented) R community on GitHub, StackOverflow, and various R blogs that can help put you on the right path. Chances are someone has had the same question as you (typically many someones), and if they haven't then you might have a package to develop on your hands...
-
+Another place to go is Google 🤓 -- there is a widespread (and well documented) R community on GitHub, StackOverflow, and various R blogs that can help put you on the right path. Chances are someone has had the same question as you (typically many someones), and if they haven't, then you might have a package to develop on your hands...
 
 ## Tidyverse Packages
 
@@ -53,7 +52,7 @@ tidyverse_conflicts()
 detach("package:MASS", unload=TRUE)
 ```
 
-As well as the core tidyverse, installing this package also installs a selection of other packages that you're likely to use frequently, but probably not in every analysis. This includes packages for:
+As well as the core tidyverse, installing this package also installs a selection of other packages that you're likely to use frequently, but probably not in every analysis. This means they are installed, but not loaded by defaault, so if you want to use them you will need to load them with a `library()` call. This includes packages for:
 
 *   Working with specific types of vectors:
 
@@ -70,7 +69,7 @@ As well as the core tidyverse, installing this package also installs a selection
     * [rvest](https://github.com/tidyverse/rvest), for web scraping.
     * [xml2](https://github.com/r-lib/xml2), for XML.
 
-*   Modelling
+*   Modeling
 
     * [modelr](https://github.com/tidyverse/modelr), for modelling within a pipeline
     * [broom](https://github.com/tidymodels/broom), for turning models into 
@@ -157,8 +156,8 @@ The principles of tidy data seem so obvious that you might wonder if you'll ever
 1.  Most people aren't familiar with the principles of tidy data, and it's hard
     to derive them yourself unless you spend a _lot_ of time working with data.
     
-1.  Data is often organised to facilitate some use other than analysis. For 
-    example, data is often organised to make entry as easy as possible.
+1.  Data is often organized to facilitate some use other than analysis. For 
+    example, data is often organized to make entry as easy as possible.
     
 This means for most real analyses, you'll need to do some tidying. The first step is always to figure out what the variables and observations are. Sometimes this is easy; other times you'll need to consult with the people who originally generated the data. 
 The second step is to resolve one of two common problems:
@@ -268,7 +267,7 @@ In submitting your interest for R training, you all generated some data that cou
 
 Some notes on the below code block:
 
-- **The Pipe:** If you are not familiar with the `%>%` operator (known as 'the pipe operator'), meet your new best friend! It comes from the `magrittr` R package (part of the tidyverse) and gets rid of the need to nest multiple parantheses. Pass the result of one function directly into the first parameter of the next. 
+- **The Pipe:** If you are not familiar with the `%>%` operator (known as 'the pipe operator'), meet your new best friend! It comes from the `magrittr` R package (part of the tidyverse) and gets rid of the need to nest multiple parentheses. Pass the result of one function directly into the first argument of the next. 
 - **A note on `pivot_*` functions:**  I (Bryan) did not realize prior to developing this course that `gather()` and `spread()` were no longer the preferred way of converting between longer and wider data formats, so I am learning this new preferred implementation along with you! Instead of `gather()`, we should be using `pivot_longer()`, and instead of `spread()` we should be using `pivot_wider()`. The old functions still work but they are no longer being actively improved. If the old functions mean nothing to you, then don't worry about this note! 
 - **There are many ways to do this:** going from messy data to tidy data is not a straight line. You can use the functions below in a different order (or use different functions!) that can take more or less lines of code -- do this in the way that best makes sense to you and still gives you the result you want. Experiment using different lines to get to the same result!
 
@@ -281,12 +280,13 @@ library(hms) #For working with times of day
 
 raw_doodle = read_excel('data/r_doodle.xls')
 
-raw_doodle
-
 #Take a look at data in R studio viewer and in Excel. 
 #Column names are weird, the information we want is several rows down from the top. 
 #Luckily we can use skip some rows and rename columns to make them easier to manipulate
 
+raw_doodle
+
+#Let's try to fix a few things at first
 less_raw_doodle = read_excel('data/r_doodle.xls',skip = 3) %>% #Skipping three rows, we will need both weekday and time data from top two new rows
   clean_names() %>%#Cleaning names to make them easier to use, R likes names that don't have spaces, special characters, or leading numbers. 
   rename(x2 = august_2020, # We don't need to know that it is August 2020
@@ -444,8 +444,6 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = class))
 ```
 
-(If you prefer British English, like Hadley, you can use `colour` instead of `color`.)
-
 To map an aesthetic to a variable, associate the name of the aesthetic to the name of the variable inside `aes()`. ggplot2 will automatically assign a unique level of the aesthetic (here a unique color) to each unique value of the variable, a process known as __scaling__. ggplot2 will also add a legend that explains which levels correspond to which values.
 
 The colors reveal that many of the unusual points are two-seater cars. These cars don't seem like hybrids, and are, in fact, sports cars! Sports cars have large engines like SUVs and pickup trucks, but small bodies like midsize and compact cars, which improves their gas mileage. In hindsight, these cars were unlikely to be hybrids since they have large engines.
@@ -488,9 +486,9 @@ Here, the color doesn't convey information about a variable, but only changes th
 
 * The size of a point in mm.
 
-* The shape of a point as a number, as shown in Figure \@ref(fig:shapes).
+* The shape of a point as a number, as shown below. 
 
-```{r shapes, echo = FALSE, out.width = "75%", fig.asp = 1/3, fig.cap="R has 25 built in shapes that are identified by numbers. There are some seeming duplicates: for example, 0, 15, and 22 are all squares. The difference comes from the interaction of the `colour` and `fill` aesthetics. The hollow shapes (0--14) have a border determined by `colour`; the solid shapes (15--18) are filled with `colour`; the filled shapes (21--24) have a border of `colour` and are filled with `fill`.", warning = FALSE}
+```{r shapes, echo = FALSE, out.width = "75%", fig.asp = 1/3, warning = FALSE}
 shapes <- tibble(
   shape = c(0, 1, 2, 5, 3, 4, 6:19, 22, 21, 24, 23, 20),
   x = (0:24 %/% 5) / 2,
@@ -636,7 +634,7 @@ As with the other sections, until you've spent a lot of time using the language 
 
 Below, we're going to take the data we tidied in Part A and make a plot that quickly demonstrates when people are free for R training. Below is a single ggplot code block, with many comments throughout to explain the different pieces. As discussed above, ggplot code is modular -- you can add on as many separate pieces as you want (as long as those pieces are not directly conflicting). 
 
-```{r, message=FALSE, warning=FALSE, fig.width=20, fig.height=8}
+```{r, message=FALSE, warning=FALSE, fig.width=40, fig.height=16, fig.retina=2}
 ggplot(time_prefs_joined)+
   geom_rect(aes(
     #Translating times from hms to POSIXct to take advantage of scale_x_datetime()
@@ -663,15 +661,16 @@ ggplot(time_prefs_joined)+
   # Here I am using strftime() formatting codes to simplify the time format displayed
   scale_x_datetime(date_labels = '%I %p',date_breaks = '1 hour')+
   #Rotating x axis labels to make them easier to read
-  theme(axis.text.x = element_text(angle = 45, hjust=1))
+  theme(axis.text.x = element_text(angle = 45, hjust=1),
+        text = element_text(size=30))
 
 ```
 
 ### Purrr
 
-The [`purrr`](https://purrr.tidyverse.org/) package has been around for several years now, but with some recent updates across the tidyverse package, and my recent introduction via some [datacamp courses](https://learn.datacamp.com/skill-tracks/intermediate-tidyverse-toolbox?version=1), it has become a crucial part of my R programming toolbox that I would like to spend some time on. 
+The [`purrr`](https://purrr.tidyverse.org/) package has been around for several years now, but with some recent updates across the tidyverse packages, and my recent introduction via some [datacamp courses](https://learn.datacamp.com/skill-tracks/intermediate-tidyverse-toolbox?version=1), it has become a crucial part of my R programming toolbox that I would like to spend some time on. 
 
-Iteration is a common feature of programming, and one of the main reasons people want to program in the first place -- 'I want to do this analysis **for each** sub-unit in my analysis framework'. The most common way to accomplish iteration is through loops -- the most common variety being `for` loops. For loops are an easy-to-understand way to iterate through an analysis, but they have at least three main drawbacks: 1) they are slow, and 2) a lot of extra unnecessary code is created, 3) they are not modular -- pieces of for loops have to be manually copy-pasted, rather than referencing a modular function. 
+Iteration is a common feature of programming, and one of the main reasons people want to program in the first place -- e.g., 'I want to do this analysis **for each** sub-unit in my analysis framework'. The typical way to accomplish iteration is through loops, with the most common variety being `for` loops. For loops are an easy-to-understand way to iterate through an analysis, but they have at least three main drawbacks: 1) they are slow, and 2) a lot of extra unnecessary code is created, 3) they are not modular -- pieces of for loops have to be manually copy-pasted, rather than referencing a modular function. 
 
 `purrr` allows for the iterative application of functions to data frames. Additionally, it allows for the nesting of data frames - sometimes we will want to isolate pieces of the iterative analysis, and rather than creating a separate data frame for each iteration, we can nest the iterations into one big data frame. 
 
@@ -1035,7 +1034,7 @@ As with the other sections, `purrr` has a great cheat sheet to help you remember
 
 What if we wanted to clean up the plot we created above up a little bit -- we had a bunch of overlapping time blocks because of the way the doodle poll was taken. But what we really care about is when a person is free and when a person is otherwise occupied. Instead of keeping a record of their status for every potential overlapping appointment, can we group together blocks where they are free or occupied for a simpler plot? See how below. 
 
-```{r, message=FALSE, warning=FALSE, fig.width=20, fig.height=8}
+```{r, message=FALSE, warning=FALSE, fig.width=40, fig.height=16, fig.retina=2}
 time_prefs_clean = time_prefs_joined %>%
   select(name,name_factor,first_name,last_name,
          weekday,from_time,to_time,value) %>%
@@ -1073,7 +1072,7 @@ time_prefs_clean = time_prefs_joined %>%
     #Return the grouped data frame
     return(clean)
   })) %>%
-  #Get rid of the old data frame
+  #Get rid of the old data frames
   select(-data) %>%
   #Unnest the clean data frames, so we have one big data frame for plotting together
   unnest(cleaned_time_blocks)
@@ -1094,13 +1093,17 @@ ggplot(time_prefs_clean)+
   ggtitle('Cleaner Doodle Results for Scheduling R Trainings')+
   xlab('Time of Day (PDT)')+ylab('Participant Name')+
   scale_x_datetime(date_labels = '%I %p',date_breaks = '1 hour')+
-  theme(axis.text.x = element_text(angle = 45, hjust=1))
+  theme(axis.text.x = element_text(angle = 45, hjust=1),
+        text = element_text(size=30))
 
 ```
 
 Viola! That is it for this lesson -- we have spent some time on tidying, transforming, and visualizing. Of course your learning does not end here -- I have included a number of resources for review below that will help you delve deeper into and master these topics. 
 
 ## Reference Materials
+
+### Run Through the Example Code Yourself
+You can run through the example yourself based on the example code and data, which you can get by cloning (or just downloading as a ZIP) the [GitHub repository](https://github.com/PerkinsAndWill/nn_r_training) for this course and navigating to the `topics_setup/01_tidyverse` directory. There you will see `example_code.R`, and the raw Doodle results in the `data` folder. 
 
 ### Cheat Sheets
 
@@ -1120,5 +1123,3 @@ Viola! That is it for this lesson -- we have spent some time on tidying, transfo
 - [Intermediate Tidyverse Toolbox course track (4 courses, 16 hours)](https://learn.datacamp.com/skill-tracks/intermediate-tidyverse-toolbox?version=1)
 - [Working with Dates and Times in R (1 course, 4 hours)](https://learn.datacamp.com/courses/working-with-dates-and-times-in-r)
 - [Data Visualization with R course track (3 courses, 12 hours)](https://learn.datacamp.com/skill-tracks/data-visualization-with-r)
-
-
