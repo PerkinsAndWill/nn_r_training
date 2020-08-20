@@ -148,7 +148,9 @@ Why ensure that your data is tidy? There are two main advantages:
 
 `dplyr`, `ggplot2`, and all the other packages in the tidyverse are designed to work with tidy data.
 
-### Pivoting
+### Tidying
+
+#### Pivoting
 
 The principles of tidy data seem so obvious that you might wonder if you'll ever encounter a dataset that isn't tidy. Unfortunately, however, most data that you will encounter will be untidy. There are two main reasons:
 
@@ -167,7 +169,88 @@ The second step is to resolve one of two common problems:
 
 Typically a dataset will only suffer from one of these problems; it'll only suffer from both if you're really unlucky! To fix these problems, you'll need the two most important functions in tidyr: `pivot_longer()` and `pivot_wider()`.
 
-### An Example
+
+#### Separating and uniting
+
+So far you've learned how to tidy `table2` and `table4`, but not `table3`. `table3` has a different problem: we have one column (`rate`) that contains two variables (`cases` and `population`). To fix this problem, we'll need the `separate()` function. You'll also learn about the complement of `separate()`: `unite()`, which you use if a single variable is spread across multiple columns.
+
+##### Separate
+
+`separate()` pulls apart one column into multiple columns, by splitting wherever a separator character appears. Take `table3`:
+
+```{r}
+table3
+```
+
+The `rate` column contains both `cases` and `population` variables, and we need to split it into two variables. `separate()` takes the name of the column to separate, and the names of the columns to separate into, as shown in Figure \@ref(fig:tidy-separate) and the code below.
+
+```{r}
+table3 %>% 
+  separate(rate, into = c("cases", "population"))
+```
+
+```{r tidy-separate, echo = FALSE, out.width = "75%", fig.cap = "Separating `table3` makes it tidy"}
+knitr::include_graphics("graphics/images/tidy-17.png")
+```
+
+By default, `separate()` will split values wherever it sees a non-alphanumeric character (i.e. a character that isn't a number or letter). For example, in the code above, `separate()` split the values of `rate` at the forward slash characters. If you wish to use a specific character to separate a column, you can pass the character to the `sep` argument of `separate()`. For example, we could rewrite the code above as:
+
+```{r eval = FALSE}
+table3 %>% 
+  separate(rate, into = c("cases", "population"), sep = "/")
+```
+
+(Formally, `sep` is a regular expression, which you'll learn more about in [strings].)
+
+Look carefully at the column types: you'll notice that `cases` and `population` are character columns. This is the default behaviour in `separate()`: it leaves the type of the column as is. Here, however, it's not very useful as those really are numbers. We can ask `separate()` to try and convert to better types using `convert = TRUE`:
+
+```{r}
+table3 %>% 
+  separate(rate, into = c("cases", "population"), convert = TRUE)
+```
+
+You can also pass a vector of integers to `sep`. `separate()` will interpret the integers as positions to split at. Positive values start at 1 on the far-left of the strings; negative value start at -1 on the far-right of the strings. When using integers to separate strings, the length of `sep` should be one less than the number of names in `into`. 
+
+You can use this arrangement to separate the last two digits of each year. This make this data less tidy, but is useful in other cases, as you'll see in a little bit.
+
+```{r}
+table3 %>% 
+  separate(year, into = c("century", "year"), sep = 2)
+```
+
+##### Unite
+
+`unite()` is the inverse of `separate()`: it combines multiple columns into a single column. You'll need it much less frequently than `separate()`, but it's still a useful tool to have in your back pocket.
+
+```{r tidy-unite, echo = FALSE, out.width = "75%", fig.cap = "Uniting `table5` makes it tidy"}
+knitr::include_graphics("graphics/images/tidy-18.png")
+```
+
+We can use `unite()` to rejoin the *century* and *year* columns that we created in the last example. That data is saved as `tidyr::table5`. `unite()` takes a data frame, the name of the new variable to create, and a set of columns to combine, again specified in `dplyr::select()` style:
+
+```{r}
+table5 %>% 
+  unite(new, century, year)
+```
+
+In this case we also need to use the `sep` argument. The default will place an underscore (`_`) between the values from different columns. Here we don't want any separator so we use `""`:
+
+```{r}
+table5 %>% 
+  unite(new, century, year, sep = "")
+```
+
+### Transforming
+
+Before we start an example, a note about **transforming**, to get us back to the Data Science framework we referred to above. Typically, after you tidy your data, there will be value that you add to that data by transforming it in some way.
+
+
+
+
+
+
+
+### An Example: Part A
 
 In submitting your interest for this course, you all generated some data that could use some tidying -- let's take a look at your Doodle responses below.  Some notes on the below code block:
 
@@ -238,10 +321,120 @@ time_prefs_joined = time_prefs %>%
            as.hms(),
          to_time = strptime(to_time,format='%I:%M %p') %>%
            as.hms()) %>%
-  select(-date)
+  select(-date) %>%
+  mutate(
+    first_name = map_chr(name,function(name){
+    (name %>%
+      str_split(' ') %>%
+      unlist())[1]}),
+    last_name = map_chr(name,function(name){
+    (name %>%
+      str_split(' ') %>%
+      unlist())[2]})
+  ) %>%
+  arrange(desc(last_name),desc(first_name),
+          weekday,from_time,to_time) %>%
+  mutate(name_factor = factor(name,ordered=TRUE,levels = unique(name)))
 
-#Look how tidy this data is!!!
+#Look how tidy this data is!!! This will make plotting much easier in next steps
 time_prefs_joined
 
 ```
+
+### Visualizing
+
+
+### An Example: Part B
+
+```{r, message=FALSE, warning=FALSE, fig.width=20, fig.height=8}
+ggplot(time_prefs_joined)+
+  geom_rect(aes(xmin=as.POSIXct(from_time),
+                xmax=as.POSIXct(to_time),
+                ymin = as.numeric(name_factor)-0.5,
+                ymax = as.numeric(name_factor)+0.5,
+                fill = value),
+            alpha = 0.5)+
+  facet_wrap(~weekday,nrow=1)+
+  scale_y_continuous(breaks = 1:length(unique(time_prefs_joined$name_factor)),
+                     labels = levels(time_prefs_joined$name_factor),
+                     limits = c(0.5,(length(unique(time_prefs_joined$name_factor))+0.5)))+
+  ggtitle('Doodle Results for Scheduling R Trainings')+
+  xlab('Time of Day (PDT)')+ylab('Participant Name')+
+  scale_x_datetime(date_labels = '%I %p',date_breaks = '1 hour')+
+  theme(axis.text.x = element_text(angle = 45, hjust=1))
+
+```
+
+
+
+### Purrr
+
+The [`purrr`](https://purrr.tidyverse.org/) package has been around for several years now, but with some recent updates across the tidyverse package, and my recent introduction via some [datacamp courses](https://learn.datacamp.com/skill-tracks/intermediate-tidyverse-toolbox?version=1), it has become a crucial part of my R programming toolbox that I would like to spend a moment on. 
+
+### An Example: Part C
+
+What if we want to clean this up a little bit -- we have a bunch of overlapping time blocks
+
+```{r, message=FALSE, warning=FALSE, fig.width=20, fig.height=8}
+time_prefs_clean = time_prefs_joined %>%
+  select(name,name_factor,first_name,last_name,
+         weekday,from_time,to_time,value) %>%
+  nest(data = c(weekday,from_time,to_time,value)) %>%
+  mutate(cleaned_time_blocks = map(data,function(data){
+    
+    grouped = data %>%
+      mutate(group_num = 1)
+    
+    gn = 1
+    
+    for(i in 2:nrow(grouped)){
+      if(grouped$value[i] != grouped$value[i-1] |
+         grouped$weekday[i] != grouped$weekday[i-1]){
+        gn = gn+1
+        grouped$group_num[i] = gn
+      }else{
+        grouped$group_num[i] = gn
+      }
+    }
+    
+    clean = grouped %>%
+      group_by(weekday,group_num,value) %>%
+      summarise(min_time = as.hms(min(from_time)),
+                max_time = as.hms(max(to_time)))
+
+    return(clean)
+  })) %>%
+  select(-data) %>%
+  unnest(cleaned_time_blocks)
+
+
+ggplot(time_prefs_clean)+
+  geom_rect(aes(xmin=as.POSIXct(min_time),
+                xmax=as.POSIXct(max_time),
+                ymin = as.numeric(name_factor)-0.5,
+                ymax = as.numeric(name_factor)+0.5,
+                fill = value),
+            color='white',size=1)+
+  facet_wrap(~weekday,nrow=1)+
+  scale_y_continuous(breaks = 1:length(unique(time_prefs_joined$name_factor)),
+                     labels = levels(time_prefs_joined$name_factor),
+                     limits = c(0.5,(length(unique(time_prefs_joined$name_factor))+0.5)))+
+  ggtitle('Cleaner Doodle Results for Scheduling R Trainings')+
+  xlab('Time of Day (PDT)')+ylab('Participant Name')+
+  scale_x_datetime(date_labels = '%I %p',date_breaks = '1 hour')+
+  theme(axis.text.x = element_text(angle = 45, hjust=1))
+
+```
+
+Viola! That is it for this lesson -- we have spent some time on tidying, transforming, and visualizing. Of course your learning doesnt end here -- I have included a number of resources for review below that will help you delve deeper into and master these topics. 
+
+### Related DataCamp Courses
+
+- [Tidyverse Fundamentals course track (5 courses, 20 hours)](https://learn.datacamp.com/skill-tracks/tidyverse-fundamentals)
+- [Intermediate Tidyverse Toolbox course track (4 courses, 16 hours)](https://learn.datacamp.com/skill-tracks/intermediate-tidyverse-toolbox?version=1)
+
+### Further Reading 
+
+- [R for Data Science](https://r4ds.had.co.nz/), by Garrett Grolemund and Hadley Wickham. As mentioned above, some of the content for this module is copied directly from that book. 
+  
 
