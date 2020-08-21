@@ -7,6 +7,8 @@ output: html_document
 
 [Back to overview](../index.html)
 
+*This content was presented Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, August 21st, 2020, and is [available as a recording here].(https://web.microsoftstream.com/video/33fc95ba-c50e-4ac0-b9e4-118217352133)*
+
 ## Introduction
 
 The [Tidyverse](https://www.tidyverse.org/) is a 'universe' of packages designed for data science with R. They are all built with an underlying design philosophy and grammar based on the [concept of 'tidy' data](https://vita.had.co.nz/papers/tidy-data.pdf). This session will discuss the tidy data concept and its main package implementations. For me, the tidy data concept influences not just the work I do in R but how I structure spreadsheets and datasets in general, and I have found it to generally result in cleaner data analyses.[Tidyverse packages](https://www.tidyverse.org/packages/) are among the most widely used R packages, and greatly improve upon implementations of basic operations in base R. 
@@ -1123,3 +1125,5 @@ You can run through the example yourself based on the example code and data, whi
 - [Intermediate Tidyverse Toolbox course track (4 courses, 16 hours)](https://learn.datacamp.com/skill-tracks/intermediate-tidyverse-toolbox?version=1)
 - [Working with Dates and Times in R (1 course, 4 hours)](https://learn.datacamp.com/courses/working-with-dates-and-times-in-r)
 - [Data Visualization with R course track (3 courses, 12 hours)](https://learn.datacamp.com/skill-tracks/data-visualization-with-r)
+
+*This content was presented Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, August 21st, 2020, and is [available as a recording here].(https://web.microsoftstream.com/video/33fc95ba-c50e-4ac0-b9e4-118217352133)*

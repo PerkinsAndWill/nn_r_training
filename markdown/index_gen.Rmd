@@ -35,7 +35,10 @@ schedule = read_excel('../data/nn_r_info_db.xlsx') %>%
          week_end_date = strftime(force_tz(week_end_date,tz='America/Los_Angeles'),'%B %d, %Y'),
          webinar_topic = ifelse(!is.na(topic_link),
                                 paste0("<a href='",topic_link,"'>",webinar_topic,"</a>"),
-                                webinar_topic)) %>%
+                                webinar_topic),
+         recording_link = ifelse(!is.na(recording_link),
+                                paste0("<a href='",recording_link,"'>",'Recording',"</a>"),
+                                recording_link)) %>%
   dplyr::select(-topic_link,-articles,-books,-datacamp_courses,-hrs_available,
                 -week_end_date) %>%
   rename(`Week #`=week_num,
@@ -43,7 +46,8 @@ schedule = read_excel('../data/nn_r_info_db.xlsx') %>%
          `Week Start Date`=week_start_date,
          `Webinar Topic`=webinar_topic,
          `Webinar Date`=webinar_date,
-         `Webinar Time`=webinar_time)
+         `Webinar Time`=webinar_time,
+         `Recording Link`=recording_link)
 
 datatable(schedule,
           rownames=FALSE, escape=FALSE,

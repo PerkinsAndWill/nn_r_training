@@ -5,6 +5,8 @@ library(janitor) #For cleaning up column names
 library(forcats) #For implementing ordered categorical 
 library(hms) #For working with times of day
 
+setwd('topics_setup/01_tidyverse')
+
 raw_doodle = read_excel('data/r_doodle.xls')
 
 raw_doodle
@@ -108,7 +110,7 @@ ggplot(time_prefs_joined)+
   scale_x_datetime(date_labels = '%I %p',date_breaks = '1 hour')+
   #Rotating x axis labels to make them easier to read
   theme(axis.text.x = element_text(angle = 45, hjust=1),
-        text = element_text(size=30))
+        text = element_text(size=12))
 
 #PART C--------------
 time_prefs_clean = time_prefs_joined %>%
@@ -170,4 +172,4 @@ ggplot(time_prefs_clean)+
   xlab('Time of Day (PDT)')+ylab('Participant Name')+
   scale_x_datetime(date_labels = '%I %p',date_breaks = '1 hour')+
   theme(axis.text.x = element_text(angle = 45, hjust=1),
-        text = element_text(size=30))
+        text = element_text(size=12))
