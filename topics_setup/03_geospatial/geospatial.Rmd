@@ -6,3 +6,7 @@ output: html_document
 ---
 
 [Back to overview](../index.html)
+
+## Related DataCamp Courses
+
+- [Interactive Maps with leaflet (1 course, 4 hours)](https://www.datacamp.com/courses/interactive-maps-with-leaflet-in-r)

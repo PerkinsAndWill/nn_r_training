@@ -6,3 +6,85 @@ output: html_document
 ---
 
 [Back to overview](../index.html)
+
+*This content was presented Nelson\\Nygaard Staff for the Shiny Webinar series on Wednesday, August 26th, 2020, and is [available as a recording here -- link to be shared].()*
+
+# Introduction
+
+## Introductions
+A primary goal of this course is to build capacity within Nelson\\Nygaard for Shiny app development. That includes not just technical skills, but also relationships with other folks at the firm you can learn from, teach, and work with more generally. 
+
+I would like everyone to say their name, pronouns, and office, and to talk briefly about what they would like out of this 'course'. 
+
+## Demonstration Application
+Please begin thinking about what Shiny app you would like to build over the next eight weeks, with the goal of presenting the application at the final session on Wednesday, October 7th. I would like everyone to have emailed me with the app idea they have decided upon by EOD Friday, September 4th. Please set up a 15 minute appointment with me if you would like to talk through your application idea before. 
+
+The goal of developing a demonstration application is to reinforce the skills learned throughout the course, and to learn by applying the skills you learn to an analysis related to your project work. Ideally, you would be able to bill some of your time to a project if the application would be useful for a project task. Please talk to your team leader and project manager about this idea prior to deciding on your demo application. I will be happy to set up one-on-one discussions with each person as needed over the next eight weeks to walk them through questions they are having in developing their demo apps. 
+
+# Course Schedule
+Below is the tentative schedule for the Shiny training sessions. Feedback is welcome, but encouraged to be provided ASAP so that the course content can be amended as soon as possible to save time expended overall. 
+
+- Session 1: Wednesday, August 26th, 2020 (today)
+  - Introductions and course schedule (10 minutes)
+  - Together we will work through lessons 1-4 in [RStudio's written Shiny tutorials](https://shiny.rstudio.com/tutorial/#written-tutorials) (50 minutes). 
+  - It is also recommended that folks separately watch the [2.5 hour shiny tutorial video](https://vimeo.com/131218530) put together by RStudio's Garrett Grolemund. This will go over most of the basics we will be reinforcing in this course. 
+  
+ 
+- Session 2: Wednesday, September 9th, 2020 
+  - Together we will work through lesson 5 & 6 in [RStudio's written shiny tutorials](https://shiny.rstudio.com/tutorial/#written-tutorials). (30 minutes)
+  - We will go over the [relationship between leaflet and Shiny](https://rstudio.github.io/leaflet/shiny.html). (20 minutes)
+  - We will introduce the [`shinydashboard`](https://rstudio.github.io/shinydashboard/) package and look at [examples of Shiny dashboards](https://rstudio.github.io/shinydashboard/examples.html) (10 minutes)
+
+- Session 3: Wednesday, September 23rd, 2020
+  - Special feature topics (20 minutes)
+    - [Progress bars](https://shiny.rstudio.com/articles/progress.html)
+    - Additional discussion of [leaflet](https://rstudio.github.io/leaflet/shiny.html)
+  - Deploying applications and using shinyapps.io (20 minutes)
+  - Group discussion of questions related to demo shiny apps (20 minutes)
+
+- Session 4: Wednesday, October 7th, 2020
+  - Each individual will present their Shiny app (7 people, ~8 minutes each)
+  - we will invite a wider audience to this session
+
+# RStudio Lessons 1 - 4
+
+## Lesson 1 - Welcome to Shiny
+
+### [Refer to RStudio lesson](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/)
+
+### Bryan's Additional Notes
+- Bryan learned Shiny when apps required separate `ui.R` files and `server.R` files. The note below from lesson 1 indicates that this functionality is still supported, and I have personally gotten used to tabbing between the two files.
+  - Note: Prior to version 0.10.2, Shiny did not support single-file apps and the ui object and server function needed to be contained in separate scripts called ui.R and server.R, respectively. This functionality is still supported in Shiny, however the tutorial and much of the supporting documentation focus on single-file apps.
+- In this module we will be running all apps locally (from RStudio). In a future module, we will show you how to upload apps to our shinyapps.io server so that apps can be shared with a public link (and credentials, if needed). 
+
+## Lesson 2 - Build a User Interface
+
+### [Refer to RStudio lesson](https://shiny.rstudio.com/tutorial/written-tutorial/lesson2/)
+
+### Bryan's Additional Notes
+
+## Lesson 3 - Add Control Widgets
+
+### [Refer to RStudio lesson](https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/)
+
+### Bryan's Additional Notes
+
+## Lesson 4 - Display Reactive Output
+
+### [Refer to RStudio lesson](https://shiny.rstudio.com/tutorial/written-tutorial/lesson4/)
+
+### Bryan's Additional Notes
+
+# Reference Materials
+
+## Cheat Sheets
+
+RStudio's Shiny cheat sheet is a great resource to have by your side when first developing Shiny apps. 
+
+[![Shiny Cheat Sheet](graphics/shiny.png)](https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf)
+
+## Related DataCamp Courses
+
+- [Shiny Fundamentals course track (4 courses, 16 hours)](https://www.datacamp.com/tracks/shiny-fundamentals-with-r)
+
+*This content was presented Nelson\\Nygaard Staff for the Shiny Webinar series on Wednesday, August 26th, 2020, and is [available as a recording here -- link to be shared].()*
