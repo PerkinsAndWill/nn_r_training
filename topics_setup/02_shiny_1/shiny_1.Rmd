@@ -45,7 +45,7 @@ Below is the tentative schedule for the Shiny training sessions. Feedback is wel
   - Group discussion of questions related to demo shiny apps (20 minutes)
 
 - Session 4: Wednesday, October 7th, 2020
-  - Each individual will present their Shiny app (7 people, ~8 minutes each)
+  - Each individual will present their Shiny app (8 people, ~7 minutes each)
   - we will invite a wider audience to this session
 
 # Nelson\\Nygaard Shiny Examples
