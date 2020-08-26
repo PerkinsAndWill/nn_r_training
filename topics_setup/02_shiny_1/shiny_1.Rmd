@@ -89,6 +89,12 @@ Some examples are linked below so you can get an idea of what the end product lo
 
 # Reference Materials
 
+## Basics of Shiny Video
+
+I highly recommend you watch this 2.5 hour [Rstudio produced tutorial video](https://vimeo.com/131218530) before our next session -- this will teach you the basics of Shiny that we will be reinforcing in this course. Many free resources already exist to teach Shiny, and we don't want to reinvent this content! The video is embedded below. 
+
+![](https://vimeo.com/131218530)
+
 ## Cheat Sheets
 
 RStudio's Shiny cheat sheet is a great resource to have by your side when first developing Shiny apps. 
