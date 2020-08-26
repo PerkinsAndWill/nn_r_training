@@ -63,8 +63,8 @@ Some examples are linked below so you can get an idea of what the end product lo
 
 ### Bryan's Additional Notes
 - Bryan learned Shiny when apps required separate `ui.R` files and `server.R` files. The note below from lesson 1 indicates that this functionality is still supported, and I have personally gotten used to tabbing between the two files.
-  - Esther and I plan to create some best practice documents related to Shiny that will include guidance to use the separate `ui.R` and `server.R` files. This is because apps can quickly become sophisticated (and thus, long) and separating the UI and Server elements makes for easier navigation. We will also recommend the inclusion of a `global.R` file, which is helpful for loading neccessary packages and data used across both files. 
   - Note: Prior to version 0.10.2, Shiny did not support single-file apps and the ui object and server function needed to be contained in separate scripts called ui.R and server.R, respectively. This functionality is still supported in Shiny, however the tutorial and much of the supporting documentation focus on single-file apps.
+  - Esther and I plan to create some best practice documents related to Shiny that will include guidance to use the separate `ui.R` and `server.R` files. This is because apps can quickly become sophisticated (and thus, long) and separating the UI and Server elements makes for easier navigation. We will also recommend the inclusion of a `global.R` file, which is helpful for loading neccessary packages and data used across both files. 
 - In this module we will be running all apps locally (from RStudio). In a future module, we will show you how to upload apps to our shinyapps.io server so that apps can be shared with a public link (and credentials, if needed). 
 
 ## Lesson 2 - Build a User Interface
@@ -93,7 +93,8 @@ Some examples are linked below so you can get an idea of what the end product lo
 
 I highly recommend you watch this 2.5 hour [Rstudio produced tutorial video](https://vimeo.com/131218530) before our next session -- this will teach you the basics of Shiny that we will be reinforcing in this course. Many free resources already exist to teach Shiny, and we don't want to reinvent this content! The video is embedded below. 
 
-![](https://vimeo.com/131218530)
+<p align="center"><iframe src="https://player.vimeo.com/video/131218530?color=428bca" width="640" height="361" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></p>
+<p><a href="https://vimeo.com/131218530">How to Start Shiny (Complete)</a> from <a href="https://vimeo.com/rstudioinc">RStudio, Inc.</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 
 ## Cheat Sheets
 
