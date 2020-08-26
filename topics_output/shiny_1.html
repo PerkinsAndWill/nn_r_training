@@ -364,7 +364,7 @@ summary {
 
 <h1 class="title toc-ignore">Shiny Session 1</h1>
 <h4 class="author">Bryan Blanc</h4>
-<h4 class="date">Updated as of August 24, 2020</h4>
+<h4 class="date">Updated as of August 26, 2020</h4>
 
 </div>
 
@@ -391,7 +391,8 @@ summary {
 <li>Session 1: Wednesday, August 26th, 2020 (today)
 <ul>
 <li>Introductions and course schedule (10 minutes)</li>
-<li>Together we will work through lessons 1-4 in <a href="https://shiny.rstudio.com/tutorial/#written-tutorials">RStudio’s written Shiny tutorials</a> (50 minutes).</li>
+<li>Examples of published Shiny apps (10 minutes)</li>
+<li>Together we will work through lessons 1-4 in <a href="https://shiny.rstudio.com/tutorial/#written-tutorials">RStudio’s written Shiny tutorials</a> (40 minutes).</li>
 <li>It is also recommended that folks separately watch the <a href="https://vimeo.com/131218530">2.5 hour shiny tutorial video</a> put together by RStudio’s Garrett Grolemund. This will go over most of the basics we will be reinforcing in this course.</li>
 </ul></li>
 <li>Session 2: Wednesday, September 9th, 2020
@@ -402,12 +403,13 @@ summary {
 </ul></li>
 <li>Session 3: Wednesday, September 23rd, 2020
 <ul>
-<li>Special feature topics (20 minutes)
+<li>Special feature topics (30 minutes)
 <ul>
 <li><a href="https://shiny.rstudio.com/articles/progress.html">Progress bars</a></li>
+<li>Additional discussion of <a href="https://rstudio.github.io/shinydashboard/"><code>shinydashboard</code></a></li>
 <li>Additional discussion of <a href="https://rstudio.github.io/leaflet/shiny.html">leaflet</a></li>
 </ul></li>
-<li>Deploying applications and using shinyapps.io (20 minutes)</li>
+<li>Deploying applications and using shinyapps.io (10 minutes)</li>
 <li>Group discussion of questions related to demo shiny apps (20 minutes)</li>
 </ul></li>
 <li>Session 4: Wednesday, October 7th, 2020
@@ -416,6 +418,10 @@ summary {
 <li>we will invite a wider audience to this session</li>
 </ul></li>
 </ul>
+</div>
+<div id="nelsonnygaard-shiny-examples" class="section level1">
+<h1>Nelson\Nygaard Shiny Examples</h1>
+<p>Some examples are linked below so you can get an idea of what the end product looks like, and get ideas for your demo application. - <a href="https://nelsonnygaard.shinyapps.io/tillamook_od_2020/">Tillamook County Demand Response OD Map</a> - <a href="https://nelsonnygaard.shinyapps.io/portland_crash_map/">Portland Crash Map</a> - <a href="https://nelsonnygaard.shinyapps.io/trimet_dashboard/">TriMet Bus Delay Dashboard (needs authentication credentials)</a> - <a href="https://nelsonnygaard.shinyapps.io/expediaparkingtracker/">Expedia Parking Tracker</a></p>
 </div>
 <div id="rstudio-lessons-1---4" class="section level1">
 <h1>RStudio Lessons 1 - 4</h1>
@@ -429,6 +435,7 @@ summary {
 <ul>
 <li>Bryan learned Shiny when apps required separate <code>ui.R</code> files and <code>server.R</code> files. The note below from lesson 1 indicates that this functionality is still supported, and I have personally gotten used to tabbing between the two files.
 <ul>
+<li>Esther and I plan to create some best practice documents related to Shiny that will include guidance to use the separate <code>ui.R</code> and <code>server.R</code> files. This is because apps can quickly become sophisticated (and thus, long) and separating the UI and Server elements makes for easier navigation. We will also recommend the inclusion of a <code>global.R</code> file, which is helpful for loading neccessary packages and data used across both files.</li>
 <li>Note: Prior to version 0.10.2, Shiny did not support single-file apps and the ui object and server function needed to be contained in separate scripts called ui.R and server.R, respectively. This functionality is still supported in Shiny, however the tutorial and much of the supporting documentation focus on single-file apps.</li>
 </ul></li>
 <li>In this module we will be running all apps locally (from RStudio). In a future module, we will show you how to upload apps to our shinyapps.io server so that apps can be shared with a public link (and credentials, if needed).</li>
@@ -442,6 +449,11 @@ summary {
 </div>
 <div id="bryans-additional-notes-1" class="section level3">
 <h3>Bryan’s Additional Notes</h3>
+<ul>
+<li>We will first be working with basic Shiny UI elements – we will discussed the specialized dashboard elements in the next session.</li>
+<li>Knowing some of the very basics of HTML helps to understand Shiny’s relationship to HTML rendering on the web page.</li>
+<li>Ultimately, it is important to understand that essentially Shiny is a framework for translating an R syntax for interactive web apps into HTML and Javascript, which is ultimately what your browser is actually rendering. You can see the resultant HTML &amp; Javascript by using the Developer Tools Panel in Google Chrome, which you can access by clicking ‘Inspect Element’ in the menu brought up by right-clicking any element in the Shiny app. The main point of Shiny is lowering the barrier to developing web applications to interact with data – so you should not have to learn much HTML/Javascript, but understanding the basics can help you to troubleshoot as you build more advanced applications.</li>
+</ul>
 </div>
 </div>
 <div id="lesson-3---add-control-widgets" class="section level2">
@@ -451,15 +463,15 @@ summary {
 </div>
 <div id="bryans-additional-notes-2" class="section level3">
 <h3>Bryan’s Additional Notes</h3>
+<ul>
+<li>Developers have also added additional widgets beyond those available in the base Shiny package. For example, <a href="https://github.com/dreamRs/shinyWidgetss">here is an additional package of more control widgets.</a></li>
+</ul>
 </div>
 </div>
 <div id="lesson-4---display-reactive-output" class="section level2">
 <h2>Lesson 4 - Display Reactive Output</h2>
 <div id="refer-to-rstudio-lesson-3" class="section level3">
 <h3><a href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson4/">Refer to RStudio lesson</a></h3>
-</div>
-<div id="bryans-additional-notes-3" class="section level3">
-<h3>Bryan’s Additional Notes</h3>
 </div>
 </div>
 </div>
