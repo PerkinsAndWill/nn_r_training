@@ -7,7 +7,9 @@ output: html_document
 
 [Back to overview](../index.html)
 
-*This content was presented Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, August 21st, 2020, and is [available as a recording here].(https://web.microsoftstream.com/video/33fc95ba-c50e-4ac0-b9e4-118217352133)*
+*This content was presented Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, August 21st, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/33fc95ba-c50e-4ac0-b9e4-118217352133) and embedded below*
+
+<p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/33fc95ba-c50e-4ac0-b9e4-118217352133?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p>
 
 ## Introduction
 
@@ -1126,4 +1128,4 @@ You can run through the example yourself based on the example code and data, whi
 - [Working with Dates and Times in R (1 course, 4 hours)](https://learn.datacamp.com/courses/working-with-dates-and-times-in-r)
 - [Data Visualization with R course track (3 courses, 12 hours)](https://learn.datacamp.com/skill-tracks/data-visualization-with-r)
 
-*This content was presented Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, August 21st, 2020, and is [available as a recording here].(https://web.microsoftstream.com/video/33fc95ba-c50e-4ac0-b9e4-118217352133)*
+*This content was presented Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, August 21st, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/33fc95ba-c50e-4ac0-b9e4-118217352133) and embedded at the top of the page.*
