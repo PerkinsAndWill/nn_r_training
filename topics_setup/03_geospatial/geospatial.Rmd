@@ -7,6 +7,211 @@ output: html_document
 
 [Back to overview](../index.html)
 
+# Introduction
+
+# Simple Features
+
+*__Acknowledgment:__ This portion of this module heavily draws upon, including direct copy-paste of markdown content, the vignettes developed for the `sf` package, available on the package [documentation website](https://r-spatial.github.io/sf/index.html). *
+
+## Example
+Using the skills learned above, we are going to load in Excel data for Nelson\\Nygaard's projects and offices, and translate those into geospatial data, and perform some simple geocomputations. In the next section, we will use `leaflet` to map this information.
+
+Notes on below code:
+- **Coordinate System Reference Codes**: You will want to get comfortable using the EPSG codes for different coordinate systems, as that is the easiest way to reference them in R/sf. The website I use to find the appropriate EPSG code for a given area is [spatialreference.org](spatialreference.org). You will typically have to use this when using different state plane coordinate systems from different parts of the country. It is always handy to remember that WGS84 (the master geographic coordinate system for the globe in latitude & longitude) can be referenced by EPSG code `4326`, as is used below. 
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(sf)
+library(readxl)
+library(janitor)
+library(ggrepel)
+
+project_cities = read_excel('data/Projects_MASTER.xlsx',sheet='GISJOIN_202004')
+nn_offices = read_excel('data/Projects_MASTER.xlsx',sheet='nn_offices')
+
+project_cities_sf = project_cities %>%
+  clean_names() %>%
+  filter(is.na(international)) %>%
+  select(city,state,x,y,all:other) %>%
+  st_as_sf(coords = c('x','y'),crs = 4326)
+
+nn_offices_sf = nn_offices %>%
+  clean_names() %>%
+  st_as_sf(coords = c('x','y'),crs=4326)
+
+#Making a simple leaflet map to show the coordinates -- will explain this in next section
+ggplot(nn_offices_sf)+
+  geom_sf()+
+  geom_sf_label(aes(label=city),nudge_y =1 )
+
+nn_office_buffers = nn_offices_sf %>%
+  #Going to use Oregon North (2269) even though this will be slightly inaccurate with a nationwide buffer calculation
+  st_transform(2269) %>%
+  st_buffer(5280*50) %>%
+  st_transform(4326)
+
+leaflet() %>%
+  addProviderTiles()
+
+```
+
+
+
+
+# Leaflet
+
+*__Acknowledgment:__ This portion of this module heavily draws upon, including direct copy-paste of markdown content, the the [documentation website](https://rstudio.github.io/leaflet/) developed for the `leaflet` package.*
+
+## Introduction
+
+[Leaflet](http://leafletjs.com) is one of the most popular open-source JavaScript libraries for interactive maps. It's used by websites ranging from [The New York Times](http://www.nytimes.com/projects/elections/2013/nyc-primary/mayor/map.html) and [The Washington Post](http://www.washingtonpost.com/sf/local/2013/11/09/washington-a-world-apart/) to [GitHub](https://github.com/blog/1528-there-s-a-map-for-that) and [Flickr](https://www.flickr.com/map), as well as GIS specialists like [OpenStreetMap](http://www.openstreetmap.org/), [Mapbox](http://www.mapbox.com/), and [CartoDB](http://cartodb.com/).
+
+This R package makes it easy to integrate and control Leaflet maps in R.
+
+### Features
+
+* Interactive panning/zooming
+* Compose maps using arbitrary combinations of:
+    * Map tiles
+    * Markers
+    * Polygons
+    * Lines
+    * Popups
+    * GeoJSON
+* Create maps right from the R console or RStudio
+* Embed maps in [knitr](http://yihui.name/knitr/)/[R Markdown](http://rmarkdown.rstudio.com/) documents and [Shiny](http://shiny.rstudio.com/) apps
+* Easily render spatial objects from the `sp` or `sf` packages, or data frames with latitude/longitude columns
+* Use map bounds and mouse events to drive Shiny logic
+* Display maps in non spherical mercator projections
+* Augment map features using chosen plugins from [leaflet plugins repository](http://leafletjs.com/plugins)
+
+### Installation
+
+To install this R package, run `install.packages("leaflet")` command at your R prompt. Once installed, you can use this package at the R console, within [R Markdown](http://rmarkdown.rstudio.com/) documents, and within [Shiny](http://shiny.rstudio.com/) applications.
+
+### Basic Usage
+
+You create a Leaflet map with these basic steps:
+
+1. Create a map widget by calling `leaflet()`.
+2. Add _layers_ (i.e., features) to the map by using layer functions (e.g. `addTiles`, `addMarkers`, `addPolygons`) to modify the map widget.
+3. Repeat step 2 as desired.
+4. Print the map widget to display it.
+
+Here's a basic example:
+
+```{r, warning=FALSE}
+library(leaflet)
+m <- leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+m  # Print the map
+```
+
+## The Map Widget
+
+The function `leaflet()` returns a Leaflet map widget, which stores a list of objects that can be modified or updated later. Most functions in this package have an argument `map` as their first argument, which makes it easy to use the pipe operator `%>%` in the **magrittr** package, as you have seen from the example in the [Introduction](./).
+
+### Initializing Options
+The map widget can be initialized with certain parameters. This is achieved by populating the `options` argument as shown below.
+
+```{r eval=FALSE}
+# Set value for the minZoom and maxZoom settings.
+leaflet(options = leafletOptions(minZoom = 0, maxZoom = 18))
+```
+
+The `leafletOptions()` can be passed any option described in the leaflet [reference document](http://leafletjs.com/reference-1.0.0.html#map-option). Using the `leafletOptions()`, you can set a custom [CRS](https://en.wikipedia.org/wiki/Spatial_reference_system) and have your map displayed in a non spherical mercator projection as described in [projections](projections.html).
+
+### Map Methods
+
+You can manipulate the attributes of the map widget using a series of methods. Please see the help page `?setView` for details.
+
+- `setView()` sets the center of the map view and the zoom level;
+- `fitBounds()` fits the view into the rectangle `[lng1, lat1]` -- `[lng2, lat2]`;
+- `clearBounds()` clears the bound, so that the view will be automatically determined by the range of latitude/longitude data in the map layers if provided;
+
+### The Data Object
+
+Both `leaflet()` and the map layer functions have an optional `data` parameter that is designed to receive spatial data in one of several forms:
+
+- From base R:
+    - lng/lat matrix
+    - data frame with lng/lat columns
+- From the [**sp** package](http://cran.rstudio.com/package=sp):
+    - `SpatialPoints[DataFrame]`
+    - `Line`/`Lines`
+    - `SpatialLines[DataFrame]`
+    - `Polygon`/`Polygons`
+    - `SpatialPolygons[DataFrame]`
+- From the [**maps** package](http://cran.rstudio.com/package=maps):
+    - the data frame from returned from `map()`
+
+The `data` argument is used to derive spatial data for functions that need it; for example, if `data` is a `SpatialPolygonsDataFrame` object, then calling `addPolygons` on that map widget will know to add the polygons from that `SpatialPolygonsDataFrame`.
+
+It is straightforward to derive these variables from **sp** objects since they always represent spatial data in the same way. On the other hand, for a normal matrix or data frame, any numeric column could potentially contain spatial data. So we resort to guessing based on column names:
+
+- the latitude variable is guessed by looking for columns named `lat` or `latitude` (case-insensitive)
+- the longitude variable is guessed by looking for `lng`, `long`, or `longitude`
+
+You can always explicitly identify latitude/longitude columns by providing `lng` and `lat` arguments to the layer function.
+
+For example, we do not specify the values for the arguments `lat` and `lng` in `addCircles()` below, but the columns `Lat` and `Long` in the data frame `df` will be automatically used:
+
+```{r eval=FALSE}
+# add some circles to a map
+df = data.frame(Lat = 1:10, Long = rnorm(10))
+leaflet(df) %>% addCircles()
+```
+
+You can also explicitly specify the `Lat` and `Long` columns (see below for more info on the `~` syntax):
+
+```{r eval=FALSE}
+leaflet(df) %>% addCircles(lng = ~Long, lat = ~Lat)
+```
+
+A map layer may use a different data object to override the data provided in `leaflet()`. We can rewrite the above example as:
+
+```{r eval=FALSE}
+leaflet() %>% addCircles(data = df)
+leaflet() %>% addCircles(data = df, lat = ~ Lat, lng = ~ Long)
+```
+
+Below are examples of using `sf`:
+
+```{r message=FALSE}
+#TODO
+```
+
+### The Formula Interface
+
+The arguments of all layer functions can take normal R objects, such as a numeric vector for the `lat` argument, or a character vector of colors for the `color` argument. They can also take a one-sided formula, in which case the formula will be evaluated using the `data` argument as the environment. For example, `~ x` means the variable `x` in the data object, and you can write arbitrary expressions on the right-hand side, e.g., `~ sqrt(x + 1)`.
+
+```{r eval=FALSE}
+m = leaflet() %>% addTiles()
+df = data.frame(
+  lat = rnorm(100),
+  lng = rnorm(100),
+  size = runif(100, 5, 20),
+  color = sample(colors(), 100)
+)
+m = leaflet(df) %>% addTiles()
+m %>% addCircleMarkers(radius = ~size, color = ~color, fill = FALSE)
+m %>% addCircleMarkers(radius = runif(100, 4, 10), color = c('red'))
+```
+
+# Reference Materials
+
+## Further Reading 
+
+- [Geocomputation with R (web version)](https://geocompr.robinlovelace.net/)
+- [Applied Spatial Data Analysis with R (PDF version)](http://gis.humboldt.edu/OLM/r/Spatial%20Analysis%20With%20R.pdf)
+- [An Introduction to R for Spatial Analysis and Mapping (available where books are sold)](https://uk.sagepub.com/en-gb/eur/an-introduction-to-r-for-spatial-analysis-and-mapping/book258267)
+
+## Cheat Sheets
+
+- [Simple Features (sf)](https://github.com/rstudio/cheatsheets/raw/master/sf.pdf)
+- [Leaflet](https://github.com/rstudio/cheatsheets/raw/master/leaflet.pdf)
+
 ## Related DataCamp Courses
 
 - [Interactive Maps with leaflet (1 course, 4 hours)](https://www.datacamp.com/courses/interactive-maps-with-leaflet-in-r)
