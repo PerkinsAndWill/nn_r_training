@@ -1368,44 +1368,55 @@ map %>% hideGroup("Outline")
 ```
 
 # Example
-Using the skills learned above, we are going to load in Excel data for Nelson\\Nygaard's projects and offices, and translate those into geospatial data, and perform some simple geocomputations. Then we will map the data using `leaflet`
+Using the skills learned above, we are going to load in Excel data for Nelson\\Nygaard's projects and offices, and translate those into geospatial data, and perform some simple geocomputations using buffers and intersections. Then we will map the data using `leaflet`, and plot a simple summary using `ggplot`.
 
 **Notes on below code:**
 
 - **Coordinate System Reference Codes**: You will want to get comfortable using the EPSG codes for different coordinate systems, as that is the easiest way to reference them in R/sf. The website I use to find the appropriate EPSG code for a given area is [spatialreference.org](spatialreference.org). You will typically have to use this when using different state plane coordinate systems from different parts of the country. It is always handy to remember that WGS84 (the master geographic coordinate system for the globe in latitude & longitude) can be referenced by EPSG code `4326`, as is used below. 
 
+- **Seamless work with spatial and non-spatial attributes**: One of the greatest features of the `sf` package is how seamlessly it integrates into the tidyverse. Just as we can do spatial operations below, we can also use tidyverse methods like `ggplot()` to create summaries that rely on spatial computations (in this case, an intersection).
+
 ```{r, warning=FALSE, message=FALSE,out.width='100%'}
+#Load in packages
 library(tidyverse)
 library(sf)
 library(readxl)
 library(janitor)
-library(ggrepel)
 library(leaflet)
 
+#Read in Excel files
 project_cities = read_excel('data/Projects_MASTER.xlsx',sheet='GISJOIN_202004')
 nn_offices = read_excel('data/Projects_MASTER.xlsx',sheet='nn_offices')
 
+#Add geometry to project cities using st_as_sf() function
 project_cities_sf = project_cities %>%
   clean_names() %>%
+  #Filter out international projects
   filter(is.na(international)) %>%
+  #Select columns of interest
   select(city,state,x,y,all:other) %>%
+  #Can turn data frame into sf data frame by referencing coordinates (for points)
   st_as_sf(coords = c('x','y'),crs = 4326)
 
+#Same as above
 nn_offices_sf = nn_offices %>%
   clean_names() %>%
   st_as_sf(coords = c('x','y'),crs=4326)
 
 #Making custom NN icon based on JPEG image stored on website. 
 nn_icon = makeIcon(iconUrl = 'https://perkinsandwill.github.io/nn_r_training/topics_setup/03_geospatial/graphics/NNlogo_RGB_300dpi_JPEG.jpg',
-         iconWidth = 331*0.1,
-         iconHeight = 450*0.1,
-         iconAnchorX = 331*0.1*0.5,
-         iconAnchorY = 450*0.1*0.5)
+                   #Making icon 10% of original size   
+                   iconWidth = 331*0.1,
+                   iconHeight = 450*0.1,
+                   #Anchor point at center of icon (halfway in X and Y)
+                   iconAnchorX = 331*0.1*0.5,
+                   iconAnchorY = 450*0.1*0.5)
 
 #Basic map showing offices as icons (icon assembled above)
 leaflet() %>%
   addProviderTiles('CartoDB.Positron') %>%
   addMarkers(data =nn_offices_sf,icon = nn_icon,
+             #Using formula notation, as discussed above, can reference attributes
              label=~city)
 
 nn_office_buffers = nn_offices_sf %>%
@@ -1413,6 +1424,7 @@ nn_office_buffers = nn_offices_sf %>%
   st_transform(2269) %>%
   #Create fifty mile buffer
   st_buffer(5280*50) %>%
+  #Transform back to WGS84
   st_transform(4326)
 
 #Basic map showing buffer polygons
@@ -1423,11 +1435,14 @@ leaflet() %>%
 
 #Using Intersection to group project cities within 50 miles of an office. 
 sub_project_cities_sf = project_cities_sf %>%
+  #Intersection only operates with planar coordinates, need to transform to state plane temporarily
   st_transform(2269) %>%
+  #Intersecting with office buffers
   st_intersection(nn_office_buffers %>% 
                     select(nn_office_id,city,geometry) %>%
                     rename(office_city = city) %>%
                     st_transform(2269)) %>%
+  #Transform back for mapping
   st_transform(4326)
 
 #Mapping offices and project cities using groups and layer control. 
@@ -1443,19 +1458,34 @@ leaflet() %>%
                    fillColor = '#00659A',weight=3) %>%
   addLayersControl(baseGroups = unique(sub_project_cities_sf$office_city))
 
+#Create a summary for plotting
 summ_project_cities_by_office = sub_project_cities_sf %>%
+  #Use the as_tibble() function to get rid of sf features -- otherwise geometries will not come off in select function. 
   as_tibble() %>%
   select(office_city,transit:other) %>%
+  #pivot by project type
   pivot_longer(transit:other,names_to='sector',values_to='num_projects') %>%
+  #filter out project types where num_projects is 0
   filter(num_projects>0) %>%
   group_by(office_city) %>%
+  #computed proportion of projects for second of below plots
   mutate(prop_projects = num_projects/sum(num_projects)) 
 
+#Plot projects by office and sector
 ggplot(summ_project_cities_by_office,
        aes(x=office_city,y=num_projects,fill=sector))+
   geom_col()+
   coord_flip()+
   ggtitle('Local Projects by Office and Sector')
+
+#Use proportion to create a 100% bar plot
+ggplot(summ_project_cities_by_office,
+       aes(x=office_city,y=prop_projects,fill=sector))+
+  geom_col()+
+  coord_flip()+
+  #Use percent labels function from scales package
+  scale_y_continuous(labels=scales::percent,name='Proportion of Projects')+
+  ggtitle('Proportion of Local Projects by Office and Sector')
 
 ```
 
@@ -1469,8 +1499,10 @@ ggplot(summ_project_cities_by_office,
 
 ## Cheat Sheets
 
+### Simple Features (sf) Cheat Sheet
 [![Simple Features (sf)](graphics/sf.png)](https://github.com/rstudio/cheatsheets/raw/master/sf.pdf)
 
+### Leaflet for R Cheat Sheet
 [![Leaflet](graphics/leaflet-cheatsheet-1.png)](https://github.com/rstudio/cheatsheets/raw/master/leaflet.pdf)
 
 ## Related DataCamp Courses
