@@ -2,7 +2,21 @@
 title: "Shiny Session 2"
 author: "Bryan Blanc"
 date: "Updated as of `r strftime(Sys.Date(),'%B %d, %Y')`"
-output: html_document
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
 ---
 
 [Back to overview](../index.html)
+
+*This content was presented to Nelson\\Nygaard Staff for the Shiny Webinar series on Wednesday, September 9th, 2020, and is [available as a recording here](LINK TO BE SHARED) and [WILL BE] embedded below.*
+
+# Today's Agenda
+
+- [Rstudio Shiny Lesson 5 (10 min)](https://shiny.rstudio.com/tutorial/written-tutorial/lesson5/)
+- [Leaflet + Shiny Relationship (15 min)](#lesson-5---r-scripts-and-data)
+- [Shiny dashboard (25 min)]()
+- [Brief discussion of proposed demo applications (10 min)]()
+
+# Lesson 5 - R Scripts and Data

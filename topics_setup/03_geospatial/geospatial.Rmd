@@ -10,7 +10,22 @@ output:
 
 [Back to overview](../index.html)
 
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, September 4th, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/d331753a-e974-4561-a00c-9145fb77bdb4) and embedded below*
+
+<p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/d331753a-e974-4561-a00c-9145fb77bdb4?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p>
+
 # Introduction
+
+There are several reasons why learning to use the geospatial capabilities of R are invaluable for R users, especially at Nelson\\Nygaard:
+
+- **Open source - no ESRI licenses neccessary**: R is a completely open source programming language, and so there are not licenses necessary to access its geospatial packages. NN as a firm has a limited number of licenses available at any given time, and the ongoing telecommuting associated with the COVID-19 pandemic has made using GIS licenses more difficult. R can allow you to conduct geospatial analyses on your local machine with no need for licenses. 
+- **Combining spatial and aspatial analyses**: As transportation planners, most of the work we do has some spatial component. Because of that, analysis is often separated into GIS and Excel components. With R, that separation is unneccesary -- you can combine spatial and aspatial analysis procedures and data seamlessly. 
+- **Automation and processing speed**: Like with all other R based analyses, you can automate analysis procedures you have to conduct many times over, potentially speeding up some GIS workflows that are repetitive. 
+- **Modular**: Additionally, if written appropriately, commonly conducted analysis procedures can be abstracted into modular code that can be applied across different projects, saving time as a firm. 
+- **Interactive**: Because of `leaflet`, which we will discuss below, R offers a very low barrier to quickly producing interactive maps, which are both helpful for data exploration and for presentation, especially as increasingly more deliverables move to digital formats. 
+
+This module will discuss the spatial data package `sf`, which is well integrated into the tidyverse and other mapping related packages (including `leaflet`). There are other spatial data frameworks that came before `sf` that will not be discussed below (like `sp`) but are still relevant to understand at a basic level. Reference articles are included below.
+Additionally, this module will discuss `leaflet`, an interactive mapping framework that lends itself well to spatial analysis and visualization in R. 
 
 # Simple Features
 
@@ -1509,3 +1524,5 @@ ggplot(summ_project_cities_by_office,
 
 - [Spatial data with R (4 courses, 16 hours, includes leaflet course noted below)](https://learn.datacamp.com/skill-tracks/spatial-data-with-r)
 - [Interactive Maps with leaflet (1 course, 4 hours)](https://www.datacamp.com/courses/interactive-maps-with-leaflet-in-r)
+
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, September 4th, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/d331753a-e974-4561-a00c-9145fb77bdb4) and embedded at the top of this page*
