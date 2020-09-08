@@ -364,12 +364,79 @@ summary {
 
 <h1 class="title toc-ignore">Shiny Session 2</h1>
 <h4 class="author">Bryan Blanc</h4>
-<h4 class="date">Updated as of August 20, 2020</h4>
+<h4 class="date">Updated as of September 08, 2020</h4>
 
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#todays-agenda">Today’s Agenda</a></li>
+<li><a href="#lesson-5---r-scripts-and-data"><span>Lesson 5 - R Scripts and Data</span></a><ul>
+<li><a href="#bryans-notes">Bryan’s Notes:</a></li>
+</ul></li>
+<li><a href="#leaflet-and-shiny-relationship"><span>Leaflet and Shiny Relationship</span></a><ul>
+<li><a href="#bryans-notes-1">Bryan’s Notes:</a></li>
+</ul></li>
+<li><a href="#shiny-dashboards">Shiny Dashboards</a><ul>
+<li><a href="#bryans-notes-2">Bryan’s Notes</a></li>
+</ul></li>
+<li><a href="#proposed-demo-applications"><span>Proposed Demo Applications</span></a></li>
+</ul>
+</div>
 
 <p><a href="../index.html">Back to overview</a></p>
+<p><em>This content was presented to Nelson\Nygaard Staff for the Shiny Webinar series on Wednesday, September 9th, 2020, and is <a href="LINK%20TO%20BE%20SHARED">available as a recording here</a> and [WILL BE] embedded below.</em></p>
+<div id="todays-agenda" class="section level1">
+<h1>Today’s Agenda</h1>
+<ul>
+<li><a href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson5/">Rstudio Shiny Lesson 5 (10 min)</a></li>
+<li><a href="#leaflet-and-shiny-relationship">Leaflet + Shiny Relationship (15 min)</a></li>
+<li><a href="#shiny-dashboards">Shiny dashboard (25 min)</a></li>
+<li><a href="#proposed-demo-applications">Brief discussion of proposed demo applications (10 min)</a></li>
+</ul>
+</div>
+<div id="lesson-5---r-scripts-and-data" class="section level1">
+<h1><a href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson5/">Lesson 5 - R Scripts and Data</a></h1>
+<p>Refer to the <a href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson5/">linked article.</a>.</p>
+<div id="bryans-notes" class="section level2">
+<h2>Bryan’s Notes:</h2>
+<ul>
+<li>You’ll notice the tutorial uses <code>.rds</code> files. If you are not familiar with these, these files a binary data format that R can read and write quickly. They are great for Shiny apps because they load quickly, as opposed to an Excel file, which has to be run through the <code>read_excel()</code> function and takes more time to parse. <code>.rds</code> files can load nearly instantaneously for small files, and for large files offer a significant speed advantage over other formats.</li>
+<li>You’ll also notice that the tutorial makes use of the <code>source()</code> command to load a function from a separate <code>.R</code> file. It is sometimes convenient, for a variety of reasons, to build functions or script procedures in other files to be loaded into the Shiny environment. This enables you to use the same script/functions across multiple projects, and, depending upon the application design, speed up your processing if you are not defining procedures within the Shiny context.</li>
+<li>When operating in the Shiny environment, all paths are relative to the folder containing the Shiny application. It is often helpful for me to have a commented out <code>setwd()</code> command for when I am testing pieces of the app so that I am operating in the same directory the application will be.</li>
+<li>We are recommending the use of <code>ui.R</code>, <code>server.R</code>, and <code>global.R</code> files for developing Shiny applications. This means your data loading and function/script loading can be happening in the <code>global.R</code> file.</li>
+</ul>
+</div>
+</div>
+<div id="leaflet-and-shiny-relationship" class="section level1">
+<h1><a href="https://rstudio.github.io/leaflet/shiny.html">Leaflet and Shiny Relationship</a></h1>
+<p>Refer to the <a href="https://rstudio.github.io/leaflet/shiny.html">linked article.</a></p>
+<div id="bryans-notes-1" class="section level2">
+<h2>Bryan’s Notes:</h2>
+<ul>
+<li>Note that you <em>can</em> set up a shiny app without the <code>session</code> parameter referenced in the definition function, but to use the <code>leaflet</code> features you will need to reference <code>session</code>.</li>
+<li><code>leafletProxy()</code> is used to change the features plotted on a leaflet map without generating a new <code>leaflet()</code> object, so the extents and zoom will not re-generate. This is helpful for changing the features (or their colors, for example) on a map based on user input.</li>
+<li>One of the key elements of using a <code>leafletProxy()</code> is using identifiers for features. This is genuinely good practice for data analysis anyways, so make sure you have unique identifiers for each of your geographic features/observations.</li>
+<li>Check out the <a href="https://shiny.rstudio.com/gallery/superzip-example.html">SuperZip</a> example fo demonstrating the use of interactivity with leaflet and Shiny. See the <a href="https://github.com/rstudio/shiny-examples/tree/master/063-superzip-example">code</a> to see how <code>leafletProxy()</code>s,layer IDs and click events are used.</li>
+</ul>
+</div>
+</div>
+<div id="shiny-dashboards" class="section level1">
+<h1>Shiny Dashboards</h1>
+<p>Refer to <a href="https://rstudio.github.io/shinydashboard/get_started.html">tutorial articles.</a></p>
+<div id="bryans-notes-2" class="section level2">
+<h2>Bryan’s Notes</h2>
+<ul>
+<li>The <code>shinydashboard</code> package makes some quick aesthetic and functional features of data dashboards quick to implement and customize. That said, there are times when you will want to customize the aesthetics of a dashboard more than the package will let you – in this case you may want to build some of the functions of the dashboard from scratch. For this course, we want our demo applications to be relatively simple, so I would recommend using <code>shinydashboard</code>.</li>
+<li>Bryan to show code underyling the current iteration of the Vancouver crash dashboard. The live application lives <a href="https://nelsonnygaard.shinyapps.io/vancouver_crash_dashboard/">here</a> and the code for the application is available at this <a href="https://github.com/PerkinsAndWill/Vancouver_TSP/tree/master/vancouver_crash_dashboard">GitHub repository</a>.</li>
+</ul>
+</div>
+</div>
+<div id="proposed-demo-applications" class="section level1">
+<h1><a href="https://docs.google.com/spreadsheets/d/13299ksP-588xCqw-Bu0RO7IDk9gFEfoKvcbAgZNlTcg/edit#gid=0">Proposed Demo Applications</a></h1>
+<p>Participants in the course have proposed their demo Shiny applications at the <a href="https://docs.google.com/spreadsheets/d/13299ksP-588xCqw-Bu0RO7IDk9gFEfoKvcbAgZNlTcg/edit#gid=0">linked Google Sheet</a>. Let’s have a brief discussion about what special tools people might need for their apps and what challenges you see yourself running into.</p>
+<p>Please schedule one-on-ones with me as needed to ask questions or bounce ideas off me specific to your application. I will try to share notes out from one-on-ones that I think will be useful to multiple people.</p>
+</div>
 
 
 
