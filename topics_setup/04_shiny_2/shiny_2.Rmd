@@ -16,6 +16,7 @@ output:
 
 - [Rstudio Shiny Lesson 5 (10 min)](https://shiny.rstudio.com/tutorial/written-tutorial/lesson5/)
 - [Leaflet + Shiny Relationship (15 min)](#leaflet-and-shiny-relationship)
+  - Note: Leaflet was discussed in the prior lunch and learn session [linked here](https://perkinsandwill.github.io/nn_r_training/topics_output/geospatial.html), so it is assumed you are familiar.
 - [Shiny dashboard (25 min)](#shiny-dashboards)
 - [Brief discussion of proposed demo applications (10 min)](#proposed-demo-applications)
 
@@ -26,8 +27,8 @@ Refer to the [linked article.](https://shiny.rstudio.com/tutorial/written-tutori
 ## Bryan's Notes:
 
 - You'll notice the tutorial uses `.rds` files. If you are not familiar with these, these files a binary data format that R can read and write quickly. They are great for Shiny apps because they load quickly, as opposed to an Excel file, which has to be run through the `read_excel()` function and takes more time to parse. `.rds` files can load nearly instantaneously for small files, and for large files offer a significant speed advantage over other formats. 
-- You'll also notice that the tutorial makes use of the `source()` command to load a function from a separate `.R` file. It is sometimes convenient, for a variety of reasons, to build functions or script procedures in other files to be loaded into the Shiny environment. This enables you to use the same script/functions across multiple projects, and, depending upon the application design, speed up your processing if you are not defining procedures within the Shiny context. 
-- When operating in the Shiny environment, all paths are relative to the folder containing the Shiny application. It is often helpful for me to have a commented out `setwd()` command for when I am testing pieces of the app so that I am operating in the same directory the application will be. 
+- You'll also notice that the tutorial makes use of the `source()` command to load a function from a separate `.R` file. It is sometimes convenient, for a variety of reasons, to build functions or script procedures in other files to be loaded into the Shiny environment. This enables you to use the same script/functions across multiple projects, and, depending upon the application design, speed up your processing if you are not defining procedures within the Shiny context. The `global.R` files can be used to load functions as well, but sometimes it might be convenient to use a separate file if shared between projects. 
+- When operating in the Shiny environment, all paths are relative to the folder containing the Shiny application. It is often helpful for me to have a commented out `setwd()` command for when I am testing pieces of the app so that I am operating in the same directory the application will be. This can be avoided by always using [RStudio Projects](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) at the root directory of your Shiny app, but sometimes for more complex project directories (e.g., when your app is a part of a larger project) it may be useful to still use manual working directories. 
 - We are recommending the use of `ui.R`, `server.R`, and `global.R` files for developing Shiny applications. This means your data loading and function/script loading can be happening in the `global.R` file. 
 
 # [Leaflet and Shiny Relationship](https://rstudio.github.io/leaflet/shiny.html)
