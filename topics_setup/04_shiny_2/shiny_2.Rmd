@@ -10,7 +10,9 @@ output:
 
 [Back to overview](../index.html)
 
-*This content was presented to Nelson\\Nygaard Staff for the Shiny Webinar series on Wednesday, September 9th, 2020, and is [available as a recording here](LINK TO BE SHARED) and [WILL BE] embedded below.*
+*This content was presented to Nelson\\Nygaard Staff for the Shiny Webinar series on Wednesday, September 9th, 2020, and is [available as a recording here](https://web.microsoftstream.com/embed/video/bad9e3fc-7693-4e17-ae4d-16c2d3bf9f1b) and is embedded below.*
+
+<p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/bad9e3fc-7693-4e17-ae4d-16c2d3bf9f1b?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p>
 
 # Today's Agenda
 
@@ -56,3 +58,5 @@ Refer to [linked articles.](https://rstudio.github.io/shinydashboard/get_started
 Participants in the course have proposed their demo Shiny applications at the [linked Google Sheet](https://docs.google.com/spreadsheets/d/13299ksP-588xCqw-Bu0RO7IDk9gFEfoKvcbAgZNlTcg/edit#gid=0). Let's have a brief discussion about what special tools people might need for their apps and what challenges you see yourself running into. 
 
 Please schedule one-on-ones with me as needed to ask questions or bounce ideas off me specific to your application. I will try to share notes out from one-on-ones that I think will be useful to multiple people. 
+
+*This content was presented to Nelson\\Nygaard Staff for the Shiny Webinar series on Wednesday, September 9th, 2020, and is [available as a recording here](https://web.microsoftstream.com/embed/video/bad9e3fc-7693-4e17-ae4d-16c2d3bf9f1b) and is embedded at the top of the page.*

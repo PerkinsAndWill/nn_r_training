@@ -2,5 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-markdown/*.html
+markdown/*/*.html
 topics_setup/*.html
+topics_setup/05_census/lodes_raw
+topics_setup/05_census/*.gz
