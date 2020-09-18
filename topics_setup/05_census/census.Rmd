@@ -94,6 +94,7 @@ portland_urban_area = urb_areas %>%
   filter(str_detect(NAME10,'Portland, OR')) %>%
   st_transform(4326)
 
+#Union, buffer, cast, and simlify all done here to try to remove vertices from boundary, making subsetting faster (but not as precise)
 simp_pdx_ua = portland_urban_area %>%
   st_transform(2269) %>%
   st_union() %>%
@@ -101,13 +102,13 @@ simp_pdx_ua = portland_urban_area %>%
   st_cast('POLYGON') %>%
   st_simplify()
 
+#Have to query these objects by state and county separately
 or_roads = roads(state='OR',county = c('Multnomah','Washington','Clackamas')) %>%
   st_transform(4326)
 wa_roads = roads(state='WA',county = c('Clark'))  %>%
   st_transform(4326)
 
-#Binding sf objects is still a little wonky
-
+#Binding sf objects is still a little wonky - have to reassert as sf column and object
 bound_roads = bind_rows(
   or_roads %>% as_tibble(),
   wa_roads %>% as_tibble()
@@ -165,6 +166,7 @@ leaflet() %>%
   addPolygons(data = pdx_places %>% st_transform(4326),
               fillColor='red',fillOpacity = 0.5,color='white',
               weight=1,label=~NAMELSAD,
+              #Highlight options helpful when you have overlapping objects
               highlightOptions = highlightOptions(weight=3,sendToBack = TRUE,
                                                   fillOpacity = 0.8)) %>%
   addPolylines(data=big_roads %>% st_transform(4326),
@@ -268,13 +270,16 @@ library(scales)
 
 pdx_cdp_med_income = get_acs(state=c('OR','WA'),geography = 'place',
                              variables = c(medincome = "B19013_001")) %>%
+  #Filtering for GEOIDs in PDX Places
   filter(GEOID %in% pdx_places$GEOID)
 
+#Joining ACS data to shape
 pdx_cdp_mi_shape = pdx_places %>%
   left_join(pdx_cdp_med_income %>%
               select(GEOID,estimate))
 
 income_pal = colorNumeric(
+  #Scales package lets you access color brewer palettes
   palette = brewer_pal(palette = 'Greens')(5),
   domain =  pdx_cdp_mi_shape$estimate
 )
@@ -430,12 +435,14 @@ agg_plc_lodes = orwa_lodes %>%
   group_by(h_st,h_stplc,w_st,w_stplc) %>%
   summarise(total_jobs = sum(total_jobs))
 
+#Going to use centroids to draw OD lines
 pdx_plc_cents = pdx_places %>%
   st_centroid()
 
 agg_plc_od_shp = agg_plc_lodes %>%
   ungroup() %>%
   filter(!is.na(h_stplc),!is.na(w_stplc),
+         #Filtering out where home and work are same location (no line to draw...)
          h_stplc!=w_stplc) %>%
   mutate(od_line = pmap(.l = list(h_stplc,w_stplc),
                         .f = function(h_stplc,w_stplc){
@@ -450,6 +457,7 @@ agg_plc_od_shp = agg_plc_lodes %>%
       h_cent %>% st_coordinates() %>% as_tibble(),
       w_cent %>% st_coordinates() %>% as_tibble()
     ) %>%
+      #Have to convert to matrix to coerce into linestring
       as.matrix() %>%
       st_linestring()
     
@@ -469,6 +477,7 @@ agg_plc_od_shp = agg_plc_lodes %>%
               rename(w_stplc = GEOID,
                      work_place = NAME))
 
+#Setting a weight multiplier so job flow can be visualized proportionally on leaflet map
 max_job_flow = max(agg_plc_od_shp$total_jobs)
 max_weight = 30
 weight_mult = max_weight/max_job_flow
