@@ -11,7 +11,9 @@ output:
 
 [Back to overview](../index.html)
 
-*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, September 17th, 2020, and is [available as a recording here](LINK TO BE SHARED) and embedded below (TODO)*
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, September 17th, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/5b33f7da-577d-4788-b5b4-0340340c41f4) and embedded below.*
+
+<p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/5b33f7da-577d-4788-b5b4-0340340c41f4?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p>
 
 # Introduction
 
@@ -403,6 +405,7 @@ Let's try to use LODES to get the job flows between CDPs in the Portland regions
 
 ```{r}
 library(lodes)
+library(lehdr)
 #Can only grab one state at a time right now
 orwa_lodes =grab_lodes(state = c('or','wa'),year = 2017,lodes_type = 'od',
                             agg_geo = 'bg',segment = 'S000',state_part = c('aux')) %>%
@@ -520,4 +523,4 @@ You can run through the example yourself based on the example code and data, whi
 
 - [Analyzing U.S. Census Data with R (taught by Kyle Walker, creator of `tigris` and `tidycensus`! 1 course, 4 hours)](https://learn.datacamp.com/courses/analyzing-us-census-data-in-r)
 
-*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, September 17th, 2020, and is [available as a recording here](LINK TO BE SHARED) and embedded at the top of the page. (TODO)*
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, September 17th, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/5b33f7da-577d-4788-b5b4-0340340c41f4) and embedded at the top of the page.*
