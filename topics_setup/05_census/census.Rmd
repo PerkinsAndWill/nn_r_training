@@ -267,7 +267,7 @@ Please note that the UTM Zone 11N coordinate system (`26911`) is appropriate for
 
 Let's try to map the median income of all of the CDPs we mapped in the first part of this module. 
 
-```{r}
+```{r message=FALSE, warnings = FALSE}
 library(scales)
 
 pdx_cdp_med_income = get_acs(state=c('OR','WA'),geography = 'place',
@@ -403,7 +403,7 @@ head(md_rac_state)
 
 Let's try to use LODES to get the job flows between CDPs in the Portland regions. 2017 is the latest year available -- it takes them a few years to put each release together. Unfortunately I noticed when putting this example together, `lehdr` which seems overall better documented and maintained, does not have a function to read the LODES crosswalk file. This is included in another LODES package and I actually wrote a version of this myself at one point. I filed a corresponding [issue on the `lehdr` GitHub](https://github.com/jamgreen/lehdr/issues/18) and will contribute if the author desires. The other package, [`lodes`](https://github.com/hrbrmstr/lodes), will be loaded to use the `read_xwalk()` function. 
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library(lodes)
 library(lehdr)
 #Can only grab one state at a time right now
