@@ -23,7 +23,7 @@ Up to this point, you have only run your Shiny apps locally in RStudio, but obvi
 
 For now, all you will need to know is how to deploy applications to NN's Shiny server. There is an admin dashboard we're limiting access to for now to a small group, but will give deployment access to all those in this course using a private token. I will share the private token with folks in the private Slack channel for the Shiny course module.  __This token must not be shared outside this group, and should live in the private Slack channel for now__. It is likely we will create a private Slack channel for users going forward where this can be stored. There is the potential to create multiple tokens, which is something we may explore in the future. 
 
-Bryan will now share his screen to walk through a sample deployment of the application we will be focusing on today. If you are viewing this after the fact, the sample application Bryan will be deploying is stored in the GitHub repository at [this subfolder](TODO). 
+Bryan will now share his screen to walk through a sample deployment of the application we will be focusing on today. If you are viewing this after the fact, the sample application Bryan will be deploying is stored in the GitHub repository at [this subfolder](https://github.com/PerkinsAndWill/nn_r_training/tree/master/topics_setup/06_shiny_3/training_app). 
 
 # Example Application
 
