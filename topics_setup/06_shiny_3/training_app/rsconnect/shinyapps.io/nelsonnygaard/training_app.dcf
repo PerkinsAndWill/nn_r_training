@@ -1,0 +1,10 @@
+name: training_app
+title:
+username:
+account: nelsonnygaard
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2871109
+bundleId: 3662881
+url: https://nelsonnygaard.shinyapps.io/training_app/
+when: 1600884016.5941
