@@ -4,20 +4,23 @@ server = function(input,output,session){
     
     updateButton(session,"execute",label="Scraping...",style="danger",disabled = TRUE)
     
+    #Data read in live from HTML table on website
     raw = read_html('https://www.belmont-station.com/bottles') %>%
       html_nodes('table') %>%
       html_table() %>%
       tibble() %>%
       unnest(cols = c(.))
     
+    #Headers came in as first row
     colnames(raw) = raw[1,]
-    
     clean = raw %>%
       clean_names() %>%
       slice(-1)
     
+    #Enumerate unique origins, grab country and state codes
     uq_origins = clean %>%
       distinct(origin) %>%
+      #US State Code Matching
       mutate(us_state_code = map_chr(origin,function(origin){
         filt_states = us_states %>%
           filter(NAME==str_to_title(origin)) 
@@ -29,6 +32,7 @@ server = function(input,output,session){
           return(NA)
         }
       })) %>%
+      #Country Code Matching
       mutate(
         country_code = map2_chr(origin,us_state_code,function(origin,us_state_code){
           
@@ -55,8 +59,11 @@ server = function(input,output,session){
           
         })
       ) %>%
+      #Filter out records where no country code match available
       filter(!is.na(country_code)) %>%
+      #Country Name
       mutate(country_name = map_chr(country_code,~world_countries$admin[world_countries$gu_a3==.x]),
+             #State Name
              us_state_name = map_chr(us_state_code,function(us_state_code){
               
                if(us_state_code %in% us_states$STUSPS){
@@ -66,13 +73,16 @@ server = function(input,output,session){
                }
              }))
     
+    #Enumerate distinct major and minor styles by splitting overall style string
     uq_styles = clean %>%
       distinct(style) %>%
+      #String splitting based on hyphen
       mutate(major_style = map_chr(style,~str_split(.x,'-')[[1]][1]) %>%
                str_trim(),
              minor_style = map_chr(style,~str_split(.x,'-')[[1]][2]) %>%
                str_trim()) %>%
       filter(nchar(style)>0) %>%
+      #Some special case simplifications for style
       mutate(major_style = case_when(
         major_style=='Cider Dry'~'Cider',
         TRUE~major_style
@@ -83,6 +93,7 @@ server = function(input,output,session){
         TRUE~minor_style
       ))
     
+    #Joining in the data tables developed above to the beer data
     beer_db = clean %>%
       left_join(uq_origins) %>%
       filter(!is.na(country_code)) %>%
@@ -92,19 +103,24 @@ server = function(input,output,session){
                                  country_name
                                  ))
     
+    #Unique major styles
     uq_major_styles = beer_db %>%
       distinct(major_style)
     
+    #Unique minor styles
     uq_minor_styles = beer_db %>%
       distinct(minor_style)
     
+    #Countries in inventory
     avail_countries = world_countries %>%
       filter(gu_a3 %in% beer_db$country_code,
              gu_a3 !='USA')
     
+    #US states in inventory
     avail_us_states = us_states %>%
       filter(STUSPS %in% beer_db$us_state_code)
     
+    #Binding together available US states and countries into one sf data frame
     beer_geogs = bind_rows(
       avail_countries %>%
         as_tibble(),
@@ -122,14 +138,15 @@ server = function(input,output,session){
       mutate(geometry = st_sfc(geometry,crs=4326)) %>%
       st_as_sf()
   
+    #Updating the pickers based on available styles
     updatePickerInput(session,'maj_sty',choices = sort(uq_major_styles$major_style),
                       selected = sort(uq_major_styles$major_style))
     
     updatePickerInput(session,'min_sty',choices = sort(uq_minor_styles$minor_style),
                       selected = sort(uq_minor_styles$minor_style))
     
+    #initialization of map
     output$select_map = renderLeaflet({
-      
       leaflet() %>%
         addProviderTiles('CartoDB.Positron') %>%
         addPolygons(data = beer_geogs,fillColor = 'red',color='white',
@@ -137,7 +154,6 @@ server = function(input,output,session){
                     highlightOptions = highlightOptions(fillOpacity = 0.9,opacity = 0.9,
                                                         weight = 5),
                     label=~geog_label,layerId =~geog_label)
-      
     })
     
     sel_geogs <<- beer_geogs$geog_label
@@ -146,6 +162,44 @@ server = function(input,output,session){
     
     })
   
+  #Allowing for de-selecting of all geographies
+  observeEvent(input$deselect_all,{
+    sel_geogs <<- vector()
+    leafletProxy('select_map') %>%
+      clearShapes() %>%
+      addPolygons(data=beer_geogs,
+                  fillColor = 'dark grey',color='white',
+                  fillOpacity = 0.5,opacity = 0.5,weight = 2,
+                  highlightOptions = highlightOptions(fillOpacity = 0.9,opacity = 0.9,
+                                                      weight = 5),
+                  label=~geog_label,layerId =~geog_label)
+    updatePickerInput(session,'maj_sty',choices = 'None',
+                      selected = 'None')
+    
+    updatePickerInput(session,'min_sty',choices = 'None',
+                      selected = 'None')
+  })
+  
+  #Allowing for selecting of all geographies
+  observeEvent(input$select_all,{
+    sel_geogs <<- beer_geogs$geog_label
+    leafletProxy('select_map') %>%
+      clearShapes() %>%
+      addPolygons(data=beer_geogs,
+                  fillColor = 'red',color='white',
+                  fillOpacity = 0.5,opacity = 0.5,weight = 2,
+                  highlightOptions = highlightOptions(fillOpacity = 0.9,opacity = 0.9,
+                                                      weight = 5),
+                  label=~geog_label,layerId =~geog_label)
+    
+    updatePickerInput(session,'maj_sty',choices = sort(uq_major_styles$major_style),
+                      selected = sort(uq_major_styles$major_style))
+    
+    updatePickerInput(session,'min_sty',choices = sort(uq_minor_styles$minor_style),
+                      selected = sort(uq_minor_styles$minor_style))
+  })
+  
+  #If a user clicks a geography on the map, select or deselect it
   observeEvent(input$select_map_shape_click,{
   
     clicked_geog = input$select_map_shape_click$id
@@ -174,12 +228,24 @@ server = function(input,output,session){
                     highlightOptions = highlightOptions(fillOpacity = 0.9,opacity = 0.9,
                                                         weight = 5),
                     label=~geog_label,layerId =~geog_label)
+      
+      #Update pickers
+      temp_beer_db <- beer_db %>%
+        filter(geog_label %in% sel_geogs)
+      
+      updatePickerInput(session,'maj_sty',choices = sort(unique(temp_beer_db$major_style)),
+                        selected = sort(unique(temp_beer_db$major_style)))
+      
+      updatePickerInput(session,'min_sty',choices = sort(unique(temp_beer_db$minor_style)),
+                        selected = sort(unique(temp_beer_db$minor_style)))
+      
     }
     
     
       
   })
   
+  #Upon pressing 'Execute Filters' button, apply filters and generate plots and table
   observeEvent(input$execute,{
     
     sel_maj_sty = input$maj_sty
@@ -188,20 +254,22 @@ server = function(input,output,session){
     #sel_min_sty = uq_minor_styles$minor_style
     
     if(length(sel_maj_sty)==0){
+      #Show notification if there are not styles available to use for filtering yet. This would result in an error we want to prevent. 
       showNotification('Wait for Styles to Finish Loading',type = 'warning',duration = 3)
     }else{
       updateButton(session,"execute",label="Loading Filters",style="warning")
       
       withProgress(value = 0.1,message = 'Executing filters...',{
         
+        #Apply filters
         sub_beer_db = beer_db %>%
           filter(major_style %in% sel_maj_sty,
                  minor_style %in% sel_min_sty,
                  geog_label %in% sel_geogs)
         
+        #Update pickers based on available styles
         new_uq_major_styles = sort(unique(sub_beer_db$major_style))
         new_uq_minor_styles = sort(unique(sub_beer_db$minor_style))
-        
         updatePickerInput(session,'maj_sty',selected = new_uq_major_styles)
         updatePickerInput(session,'min_sty',selected = new_uq_minor_styles)
         

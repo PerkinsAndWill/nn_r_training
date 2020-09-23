@@ -11,7 +11,9 @@ output:
 
 [Back to overview](../index.html)
 
-*This content was presented to Nelson\\Nygaard Staff for the Shiny Webinar series on Wednesday, September 9th, 2020, and is [available as a recording here](TODO) and is embedded below (TODO).*
+*This content was presented to Nelson\\Nygaard Staff for the Shiny Webinar series on Wednesday, September 9th, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/ba8007be-64a2-48a6-afe6-3da50cea5809) and is embedded below.*
+
+<p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/ba8007be-64a2-48a6-afe6-3da50cea5809?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p>
 
 # Today's Agenda
 - [Deployment to shinyapps.io (10 min)](#application-deployment)
@@ -56,4 +58,4 @@ I talked in an earlier session about the use of maps for selection. This can get
 
 I glossed over the use of DataTables in a previous session -- they are great for presenting tabular data to the user in a user-friendly manner. They allow for sorting, searching, scrolling, paginating (though I don't use that here), filtering, and have many other features including custom colors and fonts. Full documentation for the DataTable package is provided [here](https://rstudio.github.io/DT/). 
 
-*This content was presented to Nelson\\Nygaard Staff for the Shiny Webinar series on Wednesday, September 9th, 2020, and is [available as a recording here](TODO) and is embedded at the top of the page (TODO).*
+*This content was presented to Nelson\\Nygaard Staff for the Shiny Webinar series on Wednesday, September 9th, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/ba8007be-64a2-48a6-afe6-3da50cea5809) and is embedded at the top of the page.*
