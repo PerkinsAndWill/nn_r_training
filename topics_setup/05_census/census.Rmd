@@ -21,7 +21,7 @@ Today we are going to be covering several data products provided by the U.S. Cen
 
 # Census Geographies with `tigris`
 
-*__Acknowledgment:__ This portion of this module heavily draws upon, including direct copy-paste of markdown content, the vignettes developed for the `tigris` package, available on the package [documentation website](TODO). *
+*__Acknowledgment:__ This portion of this module heavily draws upon, including direct copy-paste of markdown content, the vignettes developed for the `tigris` package, available on the package [documentation website](https://github.com/walkerke/tigris). *
 
 Census data is provided to the public in several data products, but across all of them survey data is aggregated to both time (a paritcular year or a set of years) and place (a particular geographic area). You are likely already familiar with some census geographies. The basic breakdown of census geographies in the United States is as follows, by level of hierarchy:
 1. Nation
