@@ -11,9 +11,9 @@ output:
 
 [Back to overview](../index.html)
 
-*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, October 2nd, 2020, and is [available as a recording here](TODO) and embedded below (TODO).*
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, October 2nd, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/d0d59c49-a521-45e2-8dd0-58dbbf4626f8) and embedded below.*
 
-<!-- <p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/5b33f7da-577d-4788-b5b4-0340340c41f4?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p> -->
+<p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/video/d0d59c49-a521-45e2-8dd0-58dbbf4626f8?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p>
 
 # [Soliciting Questions for the Final Course Module](https://docs.google.com/forms/d/e/1FAIpQLSc6JMTAwDHN82RASgRUYJggEeRri67WH1euaoxNFtjgNxboqg/viewform?usp=sf_link)
 
@@ -474,7 +474,7 @@ routes_sf <- routes_sf %>%
 
 And finally, lets plot the routes with median headways of 15 minutes or less in the morning.
 
-```{r, fig.width=6, fig.height=10, warn=FALSE}
+```{r, fig.width=6, fig.height=4, warn=FALSE}
 # convert to an appropriate coordinate reference system
  routes_sf %>% 
   filter(median_headways<=15) %>%
@@ -581,4 +581,4 @@ ggplot(summ_freq,aes(x=depart_hour,y = route_label,fill=avg_headway))+
 
 There is a lot you can do with GTFS data -- our transit dashboards we have built for TriMet and are building for other agencies heavily rely on the standardization of GTFS. They provide great datasets to test the R skills you are learning on for something very relevant to our work! Remix outputs scenarios developed in the tool directly in GTFS. Drafting up new transit services in a GTFS-like format can help you to compare existing service with new service. There are a lot of ideas to explore in your work with GTFS, and R makes handling the multiple tables and the spatial/aspatial nature of GTFS easier. 
 
-*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, October 2nd, 2020, and is [available as a recording here](TODO) and embedded at the top of the page.*
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, October 2nd, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/d0d59c49-a521-45e2-8dd0-58dbbf4626f8) and embedded at the top of the page.*
