@@ -68,17 +68,17 @@ The [Tidyverse](https://www.tidyverse.org/) is a 'universe' of packages designed
 
 #### [Shiny Session 1](topics_output/shiny_1.html)
 
-This session will discuss the basics of Shiny:
+This session discussed the basics of Shiny:
 
 - What is Shiny? 
 - How is a Shiny app structured?
 - How do I write a basic Shiny application?
 
-Please come prepared with an idea of what project you will develop a basic Shiny app for over the next eight weeks. Work with your team leader and the relevant project manager to identify a project and decide if some of the time you spend on developing an example Shiny app is billable.  You shouldn't have to spend more than a few hours in advance of each of the four webinars -- these apps can be very basic. Progress is expected for discussion from each participant each session. 
+Participants came prepared with an idea of what project they would like to develop a basic Shiny app for over the following eight weeks. W
 
 #### [Shiny Session 2](topics_output/shiny_2.html)
 
-This session will discuss some more features of Shiny, namely:
+This session discussed some more features of Shiny, namely:
 - Loading data and functions
 - Using `leaflet` with Shiny
 - Using the specialized package for dashboards, `shinydashboard`. 
@@ -87,7 +87,11 @@ We will also discuss everyone's proposed demo application.
 
 #### [Shiny Session 3](topics_output/shiny_3.html)
 
+This module walked through a demo application designed to demonstrate features participants wanted to implement in their applications. 
+
 #### [Shiny Session 4](topics_output/shiny_4.html)
+
+This module was a presentation and discussion of each participants' demo application. 
 
 ### [Geospatial Data](topics_output/geospatial.html)
 
@@ -95,7 +99,11 @@ This module discusses how to use the `sf` package for geospatial data and how to
 
 ### [Census, TIGER, and LODES data](topics_output/census.html)
 
+This module discussed the use of various U.S. Census Bureau data sources in R.
+
 ### [GTFS data](topics_output/gtfs_data.html)
+
+This module discussed the General Transit Feed Specification (GTFS) and how to use data from a GTFS feed in R. 
 
 ### [Misc. Questions](topics_output/misc_questions.html)
 
