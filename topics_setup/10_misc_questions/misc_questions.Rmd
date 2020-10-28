@@ -11,6 +11,10 @@ output:
 
 [Back to overview](../index.html)
 
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Tuesday, October 13th, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/f3b1ef12-798f-45fd-b75a-ddd3dd295fc8) and embedded below.*
+
+<p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/video/f3b1ef12-798f-45fd-b75a-ddd3dd295fc8?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p>
+
 # Today's Agenda
 
 - Iteration  with `map()` and functional programming (20 min)
@@ -399,6 +403,7 @@ library(tidytransit)
 library(sf)
 library(mapboxapi)
 library(leaflet)
+library(rgeos)
 my_token <- "pk.eyJ1IjoiYmJsYW5jIiwiYSI6ImNrZzgycXE2MzBkOWEycm8yN2M2NmZvaXAifQ.B8wfvRQ5VujdLqr7Y6WNgw"
 mb_access_token(my_token)
 ```
@@ -487,7 +492,7 @@ ggplot(network_dist_pf,aes(x=value,fill=plot_label))+
   ylab('# of Stop Pairs')+xlab('Distance (mi)')+
   facet_wrap(~plot_label,ncol=1)
 
-#Mapping these pairsm along with shapes
+#Mapping these pairs along with shapes
 sub_shapes = trimet_gtfs$shapes %>%
   filter(shape_id %in% sub_trips$shape_id)
 
@@ -522,7 +527,7 @@ leaflet() %>%
   addLayersControl(baseGroups = unique(sub_shapes_geom$shape_id)) %>%
   addMeasure(primaryLengthUnit = 'miles')
   
-
+#TODO - add gProject to this
 ```
 
 # Intro to R Markdown
@@ -571,5 +576,5 @@ For production code projects, where a client will be continuously re-using code 
 
 - [Intermediate Tidyverse Toolbox course track (4 courses, 16 hours)](https://learn.datacamp.com/skill-tracks/intermediate-tidyverse-toolbox?version=1)
 
-*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Tuesday, October 13th, and is [available as a recording here](TODO) and embedded at the top of the page.*
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Tuesday, October 13th, and is [available as a recording here](https://web.microsoftstream.com/video/f3b1ef12-798f-45fd-b75a-ddd3dd295fc8) and embedded at the top of the page.*
 
