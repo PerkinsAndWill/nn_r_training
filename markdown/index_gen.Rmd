@@ -21,7 +21,7 @@ require(DT)
 
 This document forms the work plan and content repository for Nelson\\Nygaard's initial R training offering in August-October 2020. The training was structured as a 10 week 'course', which included a ~1 hour webinar each week for 10 weeks beginning on the week of August 10th. The below topics were discussed in the course, and can be edited based on feedback. The content for each webinar (including narrative and sample code) will live in this website (in HTML files), or in the case of the Shiny apps themselves, on the Nelson\\Nygaard shinyapps.io server (with code stored on GitHub). All content will be linked in this document.
 
-Shiny will be a recurring point of discussion during the course, with four of the ten webinars devoted exclusively to Shiny. People attending the Shiny webinars (identified in the schedule below) will be expected to identify a project of theirs with data that lends itself to a Shiny dashboard by the time of the first Shiny webinar (week of August 9th). Participants will work with their team leaders the relevant project manager to identify a project and decide if some of the time they spend on developing an example Shiny app is billable. 
+Shiny was be a recurring point of discussion during the course, with four of the ten webinars devoted exclusively to Shiny. People attending the Shiny webinars (identified in the schedule below) were encouraged to identify a project of theirs with data that lends itself to the development of a demo dashboard. Participants worked their team leaders the relevant project manager to identify a project and decide if some of the time they spent on developing an example Shiny app is billable. 
 
 ## Schedule
 
@@ -105,7 +105,7 @@ This module discussed the General Transit Feed Specification (GTFS) and how to u
 
 ### [Misc. Questions](topics_output/misc_questions.html)
 
-This session will provide an opportunity to ask any questions of Bryan related to R that were not covered in prior modules. Please submit questions through this [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSc6JMTAwDHN82RASgRUYJggEeRri67WH1euaoxNFtjgNxboqg/viewform?usp=sf_link) throughout the course that don't appear to be answered in any of the other course modules, Bryan will curate the questions into a ~1 hour presentation for this final module. Stay tuned for the presentation itself, it will be prepared before the final week. 
+This session will provide an opportunity to ask any questions of Bryan related to R that were not covered in prior modules. Participants in previous trainings submitted questions prior to the webinar, and Bryan curated the questions into a ~1 hour presentation for this final module of the initial training offerings. 
 
 ## Other Topics Not Included in Course
 
