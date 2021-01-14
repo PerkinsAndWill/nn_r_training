@@ -9,6 +9,9 @@ date: 01-14-2021
 output:
   distill::distill_article:
     self_contained: false
+categories: 
+    - tidyverse
+    - purrr
 ---
 
 *This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, August 21st, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/33fc95ba-c50e-4ac0-b9e4-118217352133) and embedded below*

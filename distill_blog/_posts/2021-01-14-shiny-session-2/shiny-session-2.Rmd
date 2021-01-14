@@ -1,0 +1,66 @@
+---
+title: "Shiny Session 2"
+description: |
+  A short description of the post.
+author:
+  - name: Bryan Blanc
+    url: https://github.com/bpb824
+date: 01-14-2021
+output:
+  distill::distill_article:
+    self_contained: false
+categories: shiny
+---
+
+*This content was presented to Nelson\\Nygaard Staff for the Shiny Webinar series on Wednesday, September 9th, 2020, and is [available as a recording here](https://web.microsoftstream.com/embed/video/bad9e3fc-7693-4e17-ae4d-16c2d3bf9f1b) and is embedded below.*
+
+<p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/bad9e3fc-7693-4e17-ae4d-16c2d3bf9f1b?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p>
+
+# Today's Agenda
+
+- [Rstudio Shiny Lesson 5 (10 min)](https://shiny.rstudio.com/tutorial/written-tutorial/lesson5/)
+- [Leaflet + Shiny Relationship (15 min)](#leaflet-and-shiny-relationship)
+  - Note: Leaflet was discussed in the prior lunch and learn session [linked here](https://perkinsandwill.github.io/nn_r_training/topics_output/geospatial.html), so it is assumed you are familiar.
+- [Shiny dashboard (25 min)](#shiny-dashboards)
+- [Brief discussion of proposed demo applications (10 min)](#proposed-demo-applications)
+
+# [Lesson 5 - R Scripts and Data](https://shiny.rstudio.com/tutorial/written-tutorial/lesson5/)
+
+Refer to the [linked article.](https://shiny.rstudio.com/tutorial/written-tutorial/lesson5/).
+
+## Bryan's Notes:
+
+- You'll notice the tutorial uses `.rds` files. If you are not familiar with these, these files a binary data format that R can read and write quickly. They are great for Shiny apps because they load quickly, as opposed to an Excel file, which has to be run through the `read_excel()` function and takes more time to parse. `.rds` files can load nearly instantaneously for small files, and for large files offer a significant speed advantage over other formats. 
+- You'll also notice that the tutorial makes use of the `source()` command to load a function from a separate `.R` file. It is sometimes convenient, for a variety of reasons, to build functions or script procedures in other files to be loaded into the Shiny environment. This enables you to use the same script/functions across multiple projects, and, depending upon the application design, speed up your processing if you are not defining procedures within the Shiny context. The `global.R` files can be used to load functions as well, but sometimes it might be convenient to use a separate file if shared between projects. 
+- When operating in the Shiny environment, all paths are relative to the folder containing the Shiny application. It is often helpful for me to have a commented out `setwd()` command for when I am testing pieces of the app so that I am operating in the same directory the application will be. This can be avoided by always using [RStudio Projects](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) at the root directory of your Shiny app, but sometimes for more complex project directories (e.g., when your app is a part of a larger project) it may be useful to still use manual working directories. 
+- We are recommending the use of `ui.R`, `server.R`, and `global.R` files for developing Shiny applications. This means your data loading and function/script loading can be happening in the `global.R` file. 
+
+# [Leaflet and Shiny Relationship](https://rstudio.github.io/leaflet/shiny.html)
+
+Refer to the [linked article.](https://rstudio.github.io/leaflet/shiny.html)
+
+## Bryan's Notes:
+
+- Note that you *can* set up a shiny app without the `session` parameter referenced in the definition function, but to use the `leaflet` features you will need to reference `session`. 
+- `leafletProxy()` is used to change the features plotted on a leaflet map without generating a new `leaflet()` object, so the extents and zoom will not re-generate. This is helpful for changing the features (or their colors, for example) on a map based on user input. 
+- One of the key elements of using a `leafletProxy()` is using identifiers for features. This is genuinely good practice for data analysis anyways, so make sure you have unique identifiers for each of your geographic features/observations. 
+- Check out the [SuperZip](https://shiny.rstudio.com/gallery/superzip-example.html) example fo demonstrating the use of interactivity with leaflet and Shiny. See the [code](https://github.com/rstudio/shiny-examples/tree/master/063-superzip-example) to see how `leafletProxy()`s,layer IDs and click events are used. 
+
+# [Shiny Dashboards](https://rstudio.github.io/shinydashboard)
+
+Refer to [linked articles.](https://rstudio.github.io/shinydashboard/get_started.html)
+
+## Bryan's Notes
+
+- The `shinydashboard` package makes some quick aesthetic and functional features of data dashboards quick to implement and customize. That said, there are times when you will want to customize the aesthetics of a dashboard more than the package will let you -- in this case you may want to build some of the functions of the dashboard from scratch. For this course, we want our demo applications to be relatively simple, so I would recommend using `shinydashboard`. 
+- Bryan to show code underyling the current iteration of the Vancouver crash dashboard. The live application lives [here](https://nelsonnygaard.shinyapps.io/vancouver_crash_dashboard/) and the code for the application is available at this [GitHub repository](https://github.com/PerkinsAndWill/Vancouver_TSP/tree/master/vancouver_crash_dashboard). 
+
+# [Proposed Demo Applications](https://docs.google.com/spreadsheets/d/13299ksP-588xCqw-Bu0RO7IDk9gFEfoKvcbAgZNlTcg/edit#gid=0)
+
+Participants in the course have proposed their demo Shiny applications at the [linked Google Sheet](https://docs.google.com/spreadsheets/d/13299ksP-588xCqw-Bu0RO7IDk9gFEfoKvcbAgZNlTcg/edit#gid=0). Let's have a brief discussion about what special tools people might need for their apps and what challenges you see yourself running into. 
+
+Please schedule one-on-ones with me as needed to ask questions or bounce ideas off me specific to your application. I will try to share notes out from one-on-ones that I think will be useful to multiple people. 
+
+*This content was presented to Nelson\\Nygaard Staff for the Shiny Webinar series on Wednesday, September 9th, 2020, and is [available as a recording here](https://web.microsoftstream.com/embed/video/bad9e3fc-7693-4e17-ae4d-16c2d3bf9f1b) and is embedded at the top of the page.*
+
+

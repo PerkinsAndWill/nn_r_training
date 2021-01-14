@@ -1,0 +1,210 @@
+---
+title: "Geospatial Data"
+description: |
+  A short description of the post.
+author:
+  - name: Bryan Blanc
+    url: https://github.com/bpb824
+date: 01-14-2021
+output:
+  distill::distill_article:
+    self_contained: false
+categories: 
+    - geospatial
+---
+
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, September 4th, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/d331753a-e974-4561-a00c-9145fb77bdb4) and embedded below*
+
+<p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/d331753a-e974-4561-a00c-9145fb77bdb4?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p>
+
+# Introduction
+
+There are several reasons why learning to use the geospatial capabilities of R are invaluable for R users, especially at Nelson\\Nygaard:
+
+- **Open source - no ESRI licenses neccessary**: R is a completely open source programming language, and so there are not licenses necessary to access its geospatial packages. NN as a firm has a limited number of licenses available at any given time, and the ongoing telecommuting associated with the COVID-19 pandemic has made using GIS licenses more difficult. R can allow you to conduct geospatial analyses on your local machine with no need for licenses. 
+- **Combining spatial and aspatial analyses**: As transportation planners, most of the work we do has some spatial component. Because of that, analysis is often separated into GIS and Excel components. With R, that separation is unneccesary -- you can combine spatial and aspatial analysis procedures and data seamlessly. 
+- **Automation and processing speed**: Like with all other R based analyses, you can automate analysis procedures you have to conduct many times over, potentially speeding up some GIS workflows that are repetitive. 
+- **Modular**: Additionally, if written appropriately, commonly conducted analysis procedures can be abstracted into modular code that can be applied across different projects, saving time as a firm. 
+- **Interactive**: Because of `leaflet`, which we will discuss below, R offers a very low barrier to quickly producing interactive maps, which are both helpful for data exploration and for presentation, especially as increasingly more deliverables move to digital formats. 
+
+This module will discuss the spatial data package `sf`, which is well integrated into the tidyverse and other mapping related packages (including `leaflet`). There are other spatial data frameworks that came before `sf` that will not be discussed below (like `sp`) but are still relevant to understand at a basic level. Reference articles are included below.
+Additionally, this module will discuss `leaflet`, an interactive mapping framework that lends itself well to spatial analysis and visualization in R. 
+
+# Simple Features
+
+*__Acknowledgment:__ This portion of this module heavily draws upon, including direct copy-paste of markdown content, the vignettes developed for the `sf` package, available on the package [documentation website](https://r-spatial.github.io/sf/index.html). *
+
+[Simple features](https://en.wikipedia.org/wiki/Simple_Features) or [_simple feature access_](http://www.opengeospatial.org/standards/sfa) refers to a formal standard (ISO 19125-1:2004) that describes how objects in the real world can be represented in computers, with emphasis on the _spatial_ geometry of these objects. It also describes how such objects can be stored in and retrieved from databases, and which geometrical operations should be defined for them.
+
+The standard is widely implemented in spatial
+databases (such as PostGIS), commercial GIS (e.g., [ESRI
+ArcGIS](http://www.esri.com/)) and forms the vector data basis for
+libraries such as [GDAL](http://www.gdal.org/). A subset of
+simple features forms the [GeoJSON](http://geojson.org/) standard.
+
+R has well-supported classes for storing spatial
+data ([sp](https://CRAN.R-project.org/package=sp))
+and interfacing to the above mentioned environments
+([rgdal](https://CRAN.R-project.org/package=rgdal),
+[rgeos](https://CRAN.R-project.org/package=rgeos)), but has so far lacked a
+complete implementation of simple features, making conversions
+at times convoluted, inefficient or incomplete. The package
+[sf](http://github.com/r-spatial/sf) tries to fill this gap, and aims
+at succeeding [sp](https://CRAN.R-project.org/package=sp) in the
+long term.
+
+This vignette:
+
+* explains what is meant by features, and by simple features
+* shows how they are implemented in R
+* provides examples of how you can work with them
+* shows how they can be read from and written to external files or resources
+* discusses how they can be converted to and from sp objects
+* shows how they can be used for meaningful spatial analysis
+
+## What is a feature?
+
+A feature is thought of as a thing, or an object in the real world,
+such as a building or a tree. As is the case with objects,
+they often consist of other objects. This is the case with features
+too: a set of features can form a single feature. A forest stand can
+be a feature, a forest can be a feature, a city can be a feature.
+A satellite image pixel can be a feature, a complete image can be
+a feature too.
+
+Features have a _geometry_ describing _where_ on Earth the
+feature is located, and they have attributes, which describe other
+properties. The geometry of a tree can be the delineation of
+its crown, of its stem, or the point indicating its centre. Other
+properties may include its height, color, diameter at breast height
+at a particular date, and so on.
+
+The standard says: "_A simple feature is defined by the OpenGIS
+Abstract specification to have both spatial and non-spatial
+attributes. Spatial attributes are geometry valued, and simple
+features are based on 2D geometry with linear interpolation between
+vertices._"  We will see soon that the same standard will extend
+its coverage beyond 2D and beyond linear interpolation. Here, we
+take simple features as the data structures and operations described
+in the [standard](http://www.opengeospatial.org/standards/sfa).
+
+### Dimensions
+
+All geometries are composed of points. Points are coordinates in a
+2-, 3- or 4-dimensional space.  All points in a geometry have the
+same dimensionality. In addition to X and Y coordinates, there are
+two optional additional dimensions:
+
+* a Z coordinate, denoting altitude
+* an M coordinate (rarely used), denoting some _measure_ that is associated with the point, rather than with the feature as a whole (in which case it would be a feature attribute); examples could be time of measurement, or measurement error of the coordinates
+
+The four possible cases then are:
+
+1. two-dimensional points refer to x and y, easting and northing, or longitude and latitude, we refer to them as XY
+2. three-dimensional points as XYZ
+3. three-dimensional points as XYM
+4. four-dimensional points as XYZM (the third axis is Z, fourth M)
+
+### Simple feature geometry types
+
+The following seven simple feature types are the most common, and are for instance the only ones used for [GeoJSON](https://tools.ietf.org/html/rfc7946):
+
+| type | description                                        |
+| ---- | -------------------------------------------------- |
+| `POINT` | zero-dimensional geometry containing a single point |
+| `LINESTRING` | sequence of points connected by straight, non-self intersecting line pieces; one-dimensional geometry |
+| `POLYGON` | geometry with a positive area (two-dimensional); sequence of points form a closed, non-self intersecting ring; the first ring denotes the exterior ring, zero or more subsequent rings denote holes in this exterior ring |
+| `MULTIPOINT` | set of points; a MULTIPOINT is simple if no two Points in the MULTIPOINT are equal |
+| `MULTILINESTRING` | set of linestrings |
+| `MULTIPOLYGON` | set of polygons |
+| `GEOMETRYCOLLECTION` | set of geometries of any type except GEOMETRYCOLLECTION |
+
+Each of the geometry types can also be a (typed) empty set, containing zero coordinates (for `POINT` the standard is not clear how to represent the empty geometry). Empty geometries can be thought of being the analogue to missing (`NA`) attributes, NULL values or empty lists.
+
+The remaining geometries 10 are rarer, but increasingly find implementations:
+
+| type | description                                        |
+| ---- | -------------------------------------------------- |
+| `CIRCULARSTRING` | The CIRCULARSTRING is the basic curve type, similar to a LINESTRING in the linear world. A single segment requires three points, the start and end points (first and third) and any other point on the arc. The exception to this is for a closed circle, where the start and end points are the same. In this case the second point MUST be the center of the arc, i.e., the opposite side of the circle. To chain arcs together, the last point of the previous arc becomes the first point of the next arc, just like in LINESTRING. This means that a valid circular string must have an odd number of points greater than 1. |
+| `COMPOUNDCURVE` | A compound curve is a single, continuous curve that has both curved (circular) segments and linear segments. That means that in addition to having well-formed components, the end point of every component (except the last) must be coincident with the start point of the following component. |
+| `CURVEPOLYGON` | Example compound curve in a curve polygon: CURVEPOLYGON(COMPOUNDCURVE(CIRCULARSTRING(0 0,2 0, 2 1, 2 3, 4 3),(4 3, 4 5, 1 4, 0 0)), CIRCULARSTRING(1.7 1, 1.4 0.4, 1.6 0.4, 1.6 0.5, 1.7 1) ) |
+| `MULTICURVE` |  A MultiCurve is a 1-dimensional GeometryCollection whose elements are Curves, it can include linear strings, circular strings or compound strings.  |
+| `MULTISURFACE` | A MultiSurface is a 2-dimensional GeometryCollection whose elements are Surfaces, all using coordinates from the same coordinate reference system. |
+| `CURVE` | A Curve is a 1-dimensional geometric object usually stored as a sequence of Points, with the subtype of Curve specifying the form of the interpolation between Points |
+| `SURFACE` | A Surface is a 2-dimensional geometric object |
+| `POLYHEDRALSURFACE` | A PolyhedralSurface is a contiguous collection of polygons, which share common boundary segments  |
+| `TIN` | A TIN (triangulated irregular network) is a PolyhedralSurface consisting only of Triangle patches.|
+| `TRIANGLE` | A Triangle is a polygon with 3 distinct, non-collinear vertices and no interior boundary |
+
+Note that `CIRCULASTRING`, `COMPOUNDCURVE` and `CURVEPOLYGON` are not described in the SFA standard, but in the [SQL-MM part 3 standard](https://www.iso.org/standard/38651.html). The descriptions above were copied from the [PostGIS manual](http://postgis.net/docs/using_postgis_dbmanagement.html).
+
+
+### Coordinate reference system
+
+Coordinates can only be placed on the Earth's surface when their coordinate
+reference system (CRS) is known; this may be a spheroid CRS such as WGS84, a projected, two-dimensional (Cartesian) CRS such as a UTM zone or Web Mercator, or a CRS
+in three-dimensions, or including time. Similarly, M-coordinates need an attribute reference
+system, e.g. a [measurement unit](https://CRAN.R-project.org/package=units).
+
+## How simple features in R are organized
+
+Package `sf` represents simple features as native R objects.
+Similar to [PostGIS](http://postgis.net/), all functions and methods
+in `sf` that operate on spatial data are prefixed by `st_`, which
+refers to _spatial type_; this makes them easily findable
+by command-line completion.  Simple features are implemented as
+R native data, using simple data structures (S3 classes, lists,
+matrix, vector).  Typical use involves reading, manipulating and
+writing of sets of features, with attributes and geometries.
+
+As attributes are typically stored in `data.frame` objects (or the
+very similar `tbl_df`), we will also store feature geometries in
+a `data.frame` column. Since geometries are not single-valued,
+they are put in a list-column, a list of length equal to the number
+of records in the `data.frame`, with each list element holding the simple
+feature geometry of that feature.  The three classes used to
+represent simple features are:
+
+* `sf`, the table (`data.frame`) with feature attributes and feature geometries, which contains
+* `sfc`, the list-column with the geometries for each feature (record), which is composed of
+* `sfg`, the feature geometry of an individual simple feature.
+
+We will now discuss each of these three classes.
+
+## sf: objects with simple features
+
+As we usually do not work with geometries of single simple features,
+but with datasets consisting of sets of features with attributes, the
+two are put together in `sf` (simple feature) objects.  The following
+command reads the `nc` dataset from a file that is contained in the
+`sf` package:
+
+```{r}
+library(sf)
+nc <- st_read(system.file("shape/nc.shp", package="sf"))
+```
+
+(Note that users will not use `system.file` but give a `filename` directly, and that shapefiles consist of more than one file, all with identical basename, which reside in the same directory.)
+The short report printed gives the file name, the driver (ESRI Shapefile), mentions that there are 100 features (records, represented as rows) and 14
+fields (attributes, represented as columns). This object is of class
+
+```{r}
+class(nc)
+```
+
+meaning it extends (and "is" a) `data.frame`, but with a single
+list-column with geometries, which is held in the column with name
+
+```{r}
+attr(nc, "sf_column")
+```
+
+If we print the first three features, we see their attribute values
+and an abridged version of the geometry
+
+```{r, echo=TRUE, eval=FALSE}
+print(nc[9:15], n = 3)
+```
+which would give the following output:
+
+![](graphics/sf_xfig.png)

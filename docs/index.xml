@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Nelson\Nygaard R Training</title>
+    <link>https://perkinsandwill.github.io/nn_r_training/</link>
+    <atom:link href="https://perkinsandwill.github.io/nn_r_training/index.xml" rel="self" type="application/rss+xml"/>
+    <description>Nelson\\Nygaard R Training
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Thu, 14 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Geospatial Data</title>
+      <dc:creator>Bryan Blanc</dc:creator>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-geospatial-data</link>
+      <description>A short description of the post.</description>
+      <category>geospatial</category>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-geospatial-data</guid>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>GTFS Data</title>
+      <dc:creator>Bryan Blanc</dc:creator>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-gtfs-data</link>
+      <description>A short description of the post.</description>
+      <category>gtfs</category>
+      <category>geospatial</category>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-gtfs-data</guid>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-gtfs-data/gtfs-data_files/figure-html5/unnamed-chunk-11-1.png" medium="image" type="image/png" width="1920" height="1152"/>
+    </item>
+    <item>
+      <title>Miscellaneous Questions</title>
+      <dc:creator>Bryan Blanc</dc:creator>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-miscellaneous-questions</link>
+      <description>A short description of the post.</description>
+      <category>markdown</category>
+      <category>gtfs</category>
+      <category>purrr</category>
+      <category>r-knowledge</category>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-miscellaneous-questions</guid>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-miscellaneous-questions/graphics/diagrams/lists-map2.png" medium="image" type="image/png" width="810" height="306"/>
+    </item>
+    <item>
+      <title>Shiny Session 1</title>
+      <dc:creator>Bryan Blanc</dc:creator>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-1</link>
+      <description>1st Session introducing Shiny training series.</description>
+      <category>shiny</category>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-1</guid>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Shiny Session 2</title>
+      <dc:creator>Bryan Blanc</dc:creator>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-2</link>
+      <description>A short description of the post.</description>
+      <category>shiny</category>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-2</guid>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Shiny Session 3</title>
+      <dc:creator>Bryan Blanc</dc:creator>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-3</link>
+      <description>A short description of the post.</description>
+      <category>shiny</category>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-3</guid>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Shiny Session 4</title>
+      <dc:creator>Bryan Blanc</dc:creator>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-4</link>
+      <description>A short description of the post.</description>
+      <category>shiny</category>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-4</guid>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Introduction to the Tidyverse</title>
+      <dc:creator>Bryan Blanc</dc:creator>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse</link>
+      <description>An initial training on the philosophy and elements of the *tidyverse*.</description>
+      <category>tidyverse</category>
+      <category>purrr</category>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse</guid>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse/graphics/diagrams/data-science.png" medium="image" type="image/png" width="517" height="190"/>
+    </item>
+    <item>
+      <title>Welcome to Nelson\Nygaard R Training</title>
+      <dc:creator>Bryan Blanc</dc:creator>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/welcome</link>
+      <description>Welcome to Nelson\Nygaard's new R Training Blog!</description>
+      <category>about</category>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/welcome</guid>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

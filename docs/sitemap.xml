@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
+  <url>
+    <loc>https://perkinsandwill.github.io/nn_r_training/about.html</loc>
+    <lastmod>2021-01-14T09:54:49-08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://perkinsandwill.github.io/nn_r_training/</loc>
+    <lastmod>2021-01-14T08:42:39-08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-geospatial-data/</loc>
+    <lastmod>2021-01-14T12:14:47-08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-gtfs-data/</loc>
+    <lastmod>2021-01-14T12:17:57-08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-miscellaneous-questions/</loc>
+    <lastmod>2021-01-14T12:19:21-08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-1/</loc>
+    <lastmod>2021-01-14T11:58:10-08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-2/</loc>
+    <lastmod>2021-01-14T11:58:24-08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-3/</loc>
+    <lastmod>2021-01-14T11:58:32-08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-4/</loc>
+    <lastmod>2021-01-14T11:59:01-08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse/</loc>
+    <lastmod>2021-01-14T12:13:12-08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://perkinsandwill.github.io/nn_r_training/posts/welcome/</loc>
+    <lastmod>2021-01-14T12:12:43-08:00</lastmod>
+  </url>
+</urlset>

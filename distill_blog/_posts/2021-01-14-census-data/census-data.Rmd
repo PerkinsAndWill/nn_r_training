@@ -1,0 +1,529 @@
+---
+title: "Census Data"
+description: |
+  A short description of the post.
+author:
+  - name: Bryan Blanc
+    url: https://github.com/bpb824
+date: 01-14-2021
+output:
+  distill::distill_article:
+    self_contained: false
+categories: 
+    - census 
+    - geospatial
+---
+
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, September 17th, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/5b33f7da-577d-4788-b5b4-0340340c41f4) and embedded below.*
+
+<p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/5b33f7da-577d-4788-b5b4-0340340c41f4?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p>
+
+# Introduction
+
+Today we are going to be covering several data products provided by the U.S. Census Bureau that often in form all types of work we do at Nelson\\Nygaard, and how R packages can be used to make querying, downloading, and aggregating that data easier. We will start by discussing census geographies themselves, which can be downloaded quickly with the `tigris` package. We will then make some queries of Census demographic data using the `tidycensus` package. We will end using the `lehdr` package to understand home-work flows. These are great tools for many different types of projects across the United States. 
+
+# Census Geographies with `tigris`
+
+*__Acknowledgment:__ This portion of this module heavily draws upon, including direct copy-paste of markdown content, the vignettes developed for the `tigris` package, available on the package [documentation website](https://github.com/walkerke/tigris). *
+
+Census data is provided to the public in several data products, but across all of them survey data is aggregated to both time (a paritcular year or a set of years) and place (a particular geographic area). You are likely already familiar with some census geographies. The basic breakdown of census geographies in the United States is as follows, by level of hierarchy:
+1. Nation
+2. State
+3. County
+4. Tract
+5. Block group 
+6. Block
+
+There are other aggregations of those units, such as divisions and regions, as well as geographies that are important but do not neccesarily align with county/tract boundaries, such as Census Designated Places (i.e. cities, towns, other types of municipalities, and unincorporated but 'designated' places). `tigris` helps you to download all of these geographies quickly into R as `sf` objects. `tigris` is called that because all census geographies comprise the [TIGER data set](https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/tiger-geodatabase-file.html), which stands for Topologically Integrated Geographic Encoding and Referencing. There are also linear geographies as well, such as roads, waterways, and rail lines. Typically it is preferred to use your respective city or MPO's road network, because it will be better maintained for local characteristics, but sometimes TIGER is the only option! TIGER files are given a major update every ten years coinciding with the decennial census (the 2020 census is wrapping up soon). Below, the datasets available in TIGER (and likewise, `tigris`) are enumerated with their function name. 
+
+__Available datasets:__
+
+Please note: cartographic boundary files in __tigris__ are not available for 2011 and 2012.  
+
+| Function | Datasets available | Years available |
+|------------------------------------------|------------------------------------------------|------------------------------|
+| `nation()` | cartographic (1:5m; 1:20m) | 2013-2019 |
+| `divisions()` | cartographic (1:500k; 1:5m; 1:20m) | 2013-2019 |
+| `regions()` | cartographic (1:500k; 1:5m; 1:20m) | 2013-2019 |
+| `states()` | TIGER/Line; cartographic (1:500k; 1:5m; 1:20m) | 1990, 2000, 2010-2019 |
+| `counties()` | TIGER/Line; cartographic (1:500k; 1:5m; 1:20m) | 1990, 2000, 2010-2019 |
+| `tracts()` | TIGER/Line; cartographic (1:500k) | 1990, 2000, 2010-2019 |
+| `block_groups()` | TIGER/Line; cartographic (1:500k) | 1990, 2000, 2010-2019 |
+| `blocks()` | TIGER/Line | 2000, 2010-2019 |
+| `places()` | TIGER/Line; cartographic (1:500k) | 2011-2019 |
+| `pumas()` | TIGER/Line; cartographic (1:500k) | 2012-2019 |
+| `school_districts()` | TIGER/Line; cartographic | 2011-2019 |
+| `zctas()` | TIGER/Line; cartographic (1:500k) | 2000, 2010, 2012-2019 |
+| `congressional_districts()` | TIGER/Line; cartographic (1:500k; 1:5m; 1:20m) | 2011-2019 |
+| `state_legislative_districts()` | TIGER/Line; cartographic (1:500k) | 2011-2019 |
+| `voting_districts()` | TIGER/Line | 2012 |
+| `area_water()` | TIGER/Line | 2011-2019 |
+| `linear_water()` | TIGER/Line | 2011-2019 |
+| `coastline` | TIGER/Line() | 2013-2019 |
+| `core_based_statistical_areas()` | TIGER/Line; cartographic (1:500k; 1:5m; 1:20m) | 2011-2019 |
+| `combined_statistical_areas()` | TIGER/Line; cartographic (1:500k; 1:5m; 1:20m) | 2011-2019 |
+| `metro_divisions()` | TIGER/Line | 2011-2019 |
+| `new_england()` | TIGER/Line; cartographic (1:500k) | 2011-2019 |
+| `county_subdivisions()` | TIGER/Line; cartographic (1:500k) | 2010-2019 |
+| `urban_areas()` | TIGER/Line; cartographic (1:500k) | 2012-2019 |
+| `primary_roads()` | TIGER/Line | 2011-2019 |
+| `primary_secondary_roads()` | TIGER/Line | 2011-2019 |
+| `roads()` | TIGER/Line | 2011-2019 |
+| `rails()` | TIGER/Line | 2011-2019 |
+| `native_areas()` | TIGER/Line; cartographic (1:500k) | 2011-2019 |
+| `alaska_native_regional_corporations()` | TIGER/Line; cartographic (1:500k) | 2011-2019 |
+| `tribal_block_groups()` | TIGER/Line | 2011-2019 |
+| `tribal_census_tracts()` | TIGER/Line | 2011-2019 |
+| `tribal_subdivisions_national()` | TIGER/Line | 2011-2019 |
+| `landmarks()` | TIGER/Line | 2011-2019 |
+| `military()` | TIGER/Line | 2011-2019 |
+
+As of version 1.0 (released in July 2020), tigris functions return simple features objects with a default year of 2019. To get started, choose a function from the table above and use it with a state and/or county if required (this will result in a quicker download of a smaller file). You'll get back an sf object for use in your mapping and spatial analysis projects.
+
+Here are some examples with some Portland metro area data - we are going to try to create a leaflet map with `roads()` and `places()` within the Portland metro area. We will define the Portland metro area based on the `urban_areas()` - for more on the Census's definitions of urbanized and statistical areas, refer to [this page](https://www.census.gov/programs-surveys/geography/guidance/geo-areas.html). 
+
+## Example - Part 1
+
+```{r tigris,message=FALSE,warning=FALSE}
+library(tigris)
+library(tidyverse)
+library(sf)
+library(leaflet)
+library(stringr)
+
+urb_areas = urban_areas()
+
+head(urb_areas)
+
+portland_urban_area = urb_areas %>%
+  filter(str_detect(NAME10,'Portland, OR')) %>%
+  st_transform(4326)
+
+#Union, buffer, cast, and simlify all done here to try to remove vertices from boundary, making subsetting faster (but not as precise)
+simp_pdx_ua = portland_urban_area %>%
+  st_transform(2269) %>%
+  st_union() %>%
+  st_buffer(1) %>%
+  st_cast('POLYGON') %>%
+  st_simplify()
+
+#Have to query these objects by state and county separately
+or_roads = roads(state='OR',county = c('Multnomah','Washington','Clackamas')) %>%
+  st_transform(4326)
+wa_roads = roads(state='WA',county = c('Clark'))  %>%
+  st_transform(4326)
+
+#Binding sf objects is still a little wonky - have to reassert as sf column and object
+bound_roads = bind_rows(
+  or_roads %>% as_tibble(),
+  wa_roads %>% as_tibble()
+) %>%
+  mutate(geometry = st_sfc(geometry,crs=4326)) %>%
+  st_as_sf() %>%
+  st_transform(2269) 
+
+#This will take 30 seconds or so, road data is big!
+ggplot()+
+  geom_sf(data = bound_roads,color='red')+
+  geom_sf(data = simp_pdx_ua,color='black',size=1,
+          #Want to have no fill to see roads through polygon
+          fill=NA)
+
+#I was going to do the intersection with the actual boundaries, but it was taking a few minutes, so not great for an example. You can do on your own! I did with the convex hull instead. 
+# sub_bound_roads  = bound_roads %>%
+#   st_intersection(simp_pdx_ua)
+
+#Sometimes if you are doing complex spatial subsetting, you can speed it up using convex hulls
+pdx_hull = portland_urban_area %>%
+  st_transform(2269) %>%
+  st_convex_hull()
+
+#Here is what a convex hull looks like
+ggplot()+
+  geom_sf(data = portland_urban_area,color='black',size=1,
+          #Want to have no fill to see roads through polygon
+          fill=NA)+
+  geom_sf(data= pdx_hull,color='blue',size=1,fill=NA)
+
+#Codebook for MTFCC feature in TIGER geographies here: https://www2.census.gov/geo/pdfs/reference/mtfccs2019.pdf
+big_roads = bound_roads %>%
+  filter(MTFCC %in% c('S1100', #Primary roads
+                      'S1200')) %>% #Secondary roads
+  st_cast('LINESTRING') %>%
+  st_intersection(pdx_hull %>%
+                    select(geometry)) %>% 
+  mutate(sf_type = map_chr(geometry,~class(.x)[2])) %>%
+  filter(sf_type=='LINESTRING') %>%
+  st_cast('LINESTRING')
+
+#Grab Places to subset as well
+orwa_places = places(state=c('OR','WA'))
+pdx_places = orwa_places %>%
+  st_transform(2269) %>%
+  st_intersection(simp_pdx_ua)
+
+
+leaflet() %>%
+  addProviderTiles('CartoDB.Positron') %>%
+  #You can put a polygon on a leaflet map as a polyline to only show boundary and not area
+  addPolylines(data = simp_pdx_ua %>% st_transform(4326),
+               color='black',weight=2) %>%
+  addPolygons(data = pdx_places %>% st_transform(4326),
+              fillColor='red',fillOpacity = 0.5,color='white',
+              weight=1,label=~NAMELSAD,
+              #Highlight options helpful when you have overlapping objects
+              highlightOptions = highlightOptions(weight=3,sendToBack = TRUE,
+                                                  fillOpacity = 0.8)) %>%
+  addPolylines(data=big_roads %>% st_transform(4326),
+               color='blue',weight=~ifelse(MTFCC=='S1200',4,2),
+               label=~FULLNAME)
+  
+```
+
+# Census Data Querying with `tidycensus`
+
+*__Acknowledgment:__ This portion of this module heavily draws upon, including direct copy-paste of markdown content, the vignettes developed for the `tidycensus` package, available on the package [documentation website](https://walker-data.com/tidycensus/). *
+
+Most of the time you are not using census geographies for the sole purpose of mapping the geographies themselves -- these geographies are tied to a wealth of statistics available from the U.S. Census Bureau. The product NN uses most often from the U.S. Census Bureau is the American Community Survey -- an annual sample survey (a statistically representative sub-sample of the population) conducted with a much more detailed survey than the Census itself (conducted on the entire U.S. population). We typically use the 5-year version, which pools samples from the previous 5 years on a rolling basis to achieve higher accuracy. The 1-year version has a smaller sample to work with so has a larger margin of error, but allows for understanding changes in trends at a higher temporal resolution. For demographic mapping, we generally recommend using the 5-year version. 
+
+## Basic Usage
+
+To get started working with __tidycensus__, users should load the package along with the __tidyverse__ package, and set their Census API key.  A key can be obtained from <http://api.census.gov/data/key_signup.html>.  
+
+```{r}
+library(tidycensus)
+library(tidyverse)
+census_api_key("04976a4a378107d2fb53acdbde84d0aad121cb10")
+```
+
+There are two major functions implemented in __tidycensus__: `get_decennial()`, which grants access to the 1990, 2000, and 2010 decennial US Census APIs, and `get_acs()`, which grants access to the 5-year American Community Survey APIs. As mentioned, we will be focusing on `get_acs`. 
+
+## Searching for variables
+
+Getting variables from the Census or ACS requires knowing the variable ID - and there are thousands of these IDs across the different Census files.  To rapidly search for variables, use the `load_variables()` function.  The function takes two required arguments: the year of the Census or endyear of the ACS sample, and the dataset - one of `"sf1"`, `"sf3"`, or `"acs5"`. For ideal functionality, I recommend assigning the result of this function to a variable, setting `cache = TRUE` to store the result on your computer for future access, and using the `View` function in RStudio to interactively browse for variables.  
+
+```{r, eval = FALSE}
+v17 <- load_variables(2017, "acs5")
+View(v17)
+```
+
+<img src=graphics/census_variables.png style="width: 100%">
+
+By filtering for "median age" I can quickly view the variable IDs that correspond to my query.  
+
+## Working with ACS data
+
+American Community Survey data differ from decennial Census data in that ACS data are based on an annual sample of approximately 3 million households, rather than a more complete enumeration of the US population.  In turn, ACS data points are __estimates__ characterized by a __margin of error__.  __tidycensus__ will always return the estimate and margin of error together for any requested variables when using `get_acs()`.  In turn, when requesting ACS data with __tidycensus__, it is not necessary to specify the `"E"` or `"M"` suffix for a variable name.  Let's fetch median household income data from the 2014-2018 ACS for counties in Vermont. 
+
+```{r}
+vt <- get_acs(geography = "county", 
+              variables = c(medincome = "B19013_001"), 
+              state = "VT", 
+              year = 2018)
+vt
+```
+
+The output of `get_acs` returns `estimate` and `moe` columns for the ACS estimate and margin of error, respectively.  `moe` represents the default 90 percent confidence level around the estimate; this can be changed to 95 or 99 percent with the `moe_level` parameter in `get_acs` if desired. As we have the margin of error, we can visualize the uncertainty around the estimate: 
+
+```{r}
+vt %>%
+  mutate(NAME = gsub(" County, Vermont", "", NAME)) %>%
+  ggplot(aes(x = estimate, y = reorder(NAME, estimate))) +
+  geom_errorbarh(aes(xmin = estimate - moe, xmax = estimate + moe)) +
+  geom_point(color = "red", size = 3) +
+  labs(title = "Household income by county in Vermont",
+       subtitle = "2014-2018 American Community Survey",
+       y = "",
+       x = "ACS estimate (bars represent margin of error)")
+```
+
+## Adding Geometry
+
+If requested, __tidycensus__ can return simple feature geometry for geographic units along with variables from the decennial US Census or American Community survey.  By setting `geometry = TRUE` in a __tidycensus__ function call, __tidycensus__ will use the __tigris__ package to retrieve the corresponding geographic dataset from the US Census Bureau and pre-merge it with the tabular data obtained from the Census API.  As of tidycensus version 0.9.9.2, `geometry = TRUE` is supported for all geographies currently available in the package.  Of course you can also just query the geographies yourself from `tigris`, and join data on the `GEOID` as needed. 
+
+The following example shows median household income from the 2014-2018 ACS for Census tracts in Orange County, California: 
+
+```{r}
+library(tidycensus)
+library(tidyverse)
+options(tigris_use_cache = TRUE)
+orange <- get_acs(state = "CA", county = "Orange", geography = "tract", 
+                  variables = "B19013_001", geometry = TRUE)
+head(orange)
+```
+
+Our object `orange` looks much like the basic __tidycensus__ output, but with a `geometry` list-column describing the geometry of each feature, using the geographic coordinate system NAD 1983 (EPSG: 4269) which is the default for Census shapefiles.  __tidycensus__ uses the Census [cartographic boundary shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html) for faster processing; if you prefer the TIGER/Line shapefiles, set `cb = FALSE` in the function call. 
+
+As the dataset is in a tidy format, it can be quickly visualized with the `geom_sf` functionality currently in the development version of __ggplot2__: 
+
+```{r}
+orange %>%
+  ggplot(aes(fill = estimate)) + 
+  geom_sf(color = NA) + 
+  coord_sf(crs = 26911) + 
+  scale_fill_viridis_c(option = "magma") 
+```
+
+Please note that the UTM Zone 11N coordinate system (`26911`) is appropriate for Southern California but may not be for your area of interest.  
+
+## Example - Part 2
+
+Let's try to map the median income of all of the CDPs we mapped in the first part of this module. 
+
+```{r message=FALSE, warnings = FALSE}
+library(scales)
+
+pdx_cdp_med_income = get_acs(state=c('OR','WA'),geography = 'place',
+                             variables = c(medincome = "B19013_001")) %>%
+  #Filtering for GEOIDs in PDX Places
+  filter(GEOID %in% pdx_places$GEOID)
+
+#Joining ACS data to shape
+pdx_cdp_mi_shape = pdx_places %>%
+  left_join(pdx_cdp_med_income %>%
+              select(GEOID,estimate))
+
+income_pal = colorNumeric(
+  #Scales package lets you access color brewer palettes
+  palette = brewer_pal(palette = 'Greens')(5),
+  domain =  pdx_cdp_mi_shape$estimate
+)
+
+leaflet() %>%
+  addProviderTiles('CartoDB.Positron') %>%
+  #You can put a polygon on a leaflet map as a polyline to only show boundary and not area
+  addPolylines(data = simp_pdx_ua %>% st_transform(4326),
+               color='black',weight=2) %>%
+  addPolygons(data = pdx_cdp_mi_shape %>% st_transform(4326),
+              fillColor=~income_pal(estimate),fillOpacity = 0.5,color='white',
+              weight=1,label=~paste0(NAMELSAD,': ',dollar(estimate)),
+              highlightOptions = highlightOptions(weight=3,sendToBack = TRUE,
+                                                  fillOpacity = 0.8)) %>%
+  addLegend(pal = income_pal,values =pdx_cdp_mi_shape$estimate,
+            labFormat = labelFormat(prefix = '$'),title = 'Median<br>Household<br>Income')
+
+```
+
+# Downloading and Aggregating LODES data with `lehdr`
+
+*__Acknowledgment:__ This portion of this module heavily draws upon, including direct copy-paste of markdown content, the vignettes developed for the `lehdr` package, available on the package [documentation website.](https://jamgreen.github.io/lehdr/articles/getting_started.html)*
+
+In addition the residential-based statistics the U.S. Census Bureau provides through ACS (and the Census itself), another annual data product they offer is the Longitudinal Employer Household Dynamics (LEHD) [Origin Destination Employment Statistics](https://lehd.ces.census.gov/data/#lodes) (LODES, for short!) data set. There are other LEHD data products offered that do not yet appear to have an R wrapper, but the package we will be looking at ([`lehdr`](https://jamgreen.github.io/lehdr/index.html)) is in development. 
+
+The LODES data set is based on survey data as well as residential location data (from the ACS and the Census) and workplace location data that the Census Bureau and the Bureau of Labor Statistics (BLS) collect. It is often used in work at NN to understand employment locations as well as origin-destination patterns between home locations and employment locations. As it is a national data set, it is not as well attuned to local dynamics as the local MPO would be in their travel surveying efforts, so I would always defer to recent travel survey and modeling data from an MPO if that is available. That said, LODES is a great product for where there is no travel survey coverage, or a travel survey has not been conducted in some time. It is provided at the Census Block level, and so as you can guess the datasets can get pretty large! Which can make Excel a bit clunky for the job depending on the area you are looking at, but R has no problem handling! 
+
+## Installation
+
+`lehdr` has not yet been submitted to CRAN so installing using devtools is required. 
+
+```{r,eval=FALSE}
+install.packages('devtools')
+devtools::install_github("jamgreen/lehdr")
+```
+```{r}
+library(lehdr)
+```
+
+## Usage
+This first example pulls the Oregon (`state = "or"`) 2014 (`year = 2014`), origin-destination (`lodes_type = "od"`), all jobs including private primary, secondary, and Federal (`job_type = "JT01"`), all jobs across ages, earnings, and industry (`segment = "S000"`), aggregated at the Census Tract level rather than the default Census Block (`agg_geo = "tract"`).
+
+__Note: LODES data is large, so some of these steps will take a minute or more to run.__
+
+```{r usage 1, warning=FALSE}
+or_od <- grab_lodes(state = "or", year = 2014, lodes_type = "od", job_type = "JT01", 
+           segment = "S000", state_part = "main", agg_geo = "tract")
+head(or_od)
+```
+
+The package can be used to retrieve multiple states and years at the same time by creating a vector or list. This second example pulls the Oregon AND Rhode Island (`state = c("or", "ri")`) for 2013 and 2014 (`year = c(2013, 2014)` or `year = 2013:2014`).
+```{r usage2}           
+or_ri_od <- grab_lodes(state = c("or", "ri"), year = c(2013, 2014),
+                       lodes_type = "od", job_type = "JT01", 
+           segment = "S000", state_part = "main", agg_geo = "tract")     
+head(or_ri_od)
+```
+Not all years are available for each state. To see all options for `lodes_type`, `job_type`, and `segment` and the availability for each state/year, please see the most recent LEHD Technical Document at https://lehd.ces.census.gov/data/lodes/LODES7/.
+
+Other common uses might include retrieving Residential or Work Area Characteristics (`lodes_type = "rac"` or `lodes_type = "wac"` respectively), low income jobs (`segment = "SE01"`) or good producing jobs (`segment = "SI01"`). Other common geographies might include retrieving data at the Census Block level (`agg_geo = "block"`, not necessary as it is default) -- but see below for other aggregation levels.
+
+## Additional Examples
+### Adding at County level signifiers
+The following examples loads work area characteristics (wac), then uses the work area geoid `w_geocode` to create a variable that is just the county `w_county_fips`. Similar transformations can be made on residence area characteristics (rac) by using the `h_geocode` variable. Both variables are available in origin-destination (od) datasets and with od, one would need to set a `h_county_fips` and on `w_county_fips`.
+```{r example_county_var}
+md_rac <- grab_lodes(state = "md", year = 2015, lodes_type = "wac", job_type = "JT01", segment = "S000")
+head(md_rac)
+md_rac_county <- md_rac %>% mutate(w_county_fips = str_sub(w_geocode, 1, 5))
+head(md_rac_county)
+```
+
+### Aggregating at the County level
+To aggregate at the county level, continuing the above example, we must also drop the original lock geoid `w_geocode`, group by our new variable `w_county_fips` and our existing variables `year` and `createdate`, then aggregate the remaining numeric variables.
+```{r example_county_agg}
+md_rac_county <- md_rac %>% mutate(w_county_fips = str_sub(w_geocode, 1, 5)) %>% 
+  select(-"w_geocode") %>%
+  group_by(w_county_fips, state, year, createdate) %>% 
+  summarise_if(is.numeric, sum)
+head(md_rac_county)
+```
+
+Alternatively, this functionality is also built-in to the package and advisable for origin-destination grabs. Here include an argument to aggregate at the County level (`agg_geo = "county"`):
+
+```{r example_county_agg2}
+md_rac_county <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 
+           segment = "S000", agg_geo = "county")
+           
+head(md_rac_county)
+```
+
+### Aggregating Origin-Destination 
+As mentioned above, aggregating origin-destination is built-in. This takes care of aggregation on both the `h_geocode` and `w_geocode` variables:
+```{r example_county_agg3}
+md_od_county <- grab_lodes(state = "md", year = 2015, lodes_type = "od", job_type = "JT01", 
+           segment = "S000", agg_geo = "county", state_part = "main")
+           
+head(md_od_county)
+```
+
+### Aggregating at Block Group, Tract, or State level
+Similarly, built-in functions exist to group at Block Group, Tract, County, and State levels. County was demonstrated above. All require setting the `agg_geo` argument. This aggregation works for all three LODES types.
+
+```{r example_agg_other}
+md_rac_bg <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 
+           segment = "S000", agg_geo = "bg")
+           
+head(md_rac_bg)
+md_rac_tract <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 
+           segment = "S000", agg_geo = "tract")
+           
+head(md_rac_tract)
+md_rac_state <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 
+           segment = "S000", agg_geo = "state")
+           
+head(md_rac_state)
+```
+
+## Example - Part 3
+
+Let's try to use LODES to get the job flows between CDPs in the Portland regions. 2017 is the latest year available -- it takes them a few years to put each release together. Unfortunately I noticed when putting this example together, `lehdr` which seems overall better documented and maintained, does not have a function to read the LODES crosswalk file. This is included in another LODES package and I actually wrote a version of this myself at one point. I filed a corresponding [issue on the `lehdr` GitHub](https://github.com/jamgreen/lehdr/issues/18) and will contribute if the author desires. The other package, [`lodes`](https://github.com/hrbrmstr/lodes), will be loaded to use the `read_xwalk()` function. 
+
+```{r, message=FALSE, warning=FALSE}
+library(lodes)
+library(lehdr)
+#Can only grab one state at a time right now
+orwa_lodes =grab_lodes(state = c('or','wa'),year = 2017,lodes_type = 'od',
+                            agg_geo = 'bg',segment = 'S000',state_part = c('aux')) %>%
+  bind_rows(grab_lodes(state = c('or','wa'),year = 2017,lodes_type = 'od',
+                            agg_geo = 'bg',segment = 'S000',state_part = c('main')))
+
+orwa_xwalk = bind_rows(
+  read_xwalk('or'),
+  read_xwalk('wa')
+)
+
+sub_xwalk = orwa_xwalk %>% 
+  filter(stplc %in% pdx_places$GEOID) %>%
+  distinct(st,bgrp,stplc) %>%
+  #Need to have all codes as character to join properly
+  mutate_all(as.character)
+
+agg_plc_lodes = orwa_lodes %>%
+  rename(total_jobs = `S000`) %>%
+  group_by(h_bg,w_bg) %>%
+  summarise(total_jobs = sum(total_jobs)) %>%
+  left_join(sub_xwalk %>%
+              rename(h_st = st,
+                     h_bg = bgrp,
+                     h_stplc=stplc)) %>%
+  left_join(sub_xwalk %>%
+              rename(w_st = st,
+                     w_bg = bgrp,
+                     w_stplc=stplc)) %>%
+  group_by(h_st,h_stplc,w_st,w_stplc) %>%
+  summarise(total_jobs = sum(total_jobs))
+
+#Going to use centroids to draw OD lines
+pdx_plc_cents = pdx_places %>%
+  st_centroid()
+
+agg_plc_od_shp = agg_plc_lodes %>%
+  ungroup() %>%
+  filter(!is.na(h_stplc),!is.na(w_stplc),
+         #Filtering out where home and work are same location (no line to draw...)
+         h_stplc!=w_stplc) %>%
+  mutate(od_line = pmap(.l = list(h_stplc,w_stplc),
+                        .f = function(h_stplc,w_stplc){
+    
+    h_cent = pdx_plc_cents %>%
+      filter(GEOID == h_stplc)
+    
+    w_cent = pdx_plc_cents %>%
+      filter(GEOID == w_stplc)
+    
+    hw_line = bind_rows(
+      h_cent %>% st_coordinates() %>% as_tibble(),
+      w_cent %>% st_coordinates() %>% as_tibble()
+    ) %>%
+      #Have to convert to matrix to coerce into linestring
+      as.matrix() %>%
+      st_linestring()
+    
+    return(hw_line)
+    
+  })) %>%
+  mutate(od_line = st_sfc(od_line,crs =2269)) %>%
+  st_as_sf() %>%
+  left_join(pdx_places %>%
+              as_tibble() %>%
+              select(GEOID,NAME) %>%
+              rename(h_stplc = GEOID,
+                     home_place = NAME)) %>%
+  left_join(pdx_places %>%
+              as_tibble() %>%
+              select(GEOID,NAME) %>%
+              rename(w_stplc = GEOID,
+                     work_place = NAME))
+
+#Setting a weight multiplier so job flow can be visualized proportionally on leaflet map
+max_job_flow = max(agg_plc_od_shp$total_jobs)
+max_weight = 30
+weight_mult = max_weight/max_job_flow
+
+
+leaflet() %>%
+  addProviderTiles('CartoDB.Positron') %>%
+  addPolylines(data = simp_pdx_ua %>% st_transform(4326),
+               color='black',weight=2,group = 'Urban Area Boundary') %>%
+  addPolygons(data = pdx_places %>% st_transform(4326),
+              fillColor='green',fillOpacity = 0.5,color='white',
+              weight=1,label=~NAMELSAD,
+              highlightOptions = highlightOptions(weight=3,sendToBack = TRUE,
+                                                  fillOpacity = 0.8),
+              group='Place Polygons') %>%
+  addPolylines(data=big_roads %>% st_transform(4326),
+               color='blue',weight=~ifelse(MTFCC=='S1200',4,2),
+               label=~FULLNAME,
+               group='Roads') %>%
+  addPolylines(data = agg_plc_od_shp %>% st_transform(4326),
+               color = 'red',weight =~ total_jobs * weight_mult,
+               label=~ paste0(home_place,' to ',work_place,': ',comma(total_jobs),' jobs'),
+               opacity = 0.5,
+               highlightOptions = highlightOptions(sendToBack = TRUE,opacity = 1),
+               group='Job Flows') %>%
+  addLayersControl(overlayGroups = c('Urban Area Boundary','Roads','Place Polygons','Job Flows'))
+```
+
+
+# Reference Materials
+
+## Run Through the Example Code Yourself
+You can run through the example yourself based on the example code and data, which you can get by cloning (or just downloading as a ZIP) the [GitHub repository](https://github.com/PerkinsAndWill/nn_r_training) for this course and navigating to the `topics_setup/05_census` directory. There you will see `example_code.R`, and the raw Doodle results in the `data` folder. 
+
+## Further Reading 
+
+- *Analyzing the US Census with R*, written by Kyle Walker, is expected shortly per the [`tigris` GitHub page](https://github.com/walkerke/tigris). Until then, there are a lot of videos and blog posts on the web!
+
+## Related DataCamp Courses
+
+- [Analyzing U.S. Census Data with R (taught by Kyle Walker, creator of `tigris` and `tidycensus`! 1 course, 4 hours)](https://learn.datacamp.com/courses/analyzing-us-census-data-in-r)
+
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, September 17th, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/5b33f7da-577d-4788-b5b4-0340340c41f4) and embedded at the top of the page.*
