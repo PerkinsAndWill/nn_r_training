@@ -3,6 +3,7 @@ library(rmarkdown)
 library(distill)
 
 rmarkdown::render('_posts/welcome/welcome.Rmd')
+rmarkdown::render('_posts/2021-01-15-google-travel-time-querying/google-travel-time-querying.Rmd')
 rmarkdown::render('_posts/2021-01-14-tidyverse/tidyverse.Rmd')
 rmarkdown::render('_posts/2021-01-14-census-data/census-data.Rmd')
 rmarkdown::render("_posts/2021-01-14-geospatial-data/geospatial-data.Rmd")

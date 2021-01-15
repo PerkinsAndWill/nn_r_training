@@ -1,0 +1,23 @@
+---
+title: "Google Travel Time Querying"
+description: |
+  Usage of the googleway package for travel time querying. 
+author:
+  - name: Bryan Blanc
+    url: https://github.com/bpb824
+date: 01-15-2021
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - geospatial
+---
+
+# Background
+For those that have been using R at NN for several years, you may be familiar with querying travel times using functions in the `transportr` package -- a bare bones package Bryan was saving useful functions into for NN R work. Back in 2016, when Bryan was writing a function for querying Google Directions, there was no existing package/function for doing so. In the intervening years, other packages have been developed that are more fully featured and better maintained than the corresponding functions in `transportr`. 
+
+**Going forward**, it is recommended that you use the [`googleway`](http://symbolixau.github.io/googleway/) package, which provides a variety of functions for interacting with various Google Maps APIs, including querying travel times. 
+
+This tutorial draws upon components from the [`googleway` vignette](http://symbolixau.github.io/googleway/articles/googleway-vignette.html) -- if you want a full guide to all the features of the package, please refer to that. We will focus on a couple of examples for travel time querying below. 
+
+# Basic Usage

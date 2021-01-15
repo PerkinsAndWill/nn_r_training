@@ -1,7 +1,7 @@
 ---
 title: "Introduction to the Tidyverse"
 description: |
-  An initial training on the philosophy and elements of the *tidyverse*.
+  An initial training on the philosophy and elements of the tidyverse.
 author:
   - name: Bryan Blanc
     url: https://github.com/bpb824

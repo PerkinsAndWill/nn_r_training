@@ -20,19 +20,18 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -52,7 +51,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
@@ -88,7 +87,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_meta_tags-->
 <title>Nelson\Nygaard R Training: Introduction to the Tidyverse</title>
 
-<meta property="description" itemprop="description" content="An initial training on the philosophy and elements of the *tidyverse*."/>
+<meta property="description" itemprop="description" content="An initial training on the philosophy and elements of the tidyverse."/>
 
 <link rel="canonical" href="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse/"/>
 
@@ -100,22 +99,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
 <meta property="og:title" content="Nelson\Nygaard R Training: Introduction to the Tidyverse"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="An initial training on the philosophy and elements of the *tidyverse*."/>
+<meta property="og:description" content="An initial training on the philosophy and elements of the tidyverse."/>
 <meta property="og:url" content="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse/"/>
-<meta property="og:image" content="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse/graphics/diagrams/data-science.png"/>
-<meta property="og:image:width" content="517"/>
-<meta property="og:image:height" content="190"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Nelson\Nygaard R Training"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
-<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:card" content="summary"/>
 <meta property="twitter:title" content="Nelson\Nygaard R Training: Introduction to the Tidyverse"/>
-<meta property="twitter:description" content="An initial training on the philosophy and elements of the *tidyverse*."/>
+<meta property="twitter:description" content="An initial training on the philosophy and elements of the tidyverse."/>
 <meta property="twitter:url" content="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse/"/>
-<meta property="twitter:image" content="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse/graphics/diagrams/data-science.png"/>
-<meta property="twitter:image:width" content="517"/>
-<meta property="twitter:image:height" content="190"/>
 
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
 <meta name="citation_title" content="Nelson\Nygaard R Training: Introduction to the Tidyverse"/>
@@ -127,7 +120,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Introduction to the Tidyverse"]},{"type":"character","attributes":{},"value":["An initial training on the philosophy and elements of the *tidyverse*."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Bryan Blanc"]},{"type":"character","attributes":{},"value":["https://github.com/bpb824"]}]}]},{"type":"character","attributes":{},"value":["01-14-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["tidyverse","purrr"]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse/"]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Introduction to the Tidyverse"]},{"type":"character","attributes":{},"value":["An initial training on the philosophy and elements of the tidyverse."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Bryan Blanc"]},{"type":"character","attributes":{},"value":["https://github.com/bpb824"]}]}]},{"type":"character","attributes":{},"value":["01-14-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["tidyverse","purrr"]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse/"]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2056,6 +2049,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
+  <script src="../../site_libs/header-attrs-2.6.1/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2076,7 +2070,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Introduction to the Tidyverse","description":"An initial training on the philosophy and elements of the *tidyverse*.","authors":[{"author":"Bryan Blanc","authorURL":"https://github.com/bpb824","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-01-14T00:00:00.000-08:00","citationText":"Blanc, 2021"}
+{"title":"Introduction to the Tidyverse","description":"An initial training on the philosophy and elements of the tidyverse.","authors":[{"author":"Bryan Blanc","authorURL":"https://github.com/bpb824","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-01-14T00:00:00.000-08:00","citationText":"Blanc, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2109,7 +2103,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <a href="../../index.html#category:purrr" class="dt-tag">purrr</a>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>An initial training on the philosophy and elements of the <em>tidyverse</em>.</p></p>
+<p><p>An initial training on the philosophy and elements of the tidyverse.</p></p>
 </div>
 
 <div class="d-byline">
@@ -2160,17 +2154,9 @@ document.addEventListener('DOMContentLoaded', function() {
 </code></pre>
 </div>
 <pre><code>-- Conflicts -------------------------------- tidyverse_conflicts() --
-x lubridate::as.difftime() masks base::as.difftime()
-x scales::col_factor()     masks readr::col_factor()
-x lubridate::date()        masks base::date()
-x scales::discard()        masks purrr::discard()
-x dplyr::filter()          masks stats::filter()
-x lubridate::hms()         masks hms::hms()
-x rgeos::intersect()       masks lubridate::intersect(), base::intersect()
-x dplyr::lag()             masks stats::lag()
-x MASS::select()           masks dplyr::select()
-x rgeos::setdiff()         masks lubridate::setdiff(), base::setdiff()
-x rgeos::union()           masks lubridate::union(), base::union()</code></pre>
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+x MASS::select()  masks dplyr::select()</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/detach.html'>detach</a></span><span class='op'>(</span><span class='st'>"package:MASS"</span>, unload<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
 </code></pre>
@@ -2575,7 +2561,7 @@ Figure 2: Uniting <code>table5</code> makes it tidy
                names_to <span class='op'>=</span> <span class='st'>'key'</span>,
                values_to <span class='op'>=</span> <span class='st'>'value'</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>fill</span><span class='op'>(</span><span class='va'>value</span>,.direction <span class='op'>=</span> <span class='st'>'down'</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>mutate</span><span class='op'>(</span>col_type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>value</span>,<span class='st'>':'</span><span class='op'>)</span>,<span class='st'>'time'</span>,<span class='st'>'date'</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>col_type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>value</span>,<span class='st'>':'</span><span class='op'>)</span>,<span class='st'>'time'</span>,<span class='st'>'date'</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>pivot_wider</span><span class='op'>(</span>id_cols <span class='op'>=</span> <span class='va'>key</span>,
               names_from<span class='op'>=</span><span class='va'>col_type</span>,
               values_from<span class='op'>=</span><span class='va'>value</span><span class='op'>)</span>
@@ -2591,7 +2577,7 @@ Figure 2: Uniting <code>table5</code> makes it tidy
     <span class='cn'>TRUE</span><span class='op'>~</span><span class='st'>'No'</span>
   <span class='op'>)</span>,
   value <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>value</span>,ordered<span class='op'>=</span><span class='cn'>TRUE</span>,levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Yes'</span>,<span class='st'>'Maybe'</span>,<span class='st'>'No'</span><span class='op'>)</span><span class='op'>)</span>,
-  weekday <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_sub.html'>str_sub</a></span><span class='op'>(</span><span class='va'>date</span>,<span class='fl'>1</span>,<span class='fl'>3</span><span class='op'>)</span>,
+  weekday <span class='op'>=</span> <span class='fu'>str_sub</span><span class='op'>(</span><span class='va'>date</span>,<span class='fl'>1</span>,<span class='fl'>3</span><span class='op'>)</span>,
   weekday <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>weekday</span>,ordered<span class='op'>=</span><span class='cn'>TRUE</span>,levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Mon'</span>,<span class='st'>'Tue'</span>,<span class='st'>'Wed'</span>,<span class='st'>'Thu'</span>,<span class='st'>'Fri'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>separate</span><span class='op'>(</span><span class='va'>time</span>,into<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'from_time'</span>,<span class='st'>'to_time'</span><span class='op'>)</span>,sep<span class='op'>=</span><span class='st'>' – '</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>mutate</span><span class='op'>(</span>from_time <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='va'>from_time</span>,format<span class='op'>=</span><span class='st'>'%I:%M %p'</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
@@ -2603,11 +2589,11 @@ Figure 2: Uniting <code>table5</code> makes it tidy
   <span class='fu'>mutate</span><span class='op'>(</span>
     first_name <span class='op'>=</span> <span class='fu'>map_chr</span><span class='op'>(</span><span class='va'>name</span>,<span class='kw'>function</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span><span class='op'>{</span>
     <span class='op'>(</span><span class='va'>name</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_split.html'>str_split</a></span><span class='op'>(</span><span class='st'>' '</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+      <span class='fu'>str_split</span><span class='op'>(</span><span class='st'>' '</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>}</span><span class='op'>)</span>,
     last_name <span class='op'>=</span> <span class='fu'>map_chr</span><span class='op'>(</span><span class='va'>name</span>,<span class='kw'>function</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span><span class='op'>{</span>
     <span class='op'>(</span><span class='va'>name</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_split.html'>str_split</a></span><span class='op'>(</span><span class='st'>' '</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+      <span class='fu'>str_split</span><span class='op'>(</span><span class='st'>' '</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>}</span><span class='op'>)</span>
   <span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>arrange</span><span class='op'>(</span><span class='fu'>desc</span><span class='op'>(</span><span class='va'>last_name</span><span class='op'>)</span>,<span class='fu'>desc</span><span class='op'>(</span><span class='va'>first_name</span><span class='op'>)</span>,
@@ -2683,8 +2669,8 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 <h5 id="a-graphing-template">A graphing template</h5>
 <p>Let’s turn this code into a reusable template for making graphs with ggplot2. To make a graph, replace the bracketed sections in the code below with a dataset, a geom function, or a collection of mappings.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="op">&lt;</span>DATA<span class="op">&gt;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="st">  </span><span class="er">&lt;</span>GEOM_FUNCTION<span class="op">&gt;</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="op">&lt;</span>MAPPINGS<span class="op">&gt;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>) <span class="sc">+</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>))</span></code></pre></div>
 </div>
 <p>The rest of this guide will show you how to complete and extend this template to make different types of graphs. We will begin with the <code>&lt;MAPPINGS&gt;</code> component.</p>
 <h4 id="aesthetic-mappings">Aesthetic mappings</h4>
@@ -2926,7 +2912,7 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 <p>To see why this is important, consider (again) this simple data frame:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/tibble.html'>tibble</a></span><span class='op'>(</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='op'>(</span>
   a <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>,
   b <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>,
   c <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>,
@@ -2945,7 +2931,7 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 <span class='va'>output</span>
 </code></pre>
 </div>
-<pre><code>[1] -0.1243593 -0.6551275 -0.4468224 -0.6536750</code></pre>
+<pre><code>[1] -0.0805629  0.3605142 -0.4359090  0.1553829</code></pre>
 </div>
 <p>You realise that you’re going to want to compute the means of every column pretty frequently, so you extract it out into a function:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3011,12 +2997,12 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 <span class='fu'>col_summary</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>median</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] -0.3349320 -0.7853201 -0.2853444 -0.7316654</code></pre>
+<pre><code>[1]  0.15385022  0.06454209 -0.30676860  0.39507624</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>col_summary</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>mean</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] -0.1243593 -0.6551275 -0.4468224 -0.6536750</code></pre>
+<pre><code>[1] -0.0805629  0.3605142 -0.4359090  0.1553829</code></pre>
 </div>
 <p>The idea of passing a function to another function is an extremely powerful idea, and it’s one of the behaviours that makes R a functional programming language. It might take you a while to wrap your head around the idea, but it’s worth the investment. In the rest of the chapter, you’ll learn about and use the <strong>purrr</strong> package, which provides functions that eliminate the need for many common for loops. The apply family of functions in base R (<code>apply()</code>, <code>lapply()</code>, <code>tapply()</code>, etc) solve a similar problem, but purrr is more consistent and thus is easier to learn.</p>
 <p>The goal of using purrr functions instead of for loops is to allow you to break common list manipulation challenges into independent pieces:</p>
@@ -3044,19 +3030,19 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 </code></pre>
 </div>
 <pre><code>         a          b          c          d 
--0.1243593 -0.6551275 -0.4468224 -0.6536750 </code></pre>
+-0.0805629  0.3605142 -0.4359090  0.1553829 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>median</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         a          b          c          d 
--0.3349320 -0.7853201 -0.2853444 -0.7316654 </code></pre>
+<pre><code>          a           b           c           d 
+ 0.15385022  0.06454209 -0.30676860  0.39507624 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>sd</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>        a         b         c         d 
-0.5514339 0.9622260 0.7566685 1.2473080 </code></pre>
+0.7064033 0.8463723 0.7144145 1.2097391 </code></pre>
 </div>
 <p>Compared to using a for loop, focus is on the operation being performed (i.e. <code>mean()</code>, <code>median()</code>, <code>sd()</code>), not the bookkeeping required to loop over every element and store the output. This is even more apparent if we use the pipe:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3065,19 +3051,19 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 </code></pre>
 </div>
 <pre><code>         a          b          c          d 
--0.1243593 -0.6551275 -0.4468224 -0.6536750 </code></pre>
+-0.0805629  0.3605142 -0.4359090  0.1553829 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>median</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         a          b          c          d 
--0.3349320 -0.7853201 -0.2853444 -0.7316654 </code></pre>
+<pre><code>          a           b           c           d 
+ 0.15385022  0.06454209 -0.30676860  0.39507624 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>sd</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>        a         b         c         d 
-0.5514339 0.9622260 0.7566685 1.2473080 </code></pre>
+0.7064033 0.8463723 0.7144145 1.2097391 </code></pre>
 </div>
 <p>There are a few differences between <code>map_*()</code> and <code>col_summary()</code>:</p>
 <ul>
@@ -3089,8 +3075,8 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>mean</span>, trim <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         a          b          c          d 
--0.3349320 -0.7853201 -0.2853444 -0.7316654 </code></pre>
+<pre><code>          a           b           c           d 
+ 0.15385022  0.06454209 -0.30676860  0.39507624 </code></pre>
 </div></li>
 <li><p>The map functions also preserve names:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3173,19 +3159,19 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 </code></pre>
 </div>
 <pre><code>         a          b          c          d 
--0.1243593 -0.6551275 -0.4468224 -0.6536750 </code></pre>
+-0.0805629  0.3605142 -0.4359090  0.1553829 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>median</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         a          b          c          d 
--0.3349320 -0.7853201 -0.2853444 -0.7316654 </code></pre>
+<pre><code>          a           b           c           d 
+ 0.15385022  0.06454209 -0.30676860  0.39507624 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>sd</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>        a         b         c         d 
-0.5514339 0.9622260 0.7566685 1.2473080 </code></pre>
+0.7064033 0.8463723 0.7144145 1.2097391 </code></pre>
 </div>
 <p>Compared to using a for loop, focus is on the operation being performed (i.e. <code>mean()</code>, <code>median()</code>, <code>sd()</code>), not the bookkeeping required to loop over every element and store the output. This is even more apparent if we use the pipe:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3194,19 +3180,19 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 </code></pre>
 </div>
 <pre><code>         a          b          c          d 
--0.1243593 -0.6551275 -0.4468224 -0.6536750 </code></pre>
+-0.0805629  0.3605142 -0.4359090  0.1553829 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>median</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         a          b          c          d 
--0.3349320 -0.7853201 -0.2853444 -0.7316654 </code></pre>
+<pre><code>          a           b           c           d 
+ 0.15385022  0.06454209 -0.30676860  0.39507624 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>sd</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>        a         b         c         d 
-0.5514339 0.9622260 0.7566685 1.2473080 </code></pre>
+0.7064033 0.8463723 0.7144145 1.2097391 </code></pre>
 </div>
 <p>There are a few differences between <code>map_*()</code> and <code>col_summary()</code>:</p>
 <ul>
@@ -3218,8 +3204,8 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>mean</span>, trim <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         a          b          c          d 
--0.3349320 -0.7853201 -0.2853444 -0.7316654 </code></pre>
+<pre><code>          a           b           c           d 
+ 0.15385022  0.06454209 -0.30676860  0.39507624 </code></pre>
 </div></li>
 <li><p>The map functions also preserve names:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3243,9 +3229,9 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 </code></pre>
 </div>
 <pre><code>List of 3
- $ : num [1:5] 6.17 7.07 3.73 5.76 5.72
- $ : num [1:5] 11.44 9.61 11.19 10.26 9.11
- $ : num [1:5] -2.785 -0.503 -3.326 -2.983 -3.94</code></pre>
+ $ : num [1:5] 5.01 5.58 3.21 3.74 5.66
+ $ : num [1:5] 9.9 10.99 10.03 9.35 10.7
+ $ : num [1:5] -2.44 -3.4 -2.09 -3.53 -4.8</code></pre>
 </div>
 <p>What if you also want to vary the standard deviation? One way to do that would be to iterate over the indices and index into vectors of means and sds:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3257,9 +3243,9 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 </code></pre>
 </div>
 <pre><code>List of 3
- $ : num [1:5] 5.37 7.48 6.08 5.86 6.55
- $ : num [1:5] 16.29 14.32 16.17 16.24 4.52
- $ : num [1:5] 1.48 -5.86 -4.26 5.31 -14.76</code></pre>
+ $ : num [1:5] 5.41 4.64 4.27 6.16 5.82
+ $ : num [1:5] 9.59 13.28 8.58 4.95 9.84
+ $ : num [1:5] 5.24 15.42 19.98 -2.71 3.53</code></pre>
 </div>
 <p>But that obfuscates the intent of the code. Instead we could use <code>map2()</code> which iterates over two vectors in parallel:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3268,9 +3254,9 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 </code></pre>
 </div>
 <pre><code>List of 3
- $ : num [1:5] 5.26 4.66 5.12 5.9 4.3
- $ : num [1:5] 10.42 11.73 5.96 11.68 13.69
- $ : num [1:5] 9.27 -14.72 -18.26 8.19 -13.09</code></pre>
+ $ : num [1:5] 4.45 5.22 3.91 5.29 5.62
+ $ : num [1:5] 11.01 4.66 9.59 12.52 9.84
+ $ : num [1:5] -18.68 7.54 1.85 -1.64 17.75</code></pre>
 </div>
 <p><code>map2()</code> generates this series of function calls:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3301,9 +3287,9 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 </code></pre>
 </div>
 <pre><code>List of 3
- $ : num 5.9
- $ : num [1:3] 3.12 13.19 20.37
- $ : num [1:5] -1.86 -12.53 -10.05 -18.01 -1.93</code></pre>
+ $ : num 4
+ $ : num [1:3] 9.5 16.66 -1.04
+ $ : num [1:5] 5.65 6.32 -15.3 -15.75 -8.76</code></pre>
 </div>
 <p>That looks like:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3337,13 +3323,13 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 </code></pre>
 </div>
 <pre><code>[[1]]
-[1] 6.615646
+[1] 5.002333
 
 [[2]]
-[1]  6.204123 14.402442  3.407024
+[1] 14.204524  9.267869  9.397982
 
 [[3]]
-[1]  -4.205694   3.943144   5.266949  -4.025437 -11.403292</code></pre>
+[1] -0.3487726 10.1485982  7.6303524  6.9994484  2.4507087</code></pre>
 </div>
 <p>As soon as your code gets complicated, I think a data frame is a good approach because it ensures that each column has a name and is the same length as all the other columns.</p>
 <h4 id="cheat-sheet-2">Cheat Sheet</h4>
@@ -3384,7 +3370,7 @@ Figure 2: Uniting <code>table5</code> makes it tidy
     <span class='co'>#Calculate the bounding times of each group we created</span>
     <span class='va'>clean</span> <span class='op'>=</span> <span class='va'>grouped</span> <span class='op'>%&gt;%</span>
       <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>weekday</span>,<span class='va'>group_num</span>,<span class='va'>value</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='https://r-spatial.github.io/sf/reference/tidyverse.html'>summarise</a></span><span class='op'>(</span>min_time <span class='op'>=</span> <span class='fu'><a href='https://hms.tidyverse.org/reference/Deprecated.html'>as.hms</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>from_time</span><span class='op'>)</span><span class='op'>)</span>,
+      <span class='fu'>summarise</span><span class='op'>(</span>min_time <span class='op'>=</span> <span class='fu'><a href='https://hms.tidyverse.org/reference/Deprecated.html'>as.hms</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>from_time</span><span class='op'>)</span><span class='op'>)</span>,
                 max_time <span class='op'>=</span> <span class='fu'><a href='https://hms.tidyverse.org/reference/Deprecated.html'>as.hms</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>to_time</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 
     <span class='co'>#Return the grouped data frame</span>

@@ -1,7 +1,7 @@
 ---
 title: "Census Data"
 description: |
-  A short description of the post.
+  Demonstration of downloading and summarizing U.S. Census Bureau data in R
 author:
   - name: Bryan Blanc
     url: https://github.com/bpb824

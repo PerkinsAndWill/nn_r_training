@@ -1,7 +1,7 @@
 ---
 title: "Shiny Session 1"
 description: |
-  1st Session introducing Shiny training series. 
+  First Shiny training session in series of four
 author:
   - name: Bryan Blanc
     url: https://github.com/bpb824

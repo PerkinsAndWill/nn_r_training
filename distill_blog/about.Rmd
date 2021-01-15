@@ -4,6 +4,4 @@ description: |
   About Nelson\\Nygaard's R Training Blog
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
+Welcome to Nelson\\Nygaard's R Training Blog! The data and spatial analytics team at Nelson\\Nygaard uses this as a repository for tutorials of commonly used R tools for our transportation planning work. New posts and training sessions will be periodically posted here -- schedule and details to come! 

@@ -1,7 +1,7 @@
 ---
 title: "GTFS Data"
 description: |
-  A short description of the post.
+  Understanding GTFS data and usage within R
 author:
   - name: Bryan Blanc
     url: https://github.com/bpb824

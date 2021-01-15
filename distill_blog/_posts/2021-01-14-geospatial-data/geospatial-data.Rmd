@@ -1,7 +1,7 @@
 ---
 title: "Geospatial Data"
 description: |
-  A short description of the post.
+  An introduction to geospatial data in R with a focus on sf and leaflet
 author:
   - name: Bryan Blanc
     url: https://github.com/bpb824
