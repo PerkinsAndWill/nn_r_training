@@ -8,10 +8,20 @@ navbar:
   right:
     - text: "Home"
       href: index.html
+    - text: "R Setup"
+      menu:
+        - text: 'Setup R Locally'
+          href: setup-articles/2021-01-18-using-r-locally/index.html
+        - text: 'Setup R on Node'
+          href: setup-articles/2021-01-18-node-usage/index.html
+        - text: 'All Setup Articles'
+          href: setup-articles-index.html
     - text: "About"
       href: about.html
   source_url: https://github.com/PerkinsAndWill/nn_r_training
 collections:
   posts: 
+    categories: true
+  setup-articles:
     categories: true
 output: distill::distill_article

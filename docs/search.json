@@ -6,15 +6,22 @@
       "description": "About Nelson\\\\Nygaard's R Training Blog",
       "author": [],
       "contents": "\r\nWelcome to Nelson\\Nygaard’s R Training Blog! The data and spatial analytics team at Nelson\\Nygaard uses this as a repository for tutorials of commonly used R tools for our transportation planning work. New posts and training sessions will be periodically posted here – schedule and details to come!\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-01-15T10:10:02-08:00"
+      "last_modified": "2021-01-18T10:04:47-08:00"
     },
     {
       "path": "index.html",
       "title": "Nelson\\Nygaard R Training",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-01-15T10:10:03-08:00"
+      "last_modified": "2021-01-18T10:04:49-08:00"
+    },
+    {
+      "path": "setup-articles-index.html",
+      "title": "Nelson\\Nygaard R Training",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-01-18T10:04:50-08:00"
     }
   ],
-  "collections": ["posts/posts.json"]
+  "collections": ["posts/posts.json", "setup-articles/setup-articles.json"]
 }

@@ -1,0 +1,29 @@
+---
+title: "Using R on Node"
+description: |
+  Setup information for using R on a node computer. 
+author:
+  - name: Bryan Blanc
+date: 01-18-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+# First Steps
+
+## DO THIS FIRST -- SETTING UP YOUR R PACKAGE LIBRARY
+
+The **first** thing to do upon opening RStudio on node is to set your R package library to the shared package library on the G Drive. You will only have to do this once, as the environment variable should be remembered on your user account even if you are using a different node computer. Copy and paste the below line of code directly into the RStudio console. 
+
+```{r, eval=FALSE}
+Sys.setenv('R_LIBS_USER'='G:/Management/r_package_library')
+```
+
+You can verify that this environment variable is set to the correct value you set above anytime by running the following line of code:
+
+```{r, eval=FALSE}
+Sys.getenv(x = 'R_LIBS_USER')
+```
+
+It should return the path you just set above. If it does not for some reason, please contact [Bryan Blanc](mailto:bblanc@nelsonnygaard.com) to make him aware of the issue, and he will work with IT to help you resolve the issue. 

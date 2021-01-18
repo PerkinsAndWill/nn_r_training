@@ -1,0 +1,5 @@
+---
+title: "Nelson\\Nygaard R Training"
+site: distill::distill_website
+listing: setup-articles
+---

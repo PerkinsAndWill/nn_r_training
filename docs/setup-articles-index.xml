@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Nelson\Nygaard R Training</title>
+    <link>https://perkinsandwill.github.io/nn_r_training/</link>
+    <atom:link href="https://perkinsandwill.github.io/nn_r_training/setup-articles-index.xml" rel="self" type="application/rss+xml"/>
+    <description>Nelson\\Nygaard R Training
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Mon, 18 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Using R on Node</title>
+      <dc:creator>Bryan Blanc</dc:creator>
+      <link>https://perkinsandwill.github.io/nn_r_training/setup-articles/2021-01-18-node-usage</link>
+      <description>Setup information for using R on a node computer.</description>
+      <guid>https://perkinsandwill.github.io/nn_r_training/setup-articles/2021-01-18-node-usage</guid>
+      <pubDate>Mon, 18 Jan 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Using R Locally</title>
+      <dc:creator>Bryan Blanc</dc:creator>
+      <link>https://perkinsandwill.github.io/nn_r_training/setup-articles/2021-01-18-using-r-locally</link>
+      <description>Setup information for using R on your local computer.</description>
+      <guid>https://perkinsandwill.github.io/nn_r_training/setup-articles/2021-01-18-using-r-locally</guid>
+      <pubDate>Mon, 18 Jan 2021 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>
