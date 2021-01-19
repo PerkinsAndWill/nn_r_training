@@ -1,5 +1,6 @@
 name: "distill_blog"
 title: "Nelson\\Nygaard R Training"
+theme: theme.css
 description: |
   Nelson\\Nygaard R Training
 output_dir: "../docs"
