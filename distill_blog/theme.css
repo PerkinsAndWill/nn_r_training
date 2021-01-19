@@ -33,11 +33,6 @@ html {
   --navbar-font:     sans-serif;  /* websites + blogs only */
 }
 
-/*--ATTEMPTING TO WIDEN MIDDLE COLUMN -- */
-d-article p, d-article ul, d-article ol, d-article blockquote {
-  --width:          2000px;
-}
-
 /*-- ARTICLE METADATA --*/
 d-byline {
   --heading-size:    0.6rem;
@@ -80,4 +75,6 @@ d-appendix {
 
 /*-- Additional custom styles --*/
 /* Add any additional CSS rules below                      */
-
+d-article > p, d-article > ul, d-article > ol{
+  grid-column-end: 14;
+}
