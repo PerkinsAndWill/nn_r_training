@@ -125,7 +125,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["graphics/shiny.png","shiny-session-4_files/anchor-4.2.2/anchor.min.js","shiny-session-4_files/bowser-1.9.3/bowser.min.js","shiny-session-4_files/crosstalk-1.1.0.1/css/crosstalk.css","shiny-session-4_files/crosstalk-1.1.0.1/js/crosstalk.js","shiny-session-4_files/crosstalk-1.1.0.1/js/crosstalk.js.map","shiny-session-4_files/crosstalk-1.1.0.1/js/crosstalk.min.js","shiny-session-4_files/crosstalk-1.1.0.1/js/crosstalk.min.js.map","shiny-session-4_files/datatables-binding-0.15/datatables.js","shiny-session-4_files/datatables-css-0.0.0/datatables-crosstalk.css","shiny-session-4_files/distill-2.2.21/template.v2.js","shiny-session-4_files/dt-core-1.10.20/css/jquery.dataTables.extra.css","shiny-session-4_files/dt-core-1.10.20/css/jquery.dataTables.min.css","shiny-session-4_files/dt-core-1.10.20/js/jquery.dataTables.min.js","shiny-session-4_files/htmlwidgets-1.5.1/htmlwidgets.js","shiny-session-4_files/jquery-1.12.4/jquery.min.js","shiny-session-4_files/jquery-1.12.4/LICENSE.txt","shiny-session-4_files/popper-2.6.0/popper.min.js","shiny-session-4_files/tippy-6.2.7/tippy-bundle.umd.min.js","shiny-session-4_files/tippy-6.2.7/tippy-light-border.css","shiny-session-4_files/tippy-6.2.7/tippy.css","shiny-session-4_files/tippy-6.2.7/tippy.umd.min.js","shiny-session-4_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["graphics/shiny.png","shiny-session-4_files/anchor-4.2.2/anchor.min.js","shiny-session-4_files/bowser-1.9.3/bowser.min.js","shiny-session-4_files/crosstalk-1.1.0.1/css/crosstalk.css","shiny-session-4_files/crosstalk-1.1.0.1/js/crosstalk.js","shiny-session-4_files/crosstalk-1.1.0.1/js/crosstalk.js.map","shiny-session-4_files/crosstalk-1.1.0.1/js/crosstalk.min.js","shiny-session-4_files/crosstalk-1.1.0.1/js/crosstalk.min.js.map","shiny-session-4_files/datatables-binding-0.15/datatables.js","shiny-session-4_files/datatables-css-0.0.0/datatables-crosstalk.css","shiny-session-4_files/distill-2.2.21/template.v2.js","shiny-session-4_files/dt-core-1.10.20/css/jquery.dataTables.extra.css","shiny-session-4_files/dt-core-1.10.20/css/jquery.dataTables.min.css","shiny-session-4_files/dt-core-1.10.20/js/jquery.dataTables.min.js","shiny-session-4_files/header-attrs-2.6.1/header-attrs.js","shiny-session-4_files/htmlwidgets-1.5.1/htmlwidgets.js","shiny-session-4_files/jquery-1.12.4/jquery.min.js","shiny-session-4_files/jquery-1.12.4/LICENSE.txt","shiny-session-4_files/popper-2.6.0/popper.min.js","shiny-session-4_files/tippy-6.2.7/tippy-bundle.umd.min.js","shiny-session-4_files/tippy-6.2.7/tippy-light-border.css","shiny-session-4_files/tippy-6.2.7/tippy.css","shiny-session-4_files/tippy-6.2.7/tippy.umd.min.js","shiny-session-4_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2048,6 +2048,318 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    sans-serif;
+  --mono-font:       monospace;
+  --body-font:       sans-serif;
+  --navbar-font:     sans-serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+</style>
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    sans-serif;
+  --mono-font:       monospace;
+  --body-font:       sans-serif;
+  --navbar-font:     sans-serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+d-article > p, d-article > ul, d-article > ol{
+  grid-column-end: 14;
+}</style>
+<style type="text/css">
+/* base style */
+
+/* FONT FAMILIES */
+
+:root {
+  --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+body,
+.posts-list .post-preview p,
+.posts-list .description p {
+  font-family: var(--body-font), var(--body-default);
+}
+
+h1, h2, h3, h4, h5, h6,
+.posts-list .post-preview h2,
+.posts-list .description h2 {
+  font-family: var(--heading-font), var(--heading-default);
+}
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: var(--mono-font), var(--mono-default);
+}
+
+
+/*-- TITLE --*/
+d-title h1,
+.posts-list > h1 {
+  color: var(--title-color, black);
+}
+
+d-title h1 {
+  font-size: var(--title-size, 50px);
+}
+
+/*-- HEADERS --*/
+d-article h1,
+d-article h2,
+d-article h3,
+d-article h4,
+d-article h5,
+d-article h6 {
+  color: var(--header-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- BODY --*/
+d-article > p,  /* only text inside of <p> tags */
+d-article > ul, /* lists */
+d-article > ol {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+  font-size: var(--body-size, 1.06rem);
+}
+
+
+/*-- CODE --*/
+d-article div.sourceCode code,
+d-article pre code {
+  font-size: var(--code-size, 14px);
+}
+
+/*-- ASIDE --*/
+d-article aside {
+  font-size: var(--aside-size, 12px);
+  color: var(--aside-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- FIGURE CAPTIONS --*/
+figure .caption,
+figure figcaption,
+.figure .caption {
+  font-size: var(--fig-cap-size, 13px);
+  color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- METADATA --*/
+d-byline h3 {
+  font-size: var(--heading-size, 0.6rem);
+  color: var(--heading-color, rgba(0, 0, 0, 0.5));
+}
+
+d-byline {
+  font-size: var(--body-size, 0.8rem);
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+d-byline a,
+d-article d-byline a {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- TABLE OF CONTENTS --*/
+.d-contents nav h3 {
+  font-size: var(--heading-size, 18px);
+}
+
+.d-contents nav a {
+  font-size: var(--contents-size, 13px);
+}
+
+/*-- APPENDIX --*/
+d-appendix h3 {
+  font-size: var(--heading-size, 15px);
+  color: var(--heading-color, rgba(0, 0, 0, 0.65));
+}
+
+d-appendix {
+  font-size: var(--text-size, 0.8em);
+  color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+d-appendix d-footnote-list a.footnote-backlink {
+  color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+.distill-site-header .title {
+  font-size: var(--title-size, 18px);
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.distill-site-header a,
+.nav-dropdown .nav-dropbtn {
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.nav-dropdown .nav-dropbtn {
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  font-size: var(--text-size, 15px);
+}
+
+.distill-site-header a:hover,
+.nav-dropdown:hover .nav-dropbtn {
+  color: var(--hover-color, white);
+}
+
+.distill-site-header {
+  font-size: var(--text-size, 15px);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer {
+  font-size: var(--text-size, 15px);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer a:hover {
+  color: var(--hover-color, white);
+}</style>
 <!--/radix_placeholder_distill-->
   <script src="../../site_libs/header-attrs-2.6.1/header-attrs.js"></script>
   <script src="../../site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
@@ -2142,8 +2454,8 @@ R Setup
 <h1 id="demo-applications">Demo Applications</h1>
 <p>Below are descriptions and links for the demo applications developed. This data is drawn from this <a href="https://docs.google.com/spreadsheets/d/13299ksP-588xCqw-Bu0RO7IDk9gFEfoKvcbAgZNlTcg/edit?usp=sharing">Google Sheet</a>. This sheet contains some additional information about hours estimates and challenges encountered in developing the application.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-8d6cf97b89d9d5a7428d" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8d6cf97b89d9d5a7428d">{"x":{"filter":"none","data":[["Michael","Tomoko","Oren","Ulises","Mariel","Paul","Brynn","Esther"],["Carraher","DeLaTorre","Eshel","Hernandez","Kirschen","Leitman","Leopold","Needham"],["Yes","Yes","No","No","No","Yes","Yes","Yes"],["Westchester Bee-Line existing route profiles to allow users to easily explore the different components of a line. Dashboard includes stop level ridership maps that are proportionally sized (done), several route datapoints called out (done), and graphs exploring a route's performance (future).","NN projects mapping tool where users can filter projects by project type, customize colors and circle size and export as an image file.","Create an app that let's you play with headways on different parts of a transit network, calculate/visualize combined headways, create different line scenarios. This a spreadsheet with some of the input variables. At right is a graphic example.\n\nhttps://perkinswillinc.sharepoint.com/:x:/s/SFMTATCS/EfUKQXiP069FlbYDuoRsP_cBH7ViZ_U7K69W8FNtiHO5sA?e=TNRKQx","My goal is to produce a dashboard to display a couple of charts and some summary tables for the South SF TDM Assistance project. The dashboard itself is pretty simple. It is just a way for the user to quickly query data about the performance of specific employers. The dashboard tab in the excel file below is kind of the end goal. A few months ago, I checked with Dana Rubin, who is the PM on this project, I just need to double-check with her to see if this is still something that will be useful.\n\nP:\\S-Z\\SOUTH SF TDM Assistance 2016.0985\\15 Implementation - 2019\\SSF_TDMdatabase_MASTER_Updated_09012020.xlsx","We are working with Maui Bus to develop a new performance management program for their three transit services. I am planning to make a shiny app that helps the agency visualize their current system performance to help them develop actionable strategies for making service changes.","This is a tool to filter and visualize data from the FTA's National Transit Database for full reporters only. It allows users to compare urban areas and agencies, as well as to track trends over time by mode. The tool also allows users to compare different metrics to understand the relationships between services in different cities and modes.","The Shared Parking Demand tool is an interactive application to estimate a study area's parking demand based on land use and size information at the parcel level under shared parking or transportation demand management scenarios. A user can view a map of parking demand hotspots by selecting a specific hour of the day on weekdays or weekends, as well as summary information about demand by land use category and by subarea.","The Grand Rapids Vision Zero dashboard is an interactive tool to allow users to explore crashes in Grand Rapids from 2009 - 2018. The app allows a user to view crashes on a map, on charts, and in tabular form while filtering to select crashes that fit particular characteristics."],["<a href='https://nelsonnygaard.shinyapps.io/westchester/'>App Link<\/a>","<a href='https://nelsonnygaard.shinyapps.io/NNProjects/'>App Link<\/a>",null,null,null,"<a href='https://nelsonnygaard.shinyapps.io/ntd_dashboard/'>App Link<\/a>","<a href='https://nelsonnygaard.shinyapps.io/spdmodel/'>App Link<\/a>","<a href='https://nelsonnygaard.shinyapps.io/Grand_Rapids_Vision_Zero_Dashboard/'>App Link<\/a>"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>First Name<\/th>\n      <th>Last Name<\/th>\n      <th>Completed?<\/th>\n      <th>App Description<\/th>\n      <th>Web Link<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"paging":false,"info":false,"autoWidth":true,"columnDefs":[{"width":"100px","targets":4}],"order":[],"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8d9dbb6822d6cacef37c" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8d9dbb6822d6cacef37c">{"x":{"filter":"none","data":[["Michael","Tomoko","Oren","Ulises","Mariel","Paul","Brynn","Esther"],["Carraher","DeLaTorre","Eshel","Hernandez","Kirschen","Leitman","Leopold","Needham"],["Yes","Yes","No","No","No","Yes","Yes","Yes"],["Westchester Bee-Line existing route profiles to allow users to easily explore the different components of a line. Dashboard includes stop level ridership maps that are proportionally sized (done), several route datapoints called out (done), and graphs exploring a route's performance (future).","NN projects mapping tool where users can filter projects by project type, customize colors and circle size and export as an image file.","Create an app that let's you play with headways on different parts of a transit network, calculate/visualize combined headways, create different line scenarios. This a spreadsheet with some of the input variables. At right is a graphic example.\n\nhttps://perkinswillinc.sharepoint.com/:x:/s/SFMTATCS/EfUKQXiP069FlbYDuoRsP_cBH7ViZ_U7K69W8FNtiHO5sA?e=TNRKQx","My goal is to produce a dashboard to display a couple of charts and some summary tables for the South SF TDM Assistance project. The dashboard itself is pretty simple. It is just a way for the user to quickly query data about the performance of specific employers. The dashboard tab in the excel file below is kind of the end goal. A few months ago, I checked with Dana Rubin, who is the PM on this project, I just need to double-check with her to see if this is still something that will be useful.\n\nP:\\S-Z\\SOUTH SF TDM Assistance 2016.0985\\15 Implementation - 2019\\SSF_TDMdatabase_MASTER_Updated_09012020.xlsx","We are working with Maui Bus to develop a new performance management program for their three transit services. I am planning to make a shiny app that helps the agency visualize their current system performance to help them develop actionable strategies for making service changes.","This is a tool to filter and visualize data from the FTA's National Transit Database for full reporters only. It allows users to compare urban areas and agencies, as well as to track trends over time by mode. The tool also allows users to compare different metrics to understand the relationships between services in different cities and modes.","The Shared Parking Demand tool is an interactive application to estimate a study area's parking demand based on land use and size information at the parcel level under shared parking or transportation demand management scenarios. A user can view a map of parking demand hotspots by selecting a specific hour of the day on weekdays or weekends, as well as summary information about demand by land use category and by subarea.","The Grand Rapids Vision Zero dashboard is an interactive tool to allow users to explore crashes in Grand Rapids from 2009 - 2018. The app allows a user to view crashes on a map, on charts, and in tabular form while filtering to select crashes that fit particular characteristics."],["<a href='https://nelsonnygaard.shinyapps.io/westchester/'>App Link<\/a>","<a href='https://nelsonnygaard.shinyapps.io/NNProjects/'>App Link<\/a>",null,null,null,"<a href='https://nelsonnygaard.shinyapps.io/ntd_dashboard/'>App Link<\/a>","<a href='https://nelsonnygaard.shinyapps.io/spdmodel/'>App Link<\/a>","<a href='https://nelsonnygaard.shinyapps.io/Grand_Rapids_Vision_Zero_Dashboard/'>App Link<\/a>"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>First Name<\/th>\n      <th>Last Name<\/th>\n      <th>Completed?<\/th>\n      <th>App Description<\/th>\n      <th>Web Link<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"paging":false,"info":false,"autoWidth":true,"columnDefs":[{"width":"100px","targets":4}],"order":[],"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <h1 id="conclusion">Conclusion</h1>
 <p>This is the end of Nelson\Nygaard’s first Shiny training! We hope to be able to do more in the future. Stay tuned for future training opportunities.</p>

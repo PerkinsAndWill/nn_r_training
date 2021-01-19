@@ -14,6 +14,7 @@ output:
     toc_float: true
 categories:
   - geospatial
+  - google-apis
 ---
 
 # Background
@@ -37,15 +38,21 @@ After creating a key, you must enable API services tied to that key. For this tu
 
 After you enable the APIs, use the below line of code to set your API key to be used by the `googleway` package. Prior, we must load the packages we will be using in this tutorial. 
 
-```{r setup-overall}
+```{r load-packages}
 library(tidyverse)
 library(readxl)
 library(googleway)
 library(janitor)
 library(tigris)
 library(scales)
+```
 
-#Using an API Key set up for NN R training -- please use your own API key in place of this one
+```{r api-key-mock, eval=FALSE}
+#Using an API Key set up for NN R training -- please use your own API key oelow
+set_key('<YOUR API KEY HERE>')
+```
+
+```{r api-key-real, echo=FALSE}
 set_key('AIzaSyAoJtdIZ0Bms9_4w6trMp9hyoWVk5-LK4s')
 ```
 
@@ -63,11 +70,11 @@ Google directions (for the driving mode) will return a `duration` and a `duratio
 
 In the final line of code below, we use the `google_map()` function to create an interative Google Map widget, on which we can plot the polylines representing our routes. 
 
-```{r google-map-am-trip, fig.height=8, fig.width=12, fig.cap='Example AM Commute Routes'}
+```{r google-map-am-trip, fig.height=6, fig.width=8, fig.cap='Example AM Commute Routes'}
 dir_results_am = google_directions(origin = '45.63039565205174, -122.58032084515692',
                   destination = '45.51969205229432, -122.6822162060739',
                   mode = 'driving',
-                  departure_time = as.POSIXct('2021-06-01 07:30:00'),
+                  departure_time = as.POSIXct('2021-06-01 07:30:00', tz='America/Los_Angeles'),
                   alternatives = TRUE)
 
 print(dir_results_am)
@@ -101,11 +108,11 @@ google_map(data = polys_am) %>%
 
 We also do the same calculations as done above for the PM commute. Here we see there is much more of a congestion effect (travel time indices of 1.5-1.7)-- I am not sure how to explain this, but would love to indulge theories! We also see the best route in the PM is using I-205, whereas I-5 was the faster route during the AM commute. 
 
-```{r google-map-pm-trip, fig.height=8, fig.width=12, fig.cap='Example AM Commute Routes'}
+```{r google-map-pm-trip, fig.height=6, fig.width=8, fig.cap='Example AM Commute Routes'}
 dir_results = google_directions(destination = '45.63039565205174, -122.58032084515692',
                   origin = '45.51969205229432, -122.6822162060739',
                   mode = 'driving',
-                  departure_time = as.POSIXct('2021-06-01 17:15:00'),
+                  departure_time = as.POSIXct('2021-06-01 17:15:00', tz='America/Los_Angeles'),
                   alternatives = TRUE)
 
 tt_frame_pm = dir_results$routes$legs %>%
@@ -196,7 +203,8 @@ Below is a plot of the travel time index by metro area from 1982 - 2017. General
 
 ```{r tti-fig-1, fig.height=8, fig.width=12, fig.cap='Travel Time Index by Metro Area (1982-2017)', out.width=2000}
 ggplot(sub_tt_index,aes(x=year,y=index,color=NAME,group=NAME))+
-  geom_line()+ylab('Travel Time Index')+xlab('Year')+
+  geom_line(size=0.8)+ylab('Travel Time Index')+xlab('Year')+
+  scale_color_brewer(palette = 'Set1',name='Metropolitan Area')+
   theme(legend.position = 'bottom',
         text = element_text(size=14))+
   guides(color = guide_legend(nrow = 3))
@@ -268,7 +276,8 @@ adj_tt_index = sub_tt_index %>%
               mutate(GEOID = as.character(GEOID))) %>%
   filter(!is.na(week_starting)) %>%
   mutate(ex_tti_delta = index - 1,
-         prj_tti = ex_tti_delta*(1+traveling_work_school_change_in_proportion_since_baseline)+1)
+         prj_tti = ex_tti_delta*(1+traveling_work_school_change_in_proportion_since_baseline)+1) %>%
+  mutate(adjustment_factor = prj_tti/index)
 
 ggplot(adj_tt_index,aes(x=week_starting,y=prj_tti,
                         color=NAME,group=NAME, fill=NAME))+
@@ -285,4 +294,131 @@ ggplot(adj_tt_index,aes(x=week_starting,y=prj_tti,
 
 ```
 
-## Example Travel Time Adjustment -- Boston, MA
+# Example Travel Time Adjustment -- Boston, MA
+
+Below we demonstrate an example of using the adjustment factors calculated above to adjust travel times for a travel pattern in Boston -- between Everett Square and Logan International Airport. First we compute the directions in both directions, similar to the way we did in the first example. 
+
+## Directions to Logan
+
+```{r boston-ex-part-1, fig.height=6, fig.width=8, fig.cap='Routes to Logan' }
+dir_results_to_logan = google_directions(origin = 'Everett Square, Boston, MA',
+                  destination = 'Logan International Airport Boston, MA',
+                  mode = 'driving',
+                  departure_time = as.POSIXct('2021-01-26 07:30:00', tz='America/New_York'),
+                  alternatives = TRUE)
+
+
+tt_frame_to_logan = dir_results_to_logan$routes$legs %>%
+  tibble(legs = .) %>%
+  mutate(alternative_num = 1:n()) %>%
+  unnest(legs) %>%
+  select(alternative_num,contains('duration')) %>%
+  mutate(duration_minutes_no_traffic = duration$value/60,
+         duration_minutes_with_traffic = duration_in_traffic$value/60) %>%
+  select(alternative_num,duration_minutes_no_traffic,duration_minutes_with_traffic)
+
+polys_to_logan = dir_results_to_logan$routes$overview_polyline$points %>% 
+  tibble(poly=.) %>%
+  mutate(decoded_poly = map(poly,~decode_pl(.x))) %>%
+  mutate(alternative_num = 1:n()) %>%
+  left_join(tt_frame_am) %>%
+  mutate(map_label = paste0('Alternative #',alternative_num,': ',
+                            round(duration_minutes_with_traffic,1),' minutes with traffic')) %>%
+  mutate(tti = duration_minutes_with_traffic/duration_minutes_no_traffic) %>%
+  filter(!is.na(tti))
+
+#See what the travel time indices are
+print(polys_to_logan$tti)
+
+google_map(data = polys_to_logan) %>%
+    add_polylines(polyline = 'poly',stroke_weight = 9,mouse_over = 'map_label')
+
+```
+
+## Directions from Logan
+```{r boston-ex-part-2, fig.height=6, fig.width=8, fig.cap='Routes from Logan' }
+dir_results_from_logan = google_directions(destination= 'Everett Square, Boston, MA',
+                  origin = 'Logan International Airport Boston, MA',
+                  mode = 'driving',
+                  departure_time = as.POSIXct('2021-01-26 12:00:00', tz='America/New_York'),
+                  alternatives = TRUE)
+
+
+tt_frame_from_logan = dir_results_from_logan$routes$legs %>%
+  tibble(legs = .) %>%
+  mutate(alternative_num = 1:n()) %>%
+  unnest(legs) %>%
+  select(alternative_num,contains('duration')) %>%
+  mutate(duration_minutes_no_traffic = duration$value/60,
+         duration_minutes_with_traffic = duration_in_traffic$value/60) %>%
+  select(alternative_num,duration_minutes_no_traffic,duration_minutes_with_traffic)
+
+polys_from_logan = dir_results_to_logan$routes$overview_polyline$points %>% 
+  tibble(poly=.) %>%
+  mutate(decoded_poly = map(poly,~decode_pl(.x))) %>%
+  mutate(alternative_num = 1:n()) %>%
+  left_join(tt_frame_am) %>%
+  mutate(map_label = paste0('Alternative #',alternative_num,': ',
+                            round(duration_minutes_with_traffic,1),' minutes with traffic')) %>%
+  mutate(tti = duration_minutes_with_traffic/duration_minutes_no_traffic) %>%
+  filter(!is.na(tti))
+
+#See what the travel time indices are
+print(polys_from_logan$tti)
+
+google_map(data = polys_from_logan) %>%
+    add_polylines(polyline = 'poly',stroke_weight = 9,mouse_over = 'map_label')
+
+```
+
+## Adjusting Travel Times
+
+We then grab the relevant adjustment factor from the above calculation -- we assume the adjustment factor in Boston calculated for the week starting 2021-01-04 will give us an idea of how different the traffic is on a weekday in January from pre-pandemic levels. We then use that adjustment factor to scale up the travel times (without traffic) we got from Google. You can see below that the factor used (in this case we divided by 0.93) gets us a higher travel time than computed by Google for one route alternative, and a lower one for the other. Both the Texas Transportation Institute numbers and the Replica numbers used are averages for a metro area, and so Google's data may be more localized than these factors allow us to get. Professional judgment should be used with these estimates -- I would use them more to provide a range of travel times to client, rather than a precise prediction. 
+
+```{r boston-ex-part-3,  fig.height=8, fig.width=12, fig.cap='Example Adjusted Travel Times in Boston', out.width=2000}
+boston_adj_factor = adj_tt_index %>%
+  filter(urban_area=='Boston, MA-NH-RI') %>%
+  tail(1) %>%
+  pull(adjustment_factor)
+
+print(boston_adj_factor)
+
+bound_travel_times = bind_rows(
+  polys_from_logan %>%
+    select(alternative_num,duration_minutes_no_traffic,duration_minutes_with_traffic) %>%
+    mutate(direction = 'From Logan, 12 PM'),
+   polys_to_logan %>%
+    select(alternative_num,duration_minutes_no_traffic,duration_minutes_with_traffic) %>%
+    mutate(direction = 'To Logan, 7:30 AM')
+) %>%
+  mutate(adj_traffic_time = duration_minutes_no_traffic/boston_adj_factor) %>%
+  pivot_longer(cols = c(duration_minutes_no_traffic,duration_minutes_with_traffic,
+                        adj_traffic_time)) %>%
+  left_join(tibble(
+    name =  c('duration_minutes_no_traffic',
+              'duration_minutes_with_traffic',
+              'adj_traffic_time'),
+    plot_label = c('Google Duration, No Traffic',
+                   'Google Duration, With Traffic',
+                   'Adjusted Duration assuming pre-pandemic traffic')
+  )) %>%
+  mutate(direction = factor(direction,ordered=TRUE,
+                            levels = c('To Logan, 7:30 AM','From Logan, 12 PM')),
+         plot_label = factor(plot_label,ordered=TRUE,
+                             levels = c('Google Duration, No Traffic',
+                   'Google Duration, With Traffic',
+                   'Adjusted Duration assuming pre-pandemic traffic')))
+
+ggplot(bound_travel_times,aes(x=factor(alternative_num),y=value,fill=plot_label))+
+  geom_col(position = position_dodge())+
+  geom_label(aes(label=round(value,1)),position = position_dodge(width=0.9),color='white',
+             fontface='bold', show.legend = FALSE)+
+  facet_wrap(~direction,nrow=1)+
+  scale_fill_brewer(palette = 'Set1')+
+  xlab('Route Alternative')+
+  ylab('Travel Time (minutes)')+
+  theme(legend.position = 'bottom', text = element_text(size=14))+
+  guides(fill = guide_legend(nrow=3,title = 'Estimate Type'))
+
+```
+
