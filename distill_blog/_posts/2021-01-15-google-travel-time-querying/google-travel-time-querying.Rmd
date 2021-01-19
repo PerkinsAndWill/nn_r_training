@@ -9,6 +9,9 @@ date: 01-15-2021
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc_depth: 3
+    toc_float: true
 categories:
   - geospatial
 ---
@@ -16,8 +19,270 @@ categories:
 # Background
 For those that have been using R at NN for several years, you may be familiar with querying travel times using functions in the `transportr` package -- a bare bones package Bryan was saving useful functions into for NN R work. Back in 2016, when Bryan was writing a function for querying Google Directions, there was no existing package/function for doing so. In the intervening years, other packages have been developed that are more fully featured and better maintained than the corresponding functions in `transportr`. 
 
-**Going forward**, it is recommended that you use the [`googleway`](http://symbolixau.github.io/googleway/) package, which provides a variety of functions for interacting with various Google Maps APIs, including querying travel times. 
+**Going forward**, it is recommended that you use the [`googleway`](http://symbolixau.github.io/googleway/) package, which provides a variety of functions for interacting with various Google Maps APIs, including querying travel times. This tutorial will demonstrate the usage of this package for querying auto travel times and then adjusting them based on travel pattern changes due to the COVID-19 pandemic. Future trainings will discuss the use of this package for querying travel times for other modes, and likely other Google APIs as well. 
 
-This tutorial draws upon components from the [`googleway` vignette](http://symbolixau.github.io/googleway/articles/googleway-vignette.html) -- if you want a full guide to all the features of the package, please refer to that. We will focus on a couple of examples for travel time querying below. 
+This tutorial draws upon code snippets from the [`googleway` vignette](http://symbolixau.github.io/googleway/articles/googleway-vignette.html) -- if you want a full guide to all the features of the package, please refer to that. We will focus on a couple of examples for travel time querying below. 
 
 # Basic Usage
+
+## Setting up an API Key
+
+The first thing you need to do to work with Google's APIs ([Application Programming Interface](https://en.wikipedia.org/wiki/API)) is create your own API key so that your API calls can be tracked. Google does this because this is a service that they charge for if you do more than a couple thousand calls per day (each API has its own usage tiers). You can create your own key by going to the [Google Developer Console](https://console.developers.google.com/apis/dashboard), logging in with an account (I use an account linked to my NN email address), and then creating an initial API key in the 'Credentials' panel. It is helpful if you have multiple projects using APIs to create a key per project, as this will be easier to separate for billing purposes. You will need to provide a credit card for Google to charge to in order to use APIs -- they will only charge your credit card if you go beyond the free usage tier, in which case you should be expensing those charges to a project. For practice, we shouldn't need to go over the free usage tier. 
+
+After creating a key, you must enable API services tied to that key. For this tutorial, it is recommended you enable the following API services:
+
+- Directions API -- the main API we are using to query directions (and the travel times attached to them)
+- Maps Javascript API -- the API used to generate the interactive Google map widgets used in this tutorial for visualization purposes
+- Geocoding API -- this is activated so that you can insert addressed into the `google_directions()` function. Addresses and place names need to be geocoded prior to evaluation. 
+
+After you enable the APIs, use the below line of code to set your API key to be used by the `googleway` package. Prior, we must load the packages we will be using in this tutorial. 
+
+```{r setup-overall}
+library(tidyverse)
+library(readxl)
+library(googleway)
+library(janitor)
+library(tigris)
+library(scales)
+
+#Using an API Key set up for NN R training -- please use your own API key in place of this one
+set_key('AIzaSyAoJtdIZ0Bms9_4w6trMp9hyoWVk5-LK4s')
+```
+
+## Example Trip Queries
+
+Below we will demonstrate the usage of the Directions API for querying directions/travel times for an AM and PM commute from a randomly selected suburban location in Vancouver, WA to the SmartPark parking garage near Nelson\\Nygaard's office in Downtown Portland (OR). You will notice that the queried date for directions is June 1, 2021 -- the query date/time must always be in the future. If you do not select a date/time, the function will default to the current time when the function is called. There is no way to query directions in the past. This date was chosen to represent an arbitrarily chosen Tuesday at some point in the future. Google's estimates are based on historical data, but we do not know how the past months of the COVID-19 pandemic have affected that historical data being drawn upon -- local judgment will have to be used when evaluating and/or adjusting these travel times. 
+
+### AM Commute 
+
+The AM commmute is assumed to depart at 7:30 am -- obviously assuming for the sake of example that people are back to commuting regularly. We set the origin and destination by manually inserting the latitude/longitude coordinates of the locations -- you could use an address as well, but this would need to be geocoded (which would be done behind the scenes in the function).  You also select the mode (driving), hand the function a departure timestamp (coerced into POSIXct, a time format), and then specify that we want to see multiple alternatives if they exist, not just the optimal route selected. 
+
+We print the results of the function to show you what they look like -- a list containing a lot of information including the shape of the route, the travel time, text descriptions of the steps for the route, etc. All this information is provided because people use this API for many purposes, including third-party apps that rely on the directions API to provide travel directions. You will notice that the polyline shape is returned as an encoded text string -- this is a method of compressing the data for transfer over the web. You can use the `decode_pl()` function to decode the text string into a series of lat/lon vertices describing the polyline. We use several `map()` functions throughout this tutorial -- if these are unfamiliar to you, please refer to the [other tutorials](https://perkinsandwill.github.io/nn_r_training/#category:purrr) on the subject provided on this site.
+
+Google directions (for the driving mode) will return a `duration` and a `duration_in_traffic` -- you can interpret the `duration` as the free flow travel time, and the `duration_in_traffic` as the estimated travel time based on the predicted amount of congestion on the roadway at the query time. As we will use later on in the tutorial, we can calculate the ratio of the `duration_in_traffic` to `duration` as the [**travel time index**](https://en.wikibooks.org/wiki/Travel_Time_Reliability_Reference_Manual/Travel_Time_Reliability_Indices#:~:text=Travel%20Time%20Index%20(TTI)%20%2D,flow%20trip%20required%2026%20minutes.) -- a ratio between travel time in the congested peak and the free flow travel time. The AM commute here is predicted to be relatively uncongested given the low travel time indices (between 1 and 1.1) -- this is almost certainly a COVID-19 pandemic-related effect. 
+
+In the final line of code below, we use the `google_map()` function to create an interative Google Map widget, on which we can plot the polylines representing our routes. 
+
+```{r google-map-am-trip, fig.height=8, fig.width=12, fig.cap='Example AM Commute Routes'}
+dir_results_am = google_directions(origin = '45.63039565205174, -122.58032084515692',
+                  destination = '45.51969205229432, -122.6822162060739',
+                  mode = 'driving',
+                  departure_time = as.POSIXct('2021-06-01 07:30:00'),
+                  alternatives = TRUE)
+
+print(dir_results_am)
+
+tt_frame_am = dir_results_am$routes$legs %>%
+  tibble(legs = .) %>%
+  mutate(alternative_num = 1:n()) %>%
+  unnest(legs) %>%
+  select(alternative_num,contains('duration')) %>%
+  mutate(duration_minutes_no_traffic = duration$value/60,
+         duration_minutes_with_traffic = duration_in_traffic$value/60) %>%
+  select(alternative_num,duration_minutes_no_traffic,duration_minutes_with_traffic)
+
+polys_am = dir_results_am$routes$overview_polyline$points %>% 
+  tibble(poly=.) %>%
+  mutate(decoded_poly = map(poly,~decode_pl(.x))) %>%
+  mutate(alternative_num = 1:n()) %>%
+  left_join(tt_frame_am) %>%
+  mutate(map_label = paste0('Alternative #',alternative_num,': ',
+                            round(duration_minutes_with_traffic,1),' minutes with traffic')) %>%
+  mutate(tti = duration_minutes_with_traffic/duration_minutes_no_traffic)
+
+#See what the travel time indices are
+print(polys_am$tti)
+
+google_map(data = polys_am) %>%
+    add_polylines(polyline = 'poly',stroke_weight = 9,mouse_over = 'map_label')
+```
+
+### PM Commute 
+
+We also do the same calculations as done above for the PM commute. Here we see there is much more of a congestion effect (travel time indices of 1.5-1.7)-- I am not sure how to explain this, but would love to indulge theories! We also see the best route in the PM is using I-205, whereas I-5 was the faster route during the AM commute. 
+
+```{r google-map-pm-trip, fig.height=8, fig.width=12, fig.cap='Example AM Commute Routes'}
+dir_results = google_directions(destination = '45.63039565205174, -122.58032084515692',
+                  origin = '45.51969205229432, -122.6822162060739',
+                  mode = 'driving',
+                  departure_time = as.POSIXct('2021-06-01 17:15:00'),
+                  alternatives = TRUE)
+
+tt_frame_pm = dir_results$routes$legs %>%
+  tibble(legs = .) %>%
+  mutate(alternative_num = 1:n()) %>%
+  unnest(legs) %>%
+  select(alternative_num,contains('duration')) %>%
+  mutate(duration_minutes_no_traffic = duration$value/60,
+         duration_minutes_with_traffic = duration_in_traffic$value/60) %>%
+  select(alternative_num,duration_minutes_no_traffic,duration_minutes_with_traffic)
+
+polys_pm = dir_results$routes$overview_polyline$points %>% 
+  tibble(poly=.) %>%
+  mutate(decoded_poly = map(poly,~decode_pl(.x))) %>%
+  mutate(alternative_num = 1:n()) %>%
+  left_join(tt_frame_pm) %>%
+  mutate(map_label = paste0('Alternative #',alternative_num,': ',
+                            round(duration_minutes_with_traffic,1),' minutes with traffic')) %>%
+  mutate(tti = duration_minutes_with_traffic/duration_minutes_no_traffic)
+
+#See what the travel time indices are
+print(polys_pm$tti)
+
+google_map(data = polys_pm) %>%
+    add_polylines(polyline = 'poly',stroke_weight = 9,mouse_over = 'map_label')
+```
+
+# Adjusting Auto Travel Times for Decreased Congestion during the COVID-19 Pandemic
+
+There is a desire within NN to continue using Google to query travel times, but to be able to adjust these to represent assumed post-pandemic conditions. We are doing this at the metro area level to keep the analysis high level and to comply with data source limitations. To start, we are attempting this exercise for eight example metro areas:
+
+- Austin-Round Rock-Georgetown, TX
+- Boston-Worcester-Providence, MA-RI-NH-CT
+- Chicago-Naperville, IL-IN-WI
+- New York-Newark, NY-NJ-CT-PA
+- Portland-Vancouver-Salem, OR-WA                       
+- San Jose-San Francisco-Oakland, CA
+- Seattle-Tacoma, WA                       
+- Washington-Baltimore-Arlington, DC-MD-VA-WV-PA
+
+We were going to try to use Los Angeles, but Replica currently does not have data provided for this metro area. 
+
+We make use of two data sources to estimate the COVID-19 pandemic's effect on Travel Time Indices in the example metro areas:
+
+- The **Texas Transportation Institute** has estimated average Travel Time Indices for each major metro area in the U.S. for many years between 1982 and 2017 -- future indices will be coming, but it takes several years for new reports to be published, so there is a lag in available information. Nevertheless, this is a useful statistic for seeing how much of peak congestion effect exists in each metro area over time. We will assume the 2017 travel time index as our baseline because we have no better data point to use. 
+- **Replica** provides weekly estimates of the proportion of people in a metro area traveling to work/school on the average weekday -- this is extremely useful in understanding how travel patterns have changed throughout the pandemic, and this data fortunately goes back to the beginning of 2020, so we can see the full picture of how this travel has changed in each metro area over time. This change will be the source of how we adjust current travel times -- at the current proportion of home/work travel, which we assume drives peak traffic congestion. 
+
+This is **not** a vetted methodology. We are trying to make use of the data we have to provide an estimate based on some simple assumptions, but we have not validated it in any kind of testing. Feedback is welcome to improve the methodology going forward. Beyond issues present in the methodology, there is a big assumption being made here that may not turn out to be true -- that the level of work/school travel will return to pre-pandemic levels in the near future, if at all. We may see permanent changes in travel patterns -- it is too soon to tell. 
+
+## Travel Time Indices
+
+Texas Transportation Institute's Travel Time Index data is available from 1982-2017 from the [Bureau of Transportation Statistics](https://www.bts.gov/content/travel-time-index), a division of the U.S. Department of Transportation. The spreadsheet provided there is read in below and manipulated into a format easy for plotting and joining to other data. The `tigris` package is used to fetch the `GEOID` for each [metropolitan statistical area as defined by the U.S. Census Bureau](https://www.census.gov/programs-surveys/metro-micro/about.html). 
+
+```{r setup-tti, warning=FALSE, message=FALSE, results='hide'}
+tt_index = read_excel('data/table_01_70_112119.xlsx',skip=1) %>%
+  clean_names() %>%
+  select(urban_area:x2017) %>%
+  pivot_longer(cols = contains('x')) %>%
+  filter(!is.na(value)) %>%
+  rename(year = name) %>%
+  mutate(year = str_replace(year,'x','') %>% 
+           as.numeric()) %>%
+  rename(index = value) %>%
+  filter(!str_detect(urban_area,'average'))
+
+cbsa_geom = core_based_statistical_areas()
+
+#filtered using a regular expression
+sub_cbsa_geom = cbsa_geom %>%
+  filter(str_detect(NAME,'Boston|Portland-Vancouver|San Francisco|Los Angeles|Seattle|New York|Washington-Arlington|Austin-Round|Chicago'))
+
+#Joining in the GEOIDs manually assembled from the CBSA data and joined to the versions of the metro area names in the TTI data
+sub_tt_index = tt_index %>%
+  filter(str_detect(urban_area,'Boston|Portland|San Francisco|Los Angeles|Seattle|New York|Washington|Austin|Chicago')) %>%
+  left_join(tibble(
+    urban_area = c("Austin, TX","Boston, MA-NH-RI","Chicago, IL-IN","Los Angeles-Long Beach-Santa Ana, CA",
+                   "New York-Newark, NY-NJ-CT","Portland, OR-WA","San Francisco-Oakland, CA","Seattle, WA",
+                   "Washington, DC-VA-MD"),
+    GEOID = c("12420","14460","16980","31080","35620","38900","41860","42660","47900")
+  )) %>%
+  left_join(sub_cbsa_geom %>%
+              as_tibble() %>%
+              select(GEOID,NAME))
+  
+```
+
+Below is a plot of the travel time index by metro area from 1982 - 2017. Generally they have increased, but there are differences between metro areas. 
+
+```{r tti-fig-1, fig.height=8, fig.width=12, fig.cap='Travel Time Index by Metro Area (1982-2017)', out.width=2000}
+ggplot(sub_tt_index,aes(x=year,y=index,color=NAME,group=NAME))+
+  geom_line()+ylab('Travel Time Index')+xlab('Year')+
+  theme(legend.position = 'bottom',
+        text = element_text(size=14))+
+  guides(color = guide_legend(nrow = 3))
+```
+
+## Replica: Travel to Work/School Rate over 2020
+
+Now we turn to the Replica data -- how have work/school travel rates on the average weekday changed over 2020 in each metro area? 
+
+First, we load in all the replica data and bind it into one dataframe (from multiple CSV files). 
+
+```{r setup-replica}
+#Replica data
+replica_files = list.files('data/replica/')
+
+replica_list = list()
+
+for(i in 1:length(replica_files)){
+  fh = replica_files[i]
+  raw = read_csv(paste0('data/replica/',fh))
+  replica_list[[i]] = raw
+}
+
+replica_frame = bind_rows(replica_list) %>%
+  mutate(week_starting = as.Date(week_starting,
+                                 format = '%m-%d-%Y'))
+```
+
+Then, we can plot the proportion of each metro area population traveling to work/school on the average weekday. 
+
+```{r replica-fig-1, fig.height=8, fig.width=12, fig.cap='Proportion of Metro Area Population Traveling to Work/School on Average Weekday', out.width=2000}
+ggplot(replica_frame,aes(x=week_starting,y=traveling_work_school_proportion_avg_weekday,
+                         color=msa,group=msa))+
+  geom_line(size=0.8)+
+  scale_y_continuous(labels=percent,limits = c(0,0.5))+
+  scale_color_brewer(palette = 'Set1',name='Metropolitan Area')+
+  ylab('Proportion of Metro Area Population\nTraveling to Work/School on Average Weekday')+
+  xlab('Date (first day of week)')+
+  theme(legend.position = 'bottom',
+        text = element_text(size=14))+
+  guides(color = guide_legend(nrow = 3))
+```
+
+To understand how we will adjust the travel time index, we normalize to a baseline, which we assume to be the first full week (post new years) in January 2020 -- you can see how the proportion of people who travel to work/school changes relative to that baseline. Below, we will adjust the 2017 travel time index for each metro are based on the changes relative to that baseline. 
+
+```{r replica-fig-2, fig.height=8, fig.width=12, fig.cap='% Difference from Baseline of Work/School Travel on Average Weekday', out.width=2000}
+ggplot(replica_frame,aes(x=week_starting,y=traveling_work_school_change_in_proportion_since_baseline,
+                         color=msa,group=msa))+
+  geom_line(size=0.8)+
+  scale_y_continuous(labels=percent,limits = c(-0.75,0.75))+
+  ylab('% Difference from Baseline of Work/School Travel on Average Weekday')+
+  xlab('Date (first day of week)')+
+  scale_color_brewer(palette = 'Set1',name='Metropolitan Area')+
+  theme(legend.position = 'bottom',
+        text = element_text(size=14))+
+  guides(color = guide_legend(nrow = 3))
+```
+
+## Using Replica to Predict Present/Future Travel Time Indices
+
+As described above, we can adjust the travel time indices for each metro area based on the change in proportion of travel to work/school. Below we have assumed that the travel time index cannot drop below 1, and so the proportion is only used to adjust the delta above 1. 
+
+```{r tt-index-adjust, fig.height=8, fig.width=12, fig.cap='Adjusted Travel Time Indices for 2020', out.width=2000}
+adj_tt_index = sub_tt_index %>%
+  filter(year == 2017) %>%
+  left_join(replica_frame %>%
+              select(geo_id,week_starting,traveling_work_school_change_in_proportion_since_baseline) %>%
+              rename(GEOID = geo_id) %>%
+              mutate(GEOID = as.character(GEOID))) %>%
+  filter(!is.na(week_starting)) %>%
+  mutate(ex_tti_delta = index - 1,
+         prj_tti = ex_tti_delta*(1+traveling_work_school_change_in_proportion_since_baseline)+1)
+
+ggplot(adj_tt_index,aes(x=week_starting,y=prj_tti,
+                        color=NAME,group=NAME, fill=NAME))+
+  geom_point()+
+  geom_smooth(lty=2,span=0.5)+
+  theme(legend.position = 'bottom',
+        text = element_text(size=14))+
+  scale_color_brewer(palette = 'Set1',name='Metropolitan Area')+
+  scale_fill_brewer(palette = 'Set1',name='Metropolitan Area')+
+  facet_wrap(~NAME)+
+  xlab('Date (first day of week)') + ylab('Adjusted Travel Time Index for 2020')+
+  guides(color = guide_legend(nrow = 3))+
+  guides(fill = guide_legend(nrow = 3))
+
+```
+
+## Example Travel Time Adjustment -- Boston, MA
