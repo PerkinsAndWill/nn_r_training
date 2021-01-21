@@ -321,7 +321,7 @@ polys_to_logan = dir_results_to_logan$routes$overview_polyline$points %>%
   tibble(poly=.) %>%
   mutate(decoded_poly = map(poly,~decode_pl(.x))) %>%
   mutate(alternative_num = 1:n()) %>%
-  left_join(tt_frame_am) %>%
+  left_join(tt_frame_to_logan) %>%
   mutate(map_label = paste0('Alternative #',alternative_num,': ',
                             round(duration_minutes_with_traffic,1),' minutes with traffic')) %>%
   mutate(tti = duration_minutes_with_traffic/duration_minutes_no_traffic) %>%
@@ -357,7 +357,7 @@ polys_from_logan = dir_results_to_logan$routes$overview_polyline$points %>%
   tibble(poly=.) %>%
   mutate(decoded_poly = map(poly,~decode_pl(.x))) %>%
   mutate(alternative_num = 1:n()) %>%
-  left_join(tt_frame_am) %>%
+  left_join(tt_frame_from_logan) %>%
   mutate(map_label = paste0('Alternative #',alternative_num,': ',
                             round(duration_minutes_with_traffic,1),' minutes with traffic')) %>%
   mutate(tti = duration_minutes_with_traffic/duration_minutes_no_traffic) %>%
@@ -373,7 +373,7 @@ google_map(data = polys_from_logan) %>%
 
 ## Adjusting Travel Times
 
-We then grab the relevant adjustment factor from the above calculation -- we assume the adjustment factor in Boston calculated for the week starting 2021-01-04 will give us an idea of how different the traffic is on a weekday in January from pre-pandemic levels. We then use that adjustment factor to scale up the travel times (without traffic) we got from Google. You can see below that the factor used (in this case we divided by 0.93) gets us a higher travel time than computed by Google for one route alternative, and a lower one for the other. Both the Texas Transportation Institute numbers and the Replica numbers used are averages for a metro area, and so Google's data may be more localized than these factors allow us to get. Professional judgment should be used with these estimates -- I would use them more to provide a range of travel times to client, rather than a precise prediction. 
+We then grab the relevant adjustment factor from the above calculation -- we assume the adjustment factor in Boston calculated for the week starting 2021-01-04 will give us an idea of how different the traffic is on a weekday in January from pre-pandemic levels. We then use that adjustment factor to scale up the travel times (without traffic) we got from Google. You can see below that the factor used (in this case we divided by 0.93) gets us a higher travel time than computed by Google with traffic -- this speaks to the ahistorical level of traffic congestion occuring the COVID-19 pandemic. Both the Texas Transportation Institute numbers and the Replica numbers used are averages for a metro area, and so Google's data may be more localized than these factors allow us to get. Professional judgment should be used with these estimates -- I would use them more to provide a range of travel times to client, rather than a precise prediction. 
 
 ```{r boston-ex-part-3,  fig.height=8, fig.width=12, fig.cap='Example Adjusted Travel Times in Boston', out.width=2000}
 boston_adj_factor = adj_tt_index %>%
