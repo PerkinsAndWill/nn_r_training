@@ -12,7 +12,7 @@ output:
 
 Below is a regularly updated list of the upcoming scheduled Lunch and Learn webinars for R users at Nelson\\Nygaard. Until such a time as we decided to change the time slot, these will be scheduled in perpetuity from 12 - 1 p.m. Pacific time on Wednesdays on a bi-weekly basis. Refer to the table below for specific dates and topics. Occasionally, if Bryan has an especially busy project load, is taking vacation, there is an intersecting NN holiday, or there is a lack of topics, these will be canceled or moved. Advanced notice will be provided for these occasions.  Please provide feedback on the schedule if you would like a topic scheduled sooner or would like to add additional topics by contacting [Bryan directly](mailto:bblanc@nelsonnygaard.com).
 
-```{r, echo = FALSE, fig.width=8}
+```{r, echo = FALSE, out.width=1200}
 library(googlesheets4)
 library(googledrive)
 library(tidyverse)
@@ -30,8 +30,7 @@ raw_schedule %>%
   filter(!is.na(Topic)) %>%
   mutate(Date = as.Date(Date)) %>%
   DT::datatable(rownames=FALSE, escape=FALSE,
-          options = list(paging=FALSE,info=FALSE,autoWidth=TRUE),
-          width='100%', filter = 'top')
+          options = list(paging=FALSE,info=FALSE,autoWidth=TRUE), filter = 'top')
 ```
 
 
