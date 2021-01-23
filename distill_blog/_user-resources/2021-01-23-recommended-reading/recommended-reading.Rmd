@@ -1,0 +1,16 @@
+---
+title: "Recommended Reading"
+description: |
+  A regularly updated list of the best books & websites to read for gaining R skills and knowledge.
+author:
+  - name: Bryan Blanc
+    url: {}
+date: 01-23-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+Stay tuned for a recommended reading list!
+
+

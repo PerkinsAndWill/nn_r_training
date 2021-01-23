@@ -1,0 +1,34 @@
+---
+title: "Nelson\\Nygaard R User List"
+description: |
+  A regularly updated list of R Users at Nelson\\Nygaard.
+author:
+  - name: Bryan Blanc
+date: "Updated as of `r strftime(Sys.Date(),'%B %d, %Y')`"
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+The below is a list of the known R users at Nelson\\Nygaard. This list is used to maintain information on software versions, knowledge/skill levels, and to maintain a central repository for R work requests. If you don't see yourself on this list and want to be added, if any information is incorrect/needs to be updated, or you want to add an additional field, please [add comments to the Google sheet where this information is drawn from](https://docs.google.com/spreadsheets/d/1FlUvEhTikxxnQYV5CP1T4M5wgudnZJ88f4T44C9RSpc/edit?usp=sharing) or [contact Bryan](mailto:bblanc@nelsonnygaard.com).
+
+```{r, echo = FALSE, fig.width=8}
+library(googlesheets4)
+library(googledrive)
+library(tidyverse)
+library(DT)
+
+gs4_auth(email = 'bryanpblanc@gmail.com')
+raw_users = as_id('https://docs.google.com/spreadsheets/d/1FlUvEhTikxxnQYV5CP1T4M5wgudnZJ88f4T44C9RSpc/edit?usp=sharing') %>%
+  read_sheet('R Users') %>%
+  select(-`R Skill Description`) 
+
+raw_users %>%
+  filter(`R Version` != '0.0.0') %>%
+  mutate(`R Tools Version` = as.character(`R Tools Version`)) %>%
+  mutate(`Email Address` = paste0("<a href='mailto:",`Email Address`,"'>",`Email Address`,"</a>")) %>%
+  DT::datatable(rownames=FALSE, escape=FALSE,
+          options = list(paging=FALSE,info=FALSE,autoWidth=TRUE),
+          width='100%', filter = 'top')
+```
+

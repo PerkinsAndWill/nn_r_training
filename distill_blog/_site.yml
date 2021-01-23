@@ -9,6 +9,16 @@ navbar:
   right:
     - text: "Home"
       href: index.html
+    - text: "User Resources"
+      menu: 
+        - text: 'Upcoming LnL Webinar Schedule'
+          href: user-resources/2021-01-23-lnl-schedule/index.html
+        - text: 'Request a 1-on-1 R Help Session'
+          href: https://forms.gle/mMU2Pt3TRAoEnntPA
+        - text: 'Current NN R User List'
+          href: user-resources/2021-01-23-nn-r-user-list/index.html
+        - text: 'Recommended Reading List'
+          href: user-resources/2021-01-23-recommended-reading/index.html
     - text: "R Setup"
       menu:
         - text: 'Setup R Locally'
@@ -24,5 +34,7 @@ collections:
   posts: 
     categories: true
   setup-articles:
+    categories: true
+  user-resources:
     categories: true
 output: distill::distill_article
