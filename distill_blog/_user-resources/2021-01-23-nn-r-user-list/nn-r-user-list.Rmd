@@ -1,5 +1,5 @@
 ---
-title: "Nelson\\Nygaard R User List"
+title: "Nelson\\\\Nygaard R User List"
 description: |
   A regularly updated list of R Users at Nelson\\Nygaard.
 author:
