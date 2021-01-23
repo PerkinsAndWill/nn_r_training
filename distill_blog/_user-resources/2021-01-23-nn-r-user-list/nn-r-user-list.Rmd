@@ -28,6 +28,7 @@ raw_users %>%
   mutate(`R Tools Version` = as.character(`R Tools Version`)) %>%
   mutate(`Email Address` = paste0("<a href='mailto:",`Email Address`,"'>",`Email Address`,"</a>")) %>%
   DT::datatable(rownames=FALSE, escape=FALSE,
-          options = list(paging=FALSE,info=FALSE,autoWidth=TRUE), filter = 'top')
+          options = list(paging=FALSE,info=FALSE,autoWidth=TRUE), filter = 'top',
+          width = 1200)
 ```
 

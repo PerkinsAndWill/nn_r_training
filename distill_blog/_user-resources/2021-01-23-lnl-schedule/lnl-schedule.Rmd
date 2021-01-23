@@ -30,7 +30,8 @@ raw_schedule %>%
   filter(!is.na(Topic)) %>%
   mutate(Date = as.Date(Date)) %>%
   DT::datatable(rownames=FALSE, escape=FALSE,
-          options = list(paging=FALSE,info=FALSE,autoWidth=TRUE), filter = 'top')
+          options = list(paging=FALSE,info=FALSE,autoWidth=TRUE), filter = 'top',
+          width = 1200)
 ```
 
 
