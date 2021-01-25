@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"NULL"}
+  {"type":"character","attributes":{},"value":["using-r-locally_files/anchor-4.2.2/anchor.min.js","using-r-locally_files/bowser-1.9.3/bowser.min.js","using-r-locally_files/distill-2.2.21/template.v2.js","using-r-locally_files/header-attrs-2.6.1/header-attrs.js","using-r-locally_files/jquery-1.11.3/jquery.min.js","using-r-locally_files/popper-2.6.0/popper.min.js","using-r-locally_files/tippy-6.2.7/tippy-bundle.umd.min.js","using-r-locally_files/tippy-6.2.7/tippy-light-border.css","using-r-locally_files/tippy-6.2.7/tippy.css","using-r-locally_files/tippy-6.2.7/tippy.umd.min.js","using-r-locally_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1478,54 +1478,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <h1 id="neccessary-setup">Neccessary Setup</h1>
-<h2 id="summary">Summary</h2>
-<p>The table below summarizes the software packages needed to run R. Installation files for use by IT are saved here: O:/software tools/R/Resources/Installation Files</p>
-<table>
-<thead>
-<tr class="header">
-<th>Software Package</th>
-<th>Recommended Version</th>
-<th>Download Link</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>R</td>
-<td>4.0.1</td>
-<td><a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a></td>
-</tr>
-<tr class="even">
-<td>RStudio</td>
-<td>1.3.959</td>
-<td><a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></td>
-</tr>
-<tr class="odd">
-<td>RTools</td>
-<td>40</td>
-<td><a href="https://cran.r-project.org/bin/windows/Rtools/" class="uri">https://cran.r-project.org/bin/windows/Rtools/</a></td>
-</tr>
-<tr class="even">
-<td>Git</td>
-<td>2.27.0</td>
-<td><a href="https://git-scm.com/download/win" class="uri">https://git-scm.com/download/win</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="installing-r">Installing R</h2>
-<p>You’ll first need to install R itself (the software environment) in order to use it.</p>
-<p><strong>Install Link:</strong> <a href="https://cran.r-project.org/bin/windows/base/" class="uri">https://cran.r-project.org/bin/windows/base/</a></p>
-<h2 id="installing-rstudio">Installing RStudio</h2>
-<p>The basic R installation only comes with a very minimal console, so you’ll also want to install RStudio. RStudio is an Integrated Development Environment (IDE) produced and maintained by RStudio (a for-profit company).</p>
-<p><strong>Install Link:</strong> <a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></p>
 <h2 id="how-to-relocate-local-r-package-folder">How to Relocate Local R Package Folder</h2>
-<p>These steps redefine the R user packages folder in R to use a “Local” folder within your R user profile, which for me is: “C:/Users/EshelO/Local/R/win-library/3.4”.</p>
+<p>These steps redefine the R user packages folder in R to use a “Local” folder within your R user profile, which for me is: <code>C:/Users/EshelO/Local/R/win-library/3.4</code>.</p>
 <ul>
 <li>The username will need to be modified</li>
 <li>The R version will need to be modified</li>
 <li>Any user-writable folder will work; IT has agreed on this as a standard location. The same folder can be used for the ArcGIS default geodatabase, Github repository directory, etc.).</li>
 </ul>
 <ol type="1">
-<li><p>Relocate your existing R user library folder (which for me was in C:/Users/EshelO/Document/R/win-library/3.4 (if Documents has already been migrated, this would be C:/Users/EshelO/OneDrive - Perkins and Will/Documents) to C:/Users/EshelO/Local/R/win-library (or per above)</p></li>
+<li><p>Relocate your existing R user library folder (which for me was in <code>C:/Users/EshelO/Document/R/win-library/3.4</code> (if Documents has already been migrated, this would be <code>C:/Users/EshelO/OneDrive - Perkins and Will/Documents) to C:/Users/EshelO/Local/R/win-library</code> (or per above)</p></li>
 <li><p>Test the change:</p></li>
 </ol>
 <p>Run <code>.libPaths("C:/Users/EshelO/Local/R/win-library/3.4")</code> (modifying as necessary) - this is only for your current R session</p>
@@ -1539,7 +1500,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li>Find your R user directory</li>
 </ol>
 <ul>
-<li>You can determine your home directory using: path.expand(“~/”) in R which for me is the Documents folder in my OneDrive<br />
+<li>You can determine your home directory using: <code>path.expand("~/")</code> in R which for me is the Documents folder in my OneDrive<br />
 </li>
 <li>By default this should be your Documents folder. This would get relocated to OneDrive, which is fine.</li>
 </ul>
