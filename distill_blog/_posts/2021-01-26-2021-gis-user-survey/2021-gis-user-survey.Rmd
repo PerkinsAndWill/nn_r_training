@@ -1,0 +1,314 @@
+---
+title: "2021 GIS User Survey"
+description: |
+  A short description of the post.
+author:
+  - name: Bryan Blanc
+    url: https://github.com/bpb824
+date: 01-26-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(scales)
+library(DT)
+
+raw = read_excel('data/survey_results/2020 Team Data Goals.xlsx',skip = 2,
+                 col_names = FALSE)
+
+col_ref = read_excel('data/survey_schema.xlsx',sheet='column_reference')
+questions = read_excel('data/survey_schema.xlsx',sheet='questions')
+answers = read_excel('data/survey_schema.xlsx',sheet='answers')
+
+clean = raw %>%
+  clean_names() %>%
+  rename(respondent_id = x1) %>%
+  select(respondent_id,x10:x31) %>%
+  pivot_longer(cols=x10:x31) %>%
+  mutate(col_num = as.numeric(str_replace(name,'x',''))) %>%
+  left_join(col_ref) %>%
+  rename(answer_text = value) %>%
+  left_join(answers) %>%
+  select(-header) %>%
+  left_join(questions)
+
+respondent_info = clean %>%
+  filter(question_id %in% c(1,2),
+         other_text==FALSE) %>%
+  mutate(temp = ifelse(question_id==1,'Name','Office')) %>%
+  select(respondent_id,temp,answer_text) %>%
+  pivot_wider(names_from = temp,
+              values_from = answer_text) %>%
+  mutate(Name = replace_na(Name,'Anonymous'))
+```
+
+# Introduction
+
+# Respondent Information 
+
+## Office Location 
+
+```{r office-loc, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8}
+qid = 2
+
+sub = clean %>%
+  filter(question_id == qid,other_text==FALSE)
+
+summ = sub %>%
+  group_by(answer_text) %>%
+  summarise(num_respondents = n()) %>%
+  mutate(prop_respondents = num_respondents/sum(num_respondents)) %>%
+  arrange(desc(prop_respondents)) %>%
+  mutate(answer_text = factor(answer_text,ordered = TRUE,levels = unique(answer_text)))
+
+plot_title = paste0(questions$question_text[questions$question_id==qid],
+                    ' (N=',n_distinct(sub$respondent_id),')')
+
+ggplot(summ,aes(x=answer_text,y=prop_respondents))+
+  geom_col(fill = '#007cba')+
+  coord_flip()+
+  geom_label(aes(label = paste0(percent(prop_respondents),', ',num_respondents)))+
+  scale_y_continuous(labels=percent)+ 
+  xlab('Office Location')+ 
+  ylab('Proportion of Respondents')+
+  ggtitle(plot_title)
+```
+
+
+
+# Current Software Usage and Issues
+
+## Software Usage
+
+```{r software-type-usage, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8}
+qid = 3
+
+sub = clean %>%
+  filter(question_id == qid,other_text==FALSE)
+
+total_respondents = n_distinct(sub$respondent_id)
+
+summ = sub %>%
+  group_by(subheader,answer_text,answer_num) %>%
+  summarise(num_responses = n()) %>%
+  mutate(prop_respondents = num_responses/total_respondents) %>%
+  ungroup() %>%
+  arrange(answer_num) %>%
+  mutate(answer_text = factor(answer_text,ordered = TRUE,levels = unique(answer_text))) %>%
+  arrange(subheader,answer_num)
+
+plot_title = paste0(questions$question_text[questions$question_id==qid],
+                    ' (N=',n_distinct(sub$respondent_id),')')
+
+seq_color_ramp = colorRampPalette(c('dark grey','#007cba'))
+
+ggplot(summ,aes(x=subheader,y=prop_respondents,fill = answer_text))+
+  geom_col()+
+  scale_fill_manual(values = seq_color_ramp(5),name='Use Frequency')+
+  coord_flip()+
+  scale_y_continuous(labels=percent)+ 
+  xlab('Software')+ 
+  ylab('Proportion of Respondents')+
+  ggtitle(plot_title)
+```
+
+## GIS Availability
+
+```{r gis-availability, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8}
+qid = 4
+
+sub = clean %>%
+  filter(question_id == qid,other_text==FALSE)
+
+total_respondents = n_distinct(sub$respondent_id)
+
+summ = sub %>%
+  filter(other_text == FALSE, !is.na(answer_num)) %>%
+  group_by(subheader,answer_text,answer_num) %>%
+  summarise(num_responses = n()) %>%
+  mutate(prop_respondents = num_responses/total_respondents) %>%
+  ungroup() %>%
+  arrange(answer_num) %>%
+  mutate(answer_text = factor(answer_text,ordered = TRUE,levels = unique(answer_text))) %>%
+  arrange(subheader,answer_num) %>%
+  mutate(subheader = factor(subheader,ordered=TRUE,
+                            levels = c("GIS - Basic","GIS - Advanced",
+                                       "Network Analyst","Spatial Analyst","3D Analyst")))
+
+plot_title = paste0(questions$question_text[questions$question_id==qid],
+                    ' (N=',n_distinct(sub$respondent_id),')')
+
+seq_color_ramp = colorRampPalette(c('dark grey','#007cba'))
+
+ggplot(summ,aes(x=subheader,y=prop_respondents,fill = answer_text))+
+  geom_col()+
+  scale_fill_manual(values = seq_color_ramp(5),name='Use Frequency')+
+  coord_flip()+
+  scale_y_continuous(labels=percent)+ 
+  xlab('Software')+ 
+  ylab('Proportion of Respondents')+
+  ggtitle(plot_title)
+```
+
+## GIS Add-Ons
+
+```{r gis-add-ons, echo=FALSE, message=FALSE, warning=FALSE, out.width=1000}
+qid = 5
+
+sub = clean %>%
+  filter(question_id == qid,other_text==FALSE) %>%
+  filter(!is.na(answer_text)) %>%
+  left_join(respondent_info) %>%
+  select(Name,Office,answer_text) %>%
+  rename(Response = answer_text) 
+
+plot_title = paste0(questions$question_text[questions$question_id==qid],
+                    ' (N=',n_distinct(sub$`Respondent ID`),')')
+
+DT::datatable(sub,
+              options = list(paging=FALSE,info=FALSE,autoWidth=TRUE),
+              rownames = FALSE, filter='top',
+              caption = plot_title,
+              width = 1000)
+
+```
+
+
+## Node
+
+```{r node, echo=FALSE, message=FALSE, warning=FALSE, out.width=1000}
+qid = 7
+
+sub = clean %>%
+  filter(question_id == qid,other_text==FALSE) %>%
+  filter(!is.na(answer_text)) %>%
+  left_join(respondent_info) %>%
+  select(Name,Office,answer_text) %>%
+  rename(Response = answer_text) 
+
+plot_title = paste0(questions$question_text[questions$question_id==qid],
+                    ' (N=',n_distinct(sub$`Respondent ID`),')')
+
+DT::datatable(sub,
+              options = list(paging=FALSE,info=FALSE,autoWidth=TRUE),
+              rownames = FALSE, filter='top',
+              caption = plot_title,
+              width = 1000)
+```
+
+# Future Wants and Needs
+
+## More Tools and Software
+
+```{r tools-1, echo=FALSE, message=FALSE, warning=FALSE, out.width=1000}
+qid = 9
+
+sub = clean %>%
+  filter(question_id == qid,other_text==FALSE) %>%
+  filter(!is.na(answer_text)) %>%
+  left_join(respondent_info) %>%
+  select(Name,Office,answer_text) %>%
+  rename(Response = answer_text) 
+
+plot_title = paste0(questions$question_text[questions$question_id==qid],
+                    ' (N=',n_distinct(sub$`Respondent ID`),')')
+
+DT::datatable(sub,
+              options = list(paging=FALSE,info=FALSE,autoWidth=TRUE),
+              rownames = FALSE, filter='top',
+              caption = plot_title,
+              width = 1000)
+```
+
+```{r tools-2, echo=FALSE, message=FALSE, warning=FALSE, out.width=1000}
+qid = 11
+
+sub = clean %>%
+  filter(question_id == qid,other_text==FALSE) %>%
+  filter(!is.na(answer_text)) %>%
+  left_join(respondent_info) %>%
+  select(Name,Office,answer_text) %>%
+  rename(Response = answer_text) 
+
+plot_title = paste0(questions$question_text[questions$question_id==qid],
+                    ' (N=',n_distinct(sub$`Respondent ID`),')')
+
+DT::datatable(sub,
+              options = list(paging=FALSE,info=FALSE,autoWidth=TRUE),
+              rownames = FALSE, filter='top',
+              caption = plot_title,
+              width = 1000)
+```
+
+## Resources
+
+```{r resources, echo=FALSE, message=FALSE, warning=FALSE, out.width=1000}
+qid = 8
+
+sub = clean %>%
+  filter(question_id == qid,other_text==FALSE) %>%
+  filter(!is.na(answer_text)) %>%
+  left_join(respondent_info) %>%
+  select(Name,Office,answer_text) %>%
+  rename(Response = answer_text) 
+
+plot_title = paste0(questions$question_text[questions$question_id==qid],
+                    ' (N=',n_distinct(sub$`Respondent ID`),')')
+
+DT::datatable(sub,
+              options = list(paging=FALSE,info=FALSE,autoWidth=TRUE),
+              rownames = FALSE, filter='top',
+              caption = plot_title,
+              width = 1000)
+```
+
+## Hangout Topics
+
+```{r hangout-topics, echo=FALSE, message=FALSE, warning=FALSE, out.width=1000}
+qid = 10
+
+sub = clean %>%
+  filter(question_id == qid,other_text==FALSE) %>%
+  filter(!is.na(answer_text)) %>%
+  left_join(respondent_info) %>%
+  select(Name,Office,answer_text) %>%
+  rename(Response = answer_text) 
+
+plot_title = paste0(questions$question_text[questions$question_id==qid],
+                    ' (N=',n_distinct(sub$`Respondent ID`),')')
+
+DT::datatable(sub,
+              options = list(paging=FALSE,info=FALSE,autoWidth=TRUE),
+              rownames = FALSE, filter='top',
+              caption = plot_title,
+              width = 1000)
+```
+
+
+## Miscellaneous Comments
+
+```{r other-comments, echo=FALSE, message=FALSE, warning=FALSE, out.width=1000}
+qid = 12
+
+sub = clean %>%
+  filter(question_id == qid,other_text==FALSE) %>%
+  filter(!is.na(answer_text)) %>%
+  left_join(respondent_info) %>%
+  select(respondent_id,Name,Office,answer_text) %>%
+  rename(Response = answer_text,
+         `Respondent ID` = respondent_id) 
+
+plot_title = paste0(questions$question_text[questions$question_id==qid],
+                    ' (N=',n_distinct(sub$`Respondent ID`),')')
+
+DT::datatable(sub,
+              options = list(paging=FALSE,info=FALSE,autoWidth=TRUE),
+              rownames = FALSE, filter='top',
+              caption = plot_title,
+              width = 1000)
+```

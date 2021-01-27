@@ -12,6 +12,7 @@ output:
 categories: 
     - census 
     - geospatial
+    - leaflet
 ---
 
 *This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Friday, September 17th, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/5b33f7da-577d-4788-b5b4-0340340c41f4) and embedded below.*

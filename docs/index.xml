@@ -7,7 +7,16 @@
     <description>Nelson\\Nygaard R Training
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Fri, 15 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>2021 GIS User Survey</title>
+      <dc:creator>Bryan Blanc</dc:creator>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-26-2021-gis-user-survey</link>
+      <description>A short description of the post.</description>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-26-2021-gis-user-survey</guid>
+      <pubDate>Tue, 26 Jan 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-26-2021-gis-user-survey/2021-gis-user-survey_files/figure-html5/office-loc-1.png" medium="image" type="image/png" width="1536" height="768"/>
+    </item>
     <item>
       <title>Google Travel Time Querying</title>
       <dc:creator>Bryan Blanc</dc:creator>
@@ -20,13 +29,26 @@
       <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-15-google-travel-time-querying/google-travel-time-querying_files/figure-html5/tti-fig-1-1.png" medium="image" type="image/png" width="2304" height="1536"/>
     </item>
     <item>
+      <title>Census Data</title>
+      <dc:creator>Bryan Blanc</dc:creator>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-census-data</link>
+      <description>Demonstration of downloading and summarizing U.S. Census Bureau data in R</description>
+      <category>census</category>
+      <category>geospatial</category>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-census-data</guid>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-census-data/census-data_files/figure-html5/tigris-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
+    <item>
       <title>Geospatial Data</title>
       <dc:creator>Bryan Blanc</dc:creator>
       <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-geospatial-data</link>
       <description>An introduction to geospatial data in R with a focus on sf and leaflet</description>
       <category>geospatial</category>
+      <category>leaflet</category>
       <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-geospatial-data</guid>
       <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-geospatial-data/geospatial-data_files/figure-html5/unnamed-chunk-9-1.png" medium="image" type="image/png" width="1248" height="576"/>
     </item>
     <item>
       <title>GTFS Data</title>
@@ -97,15 +119,6 @@
       <category>tidyverse</category>
       <category>purrr</category>
       <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse</guid>
-      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Welcome to Nelson\Nygaard R Training</title>
-      <dc:creator>Bryan Blanc</dc:creator>
-      <link>https://perkinsandwill.github.io/nn_r_training/posts/welcome</link>
-      <description>Welcome to Nelson\Nygaard's new R Training Blog!</description>
-      <category>about</category>
-      <guid>https://perkinsandwill.github.io/nn_r_training/posts/welcome</guid>
       <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
     </item>
   </channel>
