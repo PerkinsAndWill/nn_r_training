@@ -43,7 +43,7 @@ raw_users = as_id('https://docs.google.com/spreadsheets/d/1FlUvEhTikxxnQYV5CP1T4
   select(-`R Skill Description`) 
 
 raw_users %>%
-  filter(`R Version` != '0.0.0') %>%
+  #filter(`R Version` != '0.0.0') %>%
   mutate(`R Tools Version` = as.character(`R Tools Version`)) %>%
   mutate(`Email Address` = paste0("<a href='mailto:",`Email Address`,"'>",`Email Address`,"</a>")) %>%
   DT::datatable(rownames=FALSE, escape=FALSE,

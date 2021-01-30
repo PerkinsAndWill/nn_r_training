@@ -1,5 +1,5 @@
 ---
-title: "Nelson\\Nygaard R Training"
+title: "Nelson\\Nygaard R Training Modules"
 site: distill::distill_website
 listing: posts
 ---

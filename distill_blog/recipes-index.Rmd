@@ -1,0 +1,5 @@
+---
+title: "Nelson\\Nygaard R Recipes"
+site: distill::distill_website
+listing: recipes
+---

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Nelson\Nygaard R Training Blog</title>
+    <link>https://perkinsandwill.github.io/nn_r_training/</link>
+    <atom:link href="https://perkinsandwill.github.io/nn_r_training/recipes-index.xml" rel="self" type="application/rss+xml"/>
+    <description>Nelson\\Nygaard R Training Blog
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Sat, 30 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>OD Line Generation</title>
+      <dc:creator>Unknown</dc:creator>
+      <link>https://perkinsandwill.github.io/nn_r_training/recipes/2021-01-30-od-line-generation</link>
+      <description>Generate and map origin-destination flow geometries</description>
+      <guid>https://perkinsandwill.github.io/nn_r_training/recipes/2021-01-30-od-line-generation</guid>
+      <pubDate>Sat, 30 Jan 2021 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

@@ -1,14 +1,18 @@
 name: "distill_blog"
-title: "Nelson\\Nygaard R Training"
+title: "Nelson\\Nygaard R Training Blog"
 theme: theme.css
 description: |
-  Nelson\\Nygaard R Training
+  Nelson\\Nygaard R Training Blog
 output_dir: "../docs"
 base_url: https://perkinsandwill.github.io/nn_r_training/
 navbar:
   right:
-    - text: "Home"
+    - text: "Training Modules"
       href: index.html
+    - text: "Recipes"
+      href: recipes-index.html
+    - text: "Example Analyses"
+      href: example-analyses.html
     - text: "User Resources"
       menu: 
         - text: 'Upcoming LnL Webinar Schedule'

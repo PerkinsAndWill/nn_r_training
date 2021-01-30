@@ -9,6 +9,9 @@ date: 01-14-2021
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc_depth: 3
+    toc_float: true
 categories: shiny
 ---
 

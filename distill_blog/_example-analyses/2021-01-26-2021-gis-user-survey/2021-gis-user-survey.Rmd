@@ -1,7 +1,7 @@
 ---
 title: "2021 GIS User Survey"
 description: |
-  A short description of the post.
+  An analysis of the 2021 GIS User Survey Results
 author:
   - name: Bryan Blanc
     url: https://github.com/bpb824
@@ -9,6 +9,9 @@ date: 01-26-2021
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc_depth: 3
+    toc_float: true
 ---
 
 ```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
@@ -164,7 +167,7 @@ sub = clean %>%
   filter(question_id == qid,other_text==FALSE) %>%
   filter(!is.na(answer_text)) %>%
   left_join(respondent_info) %>%
-  select(Name,Office,answer_text) %>%
+  select(answer_text) %>%
   rename(Response = answer_text) 
 
 plot_title = paste0(questions$question_text[questions$question_id==qid],
@@ -188,7 +191,7 @@ sub = clean %>%
   filter(question_id == qid,other_text==FALSE) %>%
   filter(!is.na(answer_text)) %>%
   left_join(respondent_info) %>%
-  select(Name,Office,answer_text) %>%
+  select(answer_text) %>%
   rename(Response = answer_text) 
 
 plot_title = paste0(questions$question_text[questions$question_id==qid],
@@ -212,7 +215,7 @@ sub = clean %>%
   filter(question_id == qid,other_text==FALSE) %>%
   filter(!is.na(answer_text)) %>%
   left_join(respondent_info) %>%
-  select(Name,Office,answer_text) %>%
+  select(answer_text) %>%
   rename(Response = answer_text) 
 
 plot_title = paste0(questions$question_text[questions$question_id==qid],
@@ -232,7 +235,7 @@ sub = clean %>%
   filter(question_id == qid,other_text==FALSE) %>%
   filter(!is.na(answer_text)) %>%
   left_join(respondent_info) %>%
-  select(Name,Office,answer_text) %>%
+  select(answer_text) %>%
   rename(Response = answer_text) 
 
 plot_title = paste0(questions$question_text[questions$question_id==qid],
@@ -254,7 +257,7 @@ sub = clean %>%
   filter(question_id == qid,other_text==FALSE) %>%
   filter(!is.na(answer_text)) %>%
   left_join(respondent_info) %>%
-  select(Name,Office,answer_text) %>%
+  select(answer_text) %>%
   rename(Response = answer_text) 
 
 plot_title = paste0(questions$question_text[questions$question_id==qid],
@@ -276,7 +279,7 @@ sub = clean %>%
   filter(question_id == qid,other_text==FALSE) %>%
   filter(!is.na(answer_text)) %>%
   left_join(respondent_info) %>%
-  select(Name,Office,answer_text) %>%
+  select(answer_text) %>%
   rename(Response = answer_text) 
 
 plot_title = paste0(questions$question_text[questions$question_id==qid],
@@ -299,9 +302,8 @@ sub = clean %>%
   filter(question_id == qid,other_text==FALSE) %>%
   filter(!is.na(answer_text)) %>%
   left_join(respondent_info) %>%
-  select(respondent_id,Name,Office,answer_text) %>%
-  rename(Response = answer_text,
-         `Respondent ID` = respondent_id) 
+  select(answer_text) %>%
+  rename(Response = answer_text) 
 
 plot_title = paste0(questions$question_text[questions$question_id==qid],
                     ' (N=',n_distinct(sub$`Respondent ID`),')')
