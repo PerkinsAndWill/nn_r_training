@@ -26,6 +26,7 @@
       <description>Demonstration of downloading and summarizing U.S. Census Bureau data in R</description>
       <category>census</category>
       <category>geospatial</category>
+      <category>leaflet</category>
       <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-census-data</guid>
       <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
       <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-census-data/census-data_files/figure-html5/tigris-1.png" medium="image" type="image/png" width="1248" height="768"/>

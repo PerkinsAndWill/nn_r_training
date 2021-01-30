@@ -120,7 +120,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Introduction to the Tidyverse"]},{"type":"character","attributes":{},"value":["An initial training on the philosophy and elements of the tidyverse."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Bryan Blanc"]},{"type":"character","attributes":{},"value":["https://github.com/bpb824"]}]}]},{"type":"character","attributes":{},"value":["01-14-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["tidyverse","purrr"]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse/"]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Introduction to the Tidyverse"]},{"type":"character","attributes":{},"value":["An initial training on the philosophy and elements of the tidyverse."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Bryan Blanc"]},{"type":"character","attributes":{},"value":["https://github.com/bpb824"]}]}]},{"type":"character","attributes":{},"value":["01-14-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["tidyverse","purrr"]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse/"]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2452,6 +2452,36 @@ R Setup
 </div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#a-note-on-packages">A Note on Packages</a></li>
+<li><a href="#tidyverse-packages">Tidyverse Packages</a></li>
+<li><a href="#the-key-parts-of-the-tidyverse-model-of-data-science">The Key Parts of the Tidyverse Model of Data Science</a></li>
+<li><a href="#tidy-data">Tidy Data</a>
+<ul>
+<li><a href="#what-is-tidy-data">What is Tidy Data?</a></li>
+<li><a href="#tidying">Tidying</a></li>
+<li><a href="#transforming">Transforming</a></li>
+<li><a href="#example-part-a">Example: Part A</a></li>
+<li><a href="#visualizing">Visualizing</a></li>
+<li><a href="#example-part-b">Example: Part B</a></li>
+<li><a href="#purrr">Purrr</a></li>
+<li><a href="#shortcuts">Shortcuts</a></li>
+<li><a href="#example-part-c">Example: Part C</a></li>
+</ul></li>
+<li><a href="#reference-materials">Reference Materials</a>
+<ul>
+<li><a href="#run-through-the-example-code-yourself">Run Through the Example Code Yourself</a></li>
+<li><a href="#cheat-sheets">Cheat Sheets</a></li>
+<li><a href="#further-reading">Further Reading</a></li>
+<li><a href="#related-datacamp-courses">Related DataCamp Courses</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
 <p><em>This content was presented to Nelson\Nygaard Staff at a Lunch and Learn webinar on Friday, August 21st, 2020, and is <a href="https://web.microsoftstream.com/video/33fc95ba-c50e-4ac0-b9e4-118217352133">available as a recording here</a> and embedded below</em></p>
 <p align="center">
 <iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/33fc95ba-c50e-4ac0-b9e4-118217352133?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;">
@@ -3272,7 +3302,7 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 <span class='va'>output</span>
 </code></pre>
 </div>
-<pre><code>[1] -0.4558425  0.1773454  0.2326798  0.4165923</code></pre>
+<pre><code>[1] -0.34753227 -0.08929723 -0.03940615 -0.32235569</code></pre>
 </div>
 <p>You realise that you’re going to want to compute the means of every column pretty frequently, so you extract it out into a function:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3338,12 +3368,12 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 <span class='fu'>col_summary</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>median</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] -0.5215820  0.2628745  0.0483231  0.3416834</code></pre>
+<pre><code>[1] -0.362661820 -0.303731308 -0.002017272 -0.374416310</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>col_summary</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>mean</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] -0.4558425  0.1773454  0.2326798  0.4165923</code></pre>
+<pre><code>[1] -0.34753227 -0.08929723 -0.03940615 -0.32235569</code></pre>
 </div>
 <p>The idea of passing a function to another function is an extremely powerful idea, and it’s one of the behaviours that makes R a functional programming language. It might take you a while to wrap your head around the idea, but it’s worth the investment. In the rest of the chapter, you’ll learn about and use the <strong>purrr</strong> package, which provides functions that eliminate the need for many common for loops. The apply family of functions in base R (<code>apply()</code>, <code>lapply()</code>, <code>tapply()</code>, etc) solve a similar problem, but purrr is more consistent and thus is easier to learn.</p>
 <p>The goal of using purrr functions instead of for loops is to allow you to break common list manipulation challenges into independent pieces:</p>
@@ -3370,20 +3400,20 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>mean</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         a          b          c          d 
--0.4558425  0.1773454  0.2326798  0.4165923 </code></pre>
+<pre><code>          a           b           c           d 
+-0.34753227 -0.08929723 -0.03940615 -0.32235569 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>median</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         a          b          c          d 
--0.5215820  0.2628745  0.0483231  0.3416834 </code></pre>
+<pre><code>           a            b            c            d 
+-0.362661820 -0.303731308 -0.002017272 -0.374416310 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>sd</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>        a         b         c         d 
-1.2326101 0.8003846 0.9606819 0.8966030 </code></pre>
+0.7258546 0.8848421 0.8585098 0.4964596 </code></pre>
 </div>
 <p>Compared to using a for loop, focus is on the operation being performed (i.e. <code>mean()</code>, <code>median()</code>, <code>sd()</code>), not the bookkeeping required to loop over every element and store the output. This is even more apparent if we use the pipe:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3391,20 +3421,20 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>mean</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         a          b          c          d 
--0.4558425  0.1773454  0.2326798  0.4165923 </code></pre>
+<pre><code>          a           b           c           d 
+-0.34753227 -0.08929723 -0.03940615 -0.32235569 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>median</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         a          b          c          d 
--0.5215820  0.2628745  0.0483231  0.3416834 </code></pre>
+<pre><code>           a            b            c            d 
+-0.362661820 -0.303731308 -0.002017272 -0.374416310 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>sd</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>        a         b         c         d 
-1.2326101 0.8003846 0.9606819 0.8966030 </code></pre>
+0.7258546 0.8848421 0.8585098 0.4964596 </code></pre>
 </div>
 <p>There are a few differences between <code>map_*()</code> and <code>col_summary()</code>:</p>
 <ul>
@@ -3416,8 +3446,8 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>mean</span>, trim <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         a          b          c          d 
--0.5215820  0.2628745  0.0483231  0.3416834 </code></pre>
+<pre><code>           a            b            c            d 
+-0.362661820 -0.303731308 -0.002017272 -0.374416310 </code></pre>
 </div></li>
 <li><p>The map functions also preserve names:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3499,20 +3529,20 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>mean</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         a          b          c          d 
--0.4558425  0.1773454  0.2326798  0.4165923 </code></pre>
+<pre><code>          a           b           c           d 
+-0.34753227 -0.08929723 -0.03940615 -0.32235569 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>median</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         a          b          c          d 
--0.5215820  0.2628745  0.0483231  0.3416834 </code></pre>
+<pre><code>           a            b            c            d 
+-0.362661820 -0.303731308 -0.002017272 -0.374416310 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>sd</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>        a         b         c         d 
-1.2326101 0.8003846 0.9606819 0.8966030 </code></pre>
+0.7258546 0.8848421 0.8585098 0.4964596 </code></pre>
 </div>
 <p>Compared to using a for loop, focus is on the operation being performed (i.e. <code>mean()</code>, <code>median()</code>, <code>sd()</code>), not the bookkeeping required to loop over every element and store the output. This is even more apparent if we use the pipe:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3520,20 +3550,20 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>mean</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         a          b          c          d 
--0.4558425  0.1773454  0.2326798  0.4165923 </code></pre>
+<pre><code>          a           b           c           d 
+-0.34753227 -0.08929723 -0.03940615 -0.32235569 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>median</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         a          b          c          d 
--0.5215820  0.2628745  0.0483231  0.3416834 </code></pre>
+<pre><code>           a            b            c            d 
+-0.362661820 -0.303731308 -0.002017272 -0.374416310 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>sd</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>        a         b         c         d 
-1.2326101 0.8003846 0.9606819 0.8966030 </code></pre>
+0.7258546 0.8848421 0.8585098 0.4964596 </code></pre>
 </div>
 <p>There are a few differences between <code>map_*()</code> and <code>col_summary()</code>:</p>
 <ul>
@@ -3545,8 +3575,8 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>mean</span>, trim <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         a          b          c          d 
--0.5215820  0.2628745  0.0483231  0.3416834 </code></pre>
+<pre><code>           a            b            c            d 
+-0.362661820 -0.303731308 -0.002017272 -0.374416310 </code></pre>
 </div></li>
 <li><p>The map functions also preserve names:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3570,9 +3600,9 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 </code></pre>
 </div>
 <pre><code>List of 3
- $ : num [1:5] 3.55 6.55 5.24 6.2 3.8
- $ : num [1:5] 10.44 9.31 9.76 8.09 9.08
- $ : num [1:5] -2.44 -4.91 -2.84 -1.78 -3.22</code></pre>
+ $ : num [1:5] 4.93 4.79 4.78 5.14 6.54
+ $ : num [1:5] 10.87 9.65 8.6 8.66 9.65
+ $ : num [1:5] -4.14 -4.4 -3.43 -3.31 -2.34</code></pre>
 </div>
 <p>What if you also want to vary the standard deviation? One way to do that would be to iterate over the indices and index into vectors of means and sds:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3584,9 +3614,9 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 </code></pre>
 </div>
 <pre><code>List of 3
- $ : num [1:5] 4.93 5.68 4.87 4.59 4.95
- $ : num [1:5] 11.1 17.8 18.1 11 10.8
- $ : num [1:5] -0.967 -5.558 8.913 -4.105 17.006</code></pre>
+ $ : num [1:5] 3.38 3.53 4.43 4.52 6.44
+ $ : num [1:5] 24.72 11.73 10 1.65 12.74
+ $ : num [1:5] -12.11 -4.79 -6.95 0.83 -4.14</code></pre>
 </div>
 <p>But that obfuscates the intent of the code. Instead we could use <code>map2()</code> which iterates over two vectors in parallel:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3595,9 +3625,9 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 </code></pre>
 </div>
 <pre><code>List of 3
- $ : num [1:5] 5.22 4.45 4.85 4.95 5.54
- $ : num [1:5] 17.37 4.98 11.71 17.3 17.65
- $ : num [1:5] 4.96 4.39 -10.46 -7.65 6.16</code></pre>
+ $ : num [1:5] 3.88 3.33 6.61 5.17 5.47
+ $ : num [1:5] 12.498 5.313 0.488 9.767 13.558
+ $ : num [1:5] -0.251 -6.072 -26.031 15.001 -2.827</code></pre>
 </div>
 <p><code>map2()</code> generates this series of function calls:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3628,9 +3658,9 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 </code></pre>
 </div>
 <pre><code>List of 3
- $ : num 4.22
- $ : num [1:3] 11.624 0.105 15.996
- $ : num [1:5] 9.41 12.74 -20.67 10.74 -24.17</code></pre>
+ $ : num 4.29
+ $ : num [1:3] -0.221 5.701 15.565
+ $ : num [1:5] 7.3 12.91 -5.82 -4.38 -6.38</code></pre>
 </div>
 <p>That looks like:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3664,13 +3694,13 @@ Figure 2: Uniting <code>table5</code> makes it tidy
 </code></pre>
 </div>
 <pre><code>[[1]]
-[1] 4.575033
+[1] 4.38435
 
 [[2]]
-[1] 15.97686 10.71182 13.98980
+[1] 14.183426  9.813909 12.301393
 
 [[3]]
-[1] -22.012212  -3.766145   6.468382  -1.678875 -16.620518</code></pre>
+[1]  -8.515308  21.565838  -4.001169  -3.034896 -16.828398</code></pre>
 </div>
 <p>As soon as your code gets complicated, I think a data frame is a good approach because it ensures that each column has a name and is the same length as all the other columns.</p>
 <h4 id="cheat-sheet-2">Cheat Sheet</h4>
