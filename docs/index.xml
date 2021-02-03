@@ -7,7 +7,16 @@
     <description>Nelson\\Nygaard R Training Blog
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Fri, 15 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 03 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>R Programming Basics - Session 1</title>
+      <dc:creator>Bryan Blanc</dc:creator>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-02-02-r-programming-basics-session-1</link>
+      <description>An introduction to R data structures.</description>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-02-02-r-programming-basics-session-1</guid>
+      <pubDate>Wed, 03 Feb 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/2021-02-02-r-programming-basics-session-1/diagrams/data-structures-overview.png" medium="image" type="image/png" width="1354" height="1145"/>
+    </item>
     <item>
       <title>Google Travel Time Querying</title>
       <dc:creator>Bryan Blanc</dc:creator>
