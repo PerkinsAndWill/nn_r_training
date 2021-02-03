@@ -47,7 +47,7 @@ __Acknowledgement:__ This module heavily draws upon Hadley Wickham's (the progen
 
 ## Introduction
 
-You are probably most familiar with data frames (or their modernized analogue, tibbles) and the packages that work with them. But as you start to write your own functions, and dig deeper into R, you need to learn about **vectors**, the objects that underlie tibbles. If you've learned R in a more traditional way, you're probably already familiar with vectors, as most R resources start with vectors and work their way up to tibbles. I think it's better to start with tibbles because they're immediately useful, and then work your way down to the underlying components. Vectors are particularly important as most of the functions you will write will work with vectors. 
+You are probably most familiar with data frames (or their modernized analogue, tibbles) and the packages that work with them. But as you start to write your own functions, and dig deeper into R, you need to learn about **vectors**, the objects that underlie tibbles. If you've learned R in a more traditional way, you're probably already familiar with vectors, as most R resources start with vectors and work their way up to data frames/tibbles. Vectors are particularly important as most of the functions you will write will work with vectors. 
 
 ### Prerequisites
 
@@ -69,7 +69,7 @@ There are two types of vectors:
 1. __Lists__,  which are sometimes called recursive vectors because lists can 
   contain other lists. 
 
-The chief difference between atomic vectors and lists is that atomic vectors are __homogeneous__, while lists can be __heterogeneous__. There's one other related object: `NULL`. `NULL` is often used to represent the absence of a vector (as opposed to `NA` which is used to represent the absence of a value in a vector). `NULL` typically behaves like a vector of length 0. Figure \@ref(fig:datatypes) summarises the interrelationships. 
+The chief difference between atomic vectors and lists is that atomic vectors are __homogeneous__, while lists can be __heterogeneous__. There's one other related object: `NULL`. `NULL` is often used to represent the absence of a vector (as opposed to `NA` which is used to represent the absence of a value in a vector). `NULL` typically behaves like a vector of length 0. Figure \@ref(fig:datatypes) summarizes the interrelationships. 
 
 ```{r datatypes, echo = FALSE, out.width = "50%", fig.cap = "The hierarchy of R's vector types"}
 knitr::include_graphics("diagrams/data-structures-overview.png")
@@ -101,7 +101,7 @@ This chapter will introduce you to these important vectors from simplest to most
 
 ## Important types of atomic vector
 
-The four most important types of atomic vector are logical, integer, double, and character. Raw and complex are rarely used during a data analysis, so I won't discuss them here.
+The four most important types of atomic vector are logical, integer, double, and character. Raw and complex are rarely used during a data analysis, so we don't need to cover them in detail. Complex numbers involve the square root of -1, if you remember that from your algebra classes. These are almost never used in real world statistical analyses. Raw vectors are used to process binary data from files, and are used in web scraping, so we may cover them in a later course. 
 
 ### Logical
 
@@ -162,7 +162,7 @@ The distinction between integers and doubles is not usually important, but there
 
 Character vectors are the most complex type of atomic vector, because each element of a character vector is a string, and a string can contain an arbitrary amount of data. 
 
-You've already learned a lot about working with strings in [strings]. Here I wanted to mention one important feature of the underlying string implementation: R uses a global string pool. This means that each unique string is only stored in memory once, and every use of the string points to that representation. This reduces the amount of memory needed by duplicated strings. You can see this behaviour in practice with `pryr::object_size()`:
+We will discuss strings more in a future training module. Here I wanted to mention one important feature of the underlying string implementation: R uses a global string pool. This means that each unique string is only stored in memory once, and every use of the string points to that representation. This reduces the amount of memory needed by duplicated strings. You can see this behavior in practice with `pryr::object_size()`:
 
 ```{r}
 x <- "This is a reasonably long string."
@@ -251,7 +251,7 @@ An atomic vector can not have a mix of different types because the type is a pro
 
 ### Test functions
 
-Sometimes you want to do different things based on the type of vector. One option is to use `typeof()`. Another is to use a test function which returns a `TRUE` or `FALSE`. Base R provides many functions like `is.vector()` and `is.atomic()`, but they often return surprising results. Instead, it's safer to use the `is_*` functions provided by purrr, which are summarised in the table below.
+Sometimes you want to do different things based on the type of vector. One option is to use `typeof()`. Another is to use a test function which returns a `TRUE` or `FALSE`. Base R provides many functions like `is.vector()` and `is.atomic()`, but they often return surprising results. Instead, it's safer to use the `is_*` functions provided by purrr, which are summarized in the table below.
 
 |                  | lgl | int | dbl | chr | list |
 |------------------|-----|-----|-----|-----|------|
@@ -319,7 +319,7 @@ Named vectors are most useful for subsetting, described next.
 
 ### Subsetting {#vector-subsetting}
 
-So far we've used `dplyr::filter()` to filter the rows in a tibble. `filter()` only works with tibble, so we'll need new tool for vectors: `[`. `[` is the subsetting function, and is called like `x[a]`. There are four types of things that you can subset a vector with:
+You have probably used `dplyr::filter()` to filter the rows in a tibble. `filter()` only works with tibble, so we'll need different tool for vectors: `[`. `[` is the subsetting function, and is called like `x[a]`. There are four types of things that you can subset a vector with:
 
 1.  A numeric vector containing only integers. The integers must either be all 
     positive, all negative, or zero.
@@ -704,6 +704,10 @@ attributes(df)
 ```
 
 The main difference is the class. The class of tibble includes "data.frame" which means tibbles inherit the regular data frame behaviour by default.
+
+## Conclusion
+
+That's it! There are of course more things to learn about R data structures as you become more experienced in using R -- some additional reference materials are provided below. However, this should serve as a good base of knowledge to refer back to as we delve into more advanced topics in future modules. As mentioned, the next module will cover several other foundational aspects of programming with R -- control flows (e.g., if statements), functions, and iteration (e.g., loops). 
 
 # Reference Materials
 

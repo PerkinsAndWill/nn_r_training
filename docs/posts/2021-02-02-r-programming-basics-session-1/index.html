@@ -116,17 +116,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="twitter:image:width" content="1354"/>
 <meta property="twitter:image:height" content="1145"/>
 
-<!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
-<meta name="citation_title" content="Nelson\Nygaard R Training Blog: R Programming Basics - Session 1"/>
-<meta name="citation_fulltext_html_url" content="https://perkinsandwill.github.io/nn_r_training/posts/2021-02-02-r-programming-basics-session-1/"/>
-<meta name="citation_online_date" content="2021/02/03"/>
-<meta name="citation_publication_date" content="2021/02/03"/>
-<meta name="citation_author" content="Bryan Blanc"/>
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["R Programming Basics - Session 1"]},{"type":"character","attributes":{},"value":["An introduction to R data structures."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Bryan Blanc"]},{"type":"character","attributes":{},"value":["https://github.com/bpb824"]}]}]},{"type":"character","attributes":{},"value":["02-03-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/posts/2021-02-02-r-programming-basics-session-1/"]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/posts/2021-02-02-r-programming-basics-session-1/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["R Programming Basics - Session 1"]},{"type":"character","attributes":{},"value":["An introduction to R data structures."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Bryan Blanc"]},{"type":"character","attributes":{},"value":["https://github.com/bpb824"]}]}]},{"type":"character","attributes":{},"value":["02-03-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/posts/2021-02-02-r-programming-basics-session-1/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2500,6 +2494,7 @@ R Setup
 <li><a href="#dates-and-date-times">Dates and date-times</a></li>
 <li><a href="#tibbles">Tibbles</a></li>
 </ul></li>
+<li><a href="#conclusion">Conclusion</a></li>
 </ul></li>
 <li><a href="#reference-materials">Reference Materials</a>
 <ul>
@@ -2529,7 +2524,7 @@ R Setup
 <p>This first session focuses solely on R data structures, while the next will delve in to control flows, functions, and iteration. Future sessions will dive deeper into specific data structures, like character strings and date/time objects.</p>
 <p><strong>Acknowledgement:</strong> This module heavily draws upon Hadley Wickham’s (the progenitor of the Tidyverse) book (available for free online), <a href="https://r4ds.had.co.nz/">R for Data Science</a>, including text, pictures, and code directly copied from that book and slightly modified to suit a shorter narrative. Printed copies are available generally wherever you get your books. It is recommended that you read this book for a deeper understanding of the topics contained hereien – only basic concepts are able to be covered within the time available.</p>
 <h2 id="introduction">Introduction</h2>
-<p>You are probably most familiar with data frames (or their modernized analogue, tibbles) and the packages that work with them. But as you start to write your own functions, and dig deeper into R, you need to learn about <strong>vectors</strong>, the objects that underlie tibbles. If you’ve learned R in a more traditional way, you’re probably already familiar with vectors, as most R resources start with vectors and work their way up to tibbles. I think it’s better to start with tibbles because they’re immediately useful, and then work your way down to the underlying components. Vectors are particularly important as most of the functions you will write will work with vectors.</p>
+<p>You are probably most familiar with data frames (or their modernized analogue, tibbles) and the packages that work with them. But as you start to write your own functions, and dig deeper into R, you need to learn about <strong>vectors</strong>, the objects that underlie tibbles. If you’ve learned R in a more traditional way, you’re probably already familiar with vectors, as most R resources start with vectors and work their way up to data frames/tibbles. Vectors are particularly important as most of the functions you will write will work with vectors.</p>
 <h3 id="prerequisites">Prerequisites</h3>
 <p>The focus of this chapter is on base R data structures, so it isn’t essential to load any packages. We will, however, use a handful of functions from the <strong>purrr</strong> package to avoid some inconsistencies in base R.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2544,7 +2539,7 @@ R Setup
 <li><p><strong>Atomic</strong> vectors, of which there are six types: <strong>logical</strong>, <strong>integer</strong>, <strong>double</strong>, <strong>character</strong>, <strong>complex</strong>, and <strong>raw</strong>. Integer and double vectors are collectively known as <strong>numeric</strong> vectors.</p></li>
 <li><p><strong>Lists</strong>, which are sometimes called recursive vectors because lists can contain other lists.</p></li>
 </ol>
-<p>The chief difference between atomic vectors and lists is that atomic vectors are <strong>homogeneous</strong>, while lists can be <strong>heterogeneous</strong>. There’s one other related object: <code>NULL</code>. <code>NULL</code> is often used to represent the absence of a vector (as opposed to <code>NA</code> which is used to represent the absence of a value in a vector). <code>NULL</code> typically behaves like a vector of length 0. Figure <a href="#fig:datatypes">1</a> summarises the interrelationships.</p>
+<p>The chief difference between atomic vectors and lists is that atomic vectors are <strong>homogeneous</strong>, while lists can be <strong>heterogeneous</strong>. There’s one other related object: <code>NULL</code>. <code>NULL</code> is often used to represent the absence of a vector (as opposed to <code>NA</code> which is used to represent the absence of a value in a vector). <code>NULL</code> typically behaves like a vector of length 0. Figure <a href="#fig:datatypes">1</a> summarizes the interrelationships.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure"><span id="fig:datatypes"></span>
 <img src="diagrams/data-structures-overview.png" alt="The hierarchy of R's vector types" width="50%" />
@@ -2586,7 +2581,7 @@ Figure 1: The hierarchy of R’s vector types
 </ul>
 <p>This chapter will introduce you to these important vectors from simplest to most complicated. You’ll start with atomic vectors, then build up to lists, and finish off with augmented vectors.</p>
 <h2 id="important-types-of-atomic-vector">Important types of atomic vector</h2>
-<p>The four most important types of atomic vector are logical, integer, double, and character. Raw and complex are rarely used during a data analysis, so I won’t discuss them here.</p>
+<p>The four most important types of atomic vector are logical, integer, double, and character. Raw and complex are rarely used during a data analysis, so we don’t need to cover them in detail. Complex numbers involve the square root of -1, if you remember that from your algebra classes. These are almost never used in real world statistical analyses. Raw vectors are used to process binary data from files, and are used in web scraping, so we may cover them in a later course.</p>
 <h3 id="logical">Logical</h3>
 <p>Logical vectors are the simplest type of atomic vector because they can take only three possible values: <code>FALSE</code>, <code>TRUE</code>, and <code>NA</code>. Logical vectors are usually constructed with comparison operators, as described in [comparisons]. You can also create them by hand with <code>c()</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2690,7 +2685,7 @@ Figure 1: The hierarchy of R’s vector types
 </ol>
 <h3 id="character">Character</h3>
 <p>Character vectors are the most complex type of atomic vector, because each element of a character vector is a string, and a string can contain an arbitrary amount of data.</p>
-<p>You’ve already learned a lot about working with strings in [strings]. Here I wanted to mention one important feature of the underlying string implementation: R uses a global string pool. This means that each unique string is only stored in memory once, and every use of the string points to that representation. This reduces the amount of memory needed by duplicated strings. You can see this behaviour in practice with <code>pryr::object_size()</code>:</p>
+<p>We will discuss strings more in a future training module. Here I wanted to mention one important feature of the underlying string implementation: R uses a global string pool. This means that each unique string is only stored in memory once, and every use of the string points to that representation. This reduces the amount of memory needed by duplicated strings. You can see this behavior in practice with <code>pryr::object_size()</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='st'>"This is a reasonably long string."</span>
@@ -2755,12 +2750,12 @@ Figure 1: The hierarchy of R’s vector types
 <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>  <span class='co'># how many are greater than 10?</span>
 </code></pre>
 </div>
-<pre><code>[1] 52</code></pre>
+<pre><code>[1] 48</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='co'># what proportion are greater than 10?</span>
 </code></pre>
 </div>
-<pre><code>[1] 0.52</code></pre>
+<pre><code>[1] 0.48</code></pre>
 </div>
 <p>You may see some code (typically older) that relies on implicit coercion in the opposite direction, from integer to logical:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2792,7 +2787,7 @@ Figure 1: The hierarchy of R’s vector types
 </div>
 <p>An atomic vector can not have a mix of different types because the type is a property of the complete vector, not the individual elements. If you need to mix multiple types in the same vector, you should use a list, which you’ll learn about shortly.</p>
 <h3 id="test-functions">Test functions</h3>
-<p>Sometimes you want to do different things based on the type of vector. One option is to use <code>typeof()</code>. Another is to use a test function which returns a <code>TRUE</code> or <code>FALSE</code>. Base R provides many functions like <code>is.vector()</code> and <code>is.atomic()</code>, but they often return surprising results. Instead, it’s safer to use the <code>is_*</code> functions provided by purrr, which are summarised in the table below.</p>
+<p>Sometimes you want to do different things based on the type of vector. One option is to use <code>typeof()</code>. Another is to use a test function which returns a <code>TRUE</code> or <code>FALSE</code>. Base R provides many functions like <code>is.vector()</code> and <code>is.atomic()</code>, but they often return surprising results. Instead, it’s safer to use the <code>is_*</code> functions provided by purrr, which are summarized in the table below.</p>
 <table>
 <thead>
 <tr class="header">
@@ -2880,12 +2875,12 @@ Figure 1: The hierarchy of R’s vector types
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span> <span class='op'>+</span> <span class='fl'>100</span>
 </code></pre>
 </div>
-<pre><code> [1] 108 101 106 110 104 103 109 107 102 105</code></pre>
+<pre><code> [1] 108 106 104 102 110 103 101 105 107 109</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span> <span class='op'>&gt;</span> <span class='fl'>0.5</span>
 </code></pre>
 </div>
-<pre><code> [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE</code></pre>
+<pre><code> [1]  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE</code></pre>
 </div>
 <p>In R, basic mathematical operations work with vectors. That means that you should never need to perform explicit iteration when performing simple mathematical computations.</p>
 <p>It’s intuitive what should happen if you add two vectors of the same length, or a vector and a “scalar”, but what happens if you add two vectors of different lengths?</p>
@@ -2958,7 +2953,7 @@ i Only values of size one are recycled.</code></pre>
 </div>
 <p>Named vectors are most useful for subsetting, described next.</p>
 <h3 id="vector-subsetting">Subsetting</h3>
-<p>So far we’ve used <code>dplyr::filter()</code> to filter the rows in a tibble. <code>filter()</code> only works with tibble, so we’ll need new tool for vectors: <code>[</code>. <code>[</code> is the subsetting function, and is called like <code>x[a]</code>. There are four types of things that you can subset a vector with:</p>
+<p>You have probably used <code>dplyr::filter()</code> to filter the rows in a tibble. <code>filter()</code> only works with tibble, so we’ll need different tool for vectors: <code>[</code>. <code>[</code> is the subsetting function, and is called like <code>x[a]</code>. There are four types of things that you can subset a vector with:</p>
 <ol type="1">
 <li><p>A numeric vector containing only integers. The integers must either be all positive, all negative, or zero.</p>
 <p>Subsetting with positive integers keeps the elements at those positions:</p>
@@ -3240,7 +3235,7 @@ $farewell
 </div>
 <pre><code>function (x, ...) 
 UseMethod(&quot;as.Date&quot;)
-&lt;bytecode: 0x0000000015c79d40&gt;
+&lt;bytecode: 0x0000000015c7ae98&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>The call to “UseMethod” means that this is a generic function, and it will call a specific <strong>method</strong>, a function, based on the class of the first argument. (All methods are functions; not all functions are methods). You can list all the methods for a generic with <code>methods()</code>:</p>
@@ -3272,7 +3267,7 @@ see &#39;?methods&#39; for accessing help and source code</code></pre>
     else stop(gettextf(&quot;do not know how to convert &#39;%s&#39; to class %s&quot;, 
         deparse1(substitute(x)), dQuote(&quot;Date&quot;)), domain = NA)
 }
-&lt;bytecode: 0x0000000019085f10&gt;
+&lt;bytecode: 0x000000001906d190&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/getS3method.html'>getS3method</a></span><span class='op'>(</span><span class='st'>"as.Date"</span>, <span class='st'>"numeric"</span><span class='op'>)</span>
@@ -3289,7 +3284,7 @@ see &#39;?methods&#39; for accessing help and source code</code></pre>
     }
     as.Date(origin, ...) + x
 }
-&lt;bytecode: 0x0000000020471f58&gt;
+&lt;bytecode: 0x000000002064eca8&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>The most important S3 generic is <code>print()</code>: it controls how the object is printed when you type its name at the console. Other important generics are the subsetting functions <code>[</code>, <code>[[</code>, and <code>$</code>.</p>
@@ -3580,6 +3575,8 @@ $row.names
 [1] 1 2 3 4 5</code></pre>
 </div>
 <p>The main difference is the class. The class of tibble includes “data.frame” which means tibbles inherit the regular data frame behaviour by default.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>That’s it! There are of course more things to learn about R data structures as you become more experienced in using R – some additional reference materials are provided below. However, this should serve as a good base of knowledge to refer back to as we delve into more advanced topics in future modules. As mentioned, the next module will cover several other foundational aspects of programming with R – control flows (e.g., if statements), functions, and iteration (e.g., loops).</p>
 <h1 id="reference-materials">Reference Materials</h1>
 <h2 id="cheat-sheets">Cheat Sheets</h2>
 <ul>
@@ -3607,18 +3604,7 @@ $row.names
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom">
-  <h3 id="citation">Citation</h3>
-  <p>For attribution, please cite this work as</p>
-  <pre class="citation-appendix short">Blanc (2021, Feb. 3). Nelson\Nygaard R Training Blog: R Programming Basics - Session 1. Retrieved from https://perkinsandwill.github.io/nn_r_training/posts/2021-02-02-r-programming-basics-session-1/</pre>
-  <p>BibTeX citation</p>
-  <pre class="citation-appendix long">@misc{blanc2021r,
-  author = {Blanc, Bryan},
-  title = {Nelson\Nygaard R Training Blog: R Programming Basics - Session 1},
-  url = {https://perkinsandwill.github.io/nn_r_training/posts/2021-02-02-r-programming-basics-session-1/},
-  year = {2021}
-}</pre>
-</div>
+<div class="appendix-bottom"></div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->

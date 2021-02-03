@@ -52,9 +52,15 @@ respondent_info = clean %>%
 
 # Introduction
 
+This survey was conducted in January 2021 to help Team Data (formerly the GIS Team) understand user needs and wants to set priorities for the team's non-project work over 2021. Going forward, this survey will be conducted on an annual basis in a similar way to help set overhead priorities for the year. 
+
 # Respondent Information 
 
+There were a total of 20 respondents to the survey. Given that there are approximately 60 R/GIS users at Nelson\\Nygaard, this indicates an estimated 33% response rate. 
+
 ## Office Location 
+
+Three offices have 75% of the respondents -- Portland, Boston, and Seattle. 
 
 ```{r office-loc, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8}
 qid = 2
@@ -82,11 +88,13 @@ ggplot(summ,aes(x=answer_text,y=prop_respondents))+
   ggtitle(plot_title)
 ```
 
-
-
 # Current Software Usage and Issues
 
+We asked several question about the availability and usage of GIS amd other software. 
+
 ## Software Usage
+
+GIS and Illustrator are used relatively frequently by nearly all respondents, while about half of respondents use InDesign a few times per month or more. Only a third of respondents use R a few times per month or more. 
 
 ```{r software-type-usage, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8}
 qid = 3
@@ -120,7 +128,12 @@ ggplot(summ,aes(x=subheader,y=prop_respondents,fill = answer_text))+
   ggtitle(plot_title)
 ```
 
-## GIS Availability
+## GIS Software Availability
+
+We asked for users' experience of availability of various GIS related software. Note that those symbolized in gray do not use the software. 
+
+- GIS basic is nearly universally available
+- GIS Advanced, Network Analyst, and Spatial Analyst, are not always available, but respondents indicated they are 'mostly' accessible. 
 
 ```{r gis-availability, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8}
 qid = 4
@@ -160,6 +173,13 @@ ggplot(summ,aes(x=subheader,y=prop_respondents,fill = answer_text))+
 
 ## GIS Add-Ons
 
+We asked if there were any additional software add-ons users would like available for GIS. Full responses are presented in the below table, while the results are summarized in the following bullets:
+
+- Business Analyst (3 users)
+- ArcGIS Online (2 users)
+- ETGeo (1 user)
+- Integration of ArcGIS and Adobe Illustrator (1 user)
+
 ```{r gis-add-ons, echo=FALSE, message=FALSE, warning=FALSE, out.width=1000}
 qid = 5
 
@@ -167,13 +187,15 @@ sub = clean %>%
   filter(question_id == qid,other_text==FALSE) %>%
   filter(!is.na(answer_text)) %>%
   left_join(respondent_info) %>%
-  select(answer_text) %>%
-  rename(Response = answer_text) 
+  select(respondent_id,answer_text) 
 
 plot_title = paste0(questions$question_text[questions$question_id==qid],
-                    ' (N=',n_distinct(sub$`Respondent ID`),')')
+                    ' (N=',n_distinct(sub$respondent_id),')')
 
-DT::datatable(sub,
+sub %>%
+  select(answer_text) %>%
+  rename(Response = answer_text) %>%
+  DT::datatable(.,
               options = list(paging=FALSE,info=FALSE,autoWidth=TRUE),
               rownames = FALSE, filter='top',
               caption = plot_title,
@@ -184,6 +206,14 @@ DT::datatable(sub,
 
 ## Node
 
+We asked for general comments about Node usage, which has become much more common during the COVID-19 pandemic because of the need to work from home. Full responses are presented in the below table, while the results are summarized in the following bullets:
+
+- In general, respondents had positive comments about Node Usage
+- There were several issues noted:
+ - **Inconvenience of connecting to different nodes.** Quick access folder settings are lost, as are other user-based settings, which is inconvenient. We have resolved the need to re-install R packages with a common R package repository. 
+ - **Issues in accessing Sharepoint.** Multiple respondents indicated it is difficult to access Sharepoint on Node computers. 
+ - **Adobe Illustrator/InDesign usage on Node**. It is very slow to use Adobe software on the Node without access to a local server. 
+
 ```{r node, echo=FALSE, message=FALSE, warning=FALSE, out.width=1000}
 qid = 7
 
@@ -191,13 +221,15 @@ sub = clean %>%
   filter(question_id == qid,other_text==FALSE) %>%
   filter(!is.na(answer_text)) %>%
   left_join(respondent_info) %>%
-  select(answer_text) %>%
-  rename(Response = answer_text) 
+  select(respondent_id,answer_text) 
 
 plot_title = paste0(questions$question_text[questions$question_id==qid],
-                    ' (N=',n_distinct(sub$`Respondent ID`),')')
+                    ' (N=',n_distinct(sub$respondent_id),')')
 
-DT::datatable(sub,
+sub %>%
+  select(answer_text) %>%
+  rename(Response = answer_text) %>%
+  DT::datatable(.,
               options = list(paging=FALSE,info=FALSE,autoWidth=TRUE),
               rownames = FALSE, filter='top',
               caption = plot_title,
@@ -208,6 +240,12 @@ DT::datatable(sub,
 
 ## More Tools and Software
 
+There were several comments given on the development of R/Shiny dashboard tools in 2021:
+
+- Standardized tools for transit data (APC/AVL) dashboards, especially for route profiles. 
+- Development of shared parking model dashboard
+- Tools to automate the cleanup and analysis of crash data
+
 ```{r tools-1, echo=FALSE, message=FALSE, warning=FALSE, out.width=1000}
 qid = 9
 
@@ -215,18 +253,27 @@ sub = clean %>%
   filter(question_id == qid,other_text==FALSE) %>%
   filter(!is.na(answer_text)) %>%
   left_join(respondent_info) %>%
-  select(answer_text) %>%
-  rename(Response = answer_text) 
+  select(respondent_id,answer_text) 
 
 plot_title = paste0(questions$question_text[questions$question_id==qid],
-                    ' (N=',n_distinct(sub$`Respondent ID`),')')
+                    ' (N=',n_distinct(sub$respondent_id),')')
 
-DT::datatable(sub,
+sub %>%
+  select(answer_text) %>%
+  rename(Response = answer_text) %>%
+  DT::datatable(.,
               options = list(paging=FALSE,info=FALSE,autoWidth=TRUE),
               rownames = FALSE, filter='top',
               caption = plot_title,
               width = 1000)
 ```
+
+There were a few other tools users wanted Team Data to investigate:
+
+- Mapbox vs. ArcGIS Storymaps
+- Travel time querying alternatives to Google Maps
+- Installation  of javascript-based leaflet add-ons for use in R
+- Strava or equivalent data for bicycle demand estimation
 
 ```{r tools-2, echo=FALSE, message=FALSE, warning=FALSE, out.width=1000}
 qid = 11
@@ -235,13 +282,15 @@ sub = clean %>%
   filter(question_id == qid,other_text==FALSE) %>%
   filter(!is.na(answer_text)) %>%
   left_join(respondent_info) %>%
-  select(answer_text) %>%
-  rename(Response = answer_text) 
+  select(respondent_id,answer_text) 
 
 plot_title = paste0(questions$question_text[questions$question_id==qid],
-                    ' (N=',n_distinct(sub$`Respondent ID`),')')
+                    ' (N=',n_distinct(sub$respondent_id),')')
 
-DT::datatable(sub,
+sub %>%
+  select(answer_text) %>%
+  rename(Response = answer_text) %>%
+  DT::datatable(.,
               options = list(paging=FALSE,info=FALSE,autoWidth=TRUE),
               rownames = FALSE, filter='top',
               caption = plot_title,
@@ -250,6 +299,23 @@ DT::datatable(sub,
 
 ## Resources
 
+We asked users for ideas on training resources we should develop. Full responses are presented in the table, and summary bullets are given below: 
+
+- **Static GIS Map Checklist**: Providing Associates with a checklist of elements they should include on every map (e.g., scale bar, north arrow) would help ensure map consistency.
+- **How-to Guides for GIS**
+ - Hexbins
+ - Getting Canadian data sources (this exists, needs to be communicated)
+ - ArcGIS Pro
+- **How-to Guides for R**
+ - LEHD/Census data (this exists, needs to be better communicated)
+ - GTFS data (this exists, needs to be better communicated)
+ - Spider lines
+ - Integration of R and Illustrator for static mapping
+ - Interactive map styling
+- In general, making methodology documentation easy to find
+- Adding more commonly used data to the G Drive
+
+
 ```{r resources, echo=FALSE, message=FALSE, warning=FALSE, out.width=1000}
 qid = 8
 
@@ -257,13 +323,15 @@ sub = clean %>%
   filter(question_id == qid,other_text==FALSE) %>%
   filter(!is.na(answer_text)) %>%
   left_join(respondent_info) %>%
-  select(answer_text) %>%
-  rename(Response = answer_text) 
+  select(respondent_id,answer_text)  
 
 plot_title = paste0(questions$question_text[questions$question_id==qid],
-                    ' (N=',n_distinct(sub$`Respondent ID`),')')
+                    ' (N=',n_distinct(sub$respondent_id),')')
 
-DT::datatable(sub,
+sub %>%
+  select(answer_text) %>%
+  rename(Response = answer_text) %>%
+  DT::datatable(.,
               options = list(paging=FALSE,info=FALSE,autoWidth=TRUE),
               rownames = FALSE, filter='top',
               caption = plot_title,
@@ -272,6 +340,11 @@ DT::datatable(sub,
 
 ## Hangout Topics
 
+Additional GIS Hangout topics respondents would like to see include the following:
+
+- NN GIS 101 (especially file saving protocol)
+- Ideas for how to use ArcGIS online accounts
+
 ```{r hangout-topics, echo=FALSE, message=FALSE, warning=FALSE, out.width=1000}
 qid = 10
 
@@ -279,13 +352,15 @@ sub = clean %>%
   filter(question_id == qid,other_text==FALSE) %>%
   filter(!is.na(answer_text)) %>%
   left_join(respondent_info) %>%
-  select(answer_text) %>%
-  rename(Response = answer_text) 
+  select(respondent_id,answer_text)  
 
 plot_title = paste0(questions$question_text[questions$question_id==qid],
-                    ' (N=',n_distinct(sub$`Respondent ID`),')')
+                    ' (N=',n_distinct(sub$respondent_id),')')
 
-DT::datatable(sub,
+sub %>%
+  select(answer_text) %>%
+  rename(Response = answer_text) %>%
+  DT::datatable(.,
               options = list(paging=FALSE,info=FALSE,autoWidth=TRUE),
               rownames = FALSE, filter='top',
               caption = plot_title,
@@ -295,6 +370,8 @@ DT::datatable(sub,
 
 ## Miscellaneous Comments
 
+The major miscellaneous additional comment of note was the use of Illustrator in the remote context, and how to work with it on server drives, as has been raised elsewhere in the survey. 
+
 ```{r other-comments, echo=FALSE, message=FALSE, warning=FALSE, out.width=1000}
 qid = 12
 
@@ -302,13 +379,15 @@ sub = clean %>%
   filter(question_id == qid,other_text==FALSE) %>%
   filter(!is.na(answer_text)) %>%
   left_join(respondent_info) %>%
-  select(answer_text) %>%
-  rename(Response = answer_text) 
+  select(respondent_id,answer_text) 
 
 plot_title = paste0(questions$question_text[questions$question_id==qid],
-                    ' (N=',n_distinct(sub$`Respondent ID`),')')
+                    ' (N=',n_distinct(sub$respondent_id),')')
 
-DT::datatable(sub,
+sub %>%
+  select(answer_text) %>%
+  rename(Response = answer_text) %>%
+  DT::datatable(.,
               options = list(paging=FALSE,info=FALSE,autoWidth=TRUE),
               rownames = FALSE, filter='top',
               caption = plot_title,
