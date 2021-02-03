@@ -44,4 +44,7 @@ collections:
   user-resources:
     citations: false
     categories: true
+  example-analyses: 
+    citations: false
+    categories: true
 output: distill::distill_article
