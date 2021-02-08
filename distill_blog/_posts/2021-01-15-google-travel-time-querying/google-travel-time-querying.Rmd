@@ -17,6 +17,11 @@ categories:
   - google-APIs
 ---
 
+*This content was presented to Nelson\\Nygaard Staff at a GIS Hangout on Thursday, January 21st, 2021, and is [available as a recording here](https://web.microsoftstream.com/video/908a09a8-edd3-4604-8f41-e086372432dc) and embedded below.*
+
+<p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/video/908a09a8-edd3-4604-8f41-e086372432dc?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p>
+
+
 # Background
 For those that have been using R at NN for several years, you may be familiar with querying travel times using functions in the `transportr` package -- a bare bones package Bryan was saving useful functions into for NN R work. Back in 2016, when Bryan was writing a function for querying Google Directions, there was no existing package/function for doing so. In the intervening years, other packages have been developed that are more fully featured and better maintained than the corresponding functions in `transportr`. 
 
@@ -304,7 +309,7 @@ Below we demonstrate an example of using the adjustment factors calculated above
 dir_results_to_logan = google_directions(origin = 'Everett Square, Boston, MA',
                   destination = 'Logan International Airport Boston, MA',
                   mode = 'driving',
-                  departure_time = as.POSIXct('2021-01-26 07:30:00', tz='America/New_York'),
+                  departure_time = as.POSIXct('2021-02-23 07:30:00', tz='America/New_York'),
                   alternatives = TRUE)
 
 
@@ -340,7 +345,7 @@ google_map(data = polys_to_logan) %>%
 dir_results_from_logan = google_directions(destination= 'Everett Square, Boston, MA',
                   origin = 'Logan International Airport Boston, MA',
                   mode = 'driving',
-                  departure_time = as.POSIXct('2021-01-26 12:00:00', tz='America/New_York'),
+                  departure_time = as.POSIXct('2021-02-23 12:00:00', tz='America/New_York'),
                   alternatives = TRUE)
 
 
@@ -422,3 +427,4 @@ ggplot(bound_travel_times,aes(x=factor(alternative_num),y=value,fill=plot_label)
 
 ```
 
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Thursday, January 21st, and is [available as a recording here](https://web.microsoftstream.com/video/908a09a8-edd3-4604-8f41-e086372432dc) and embedded at the top of the page.*
