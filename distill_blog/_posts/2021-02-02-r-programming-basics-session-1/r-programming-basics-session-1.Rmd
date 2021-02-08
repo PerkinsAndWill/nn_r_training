@@ -12,11 +12,13 @@ output:
     toc: true
     toc_depth: 3
     toc_float: true
+categories: 
+  - r-knowledge
 ---
 
-*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Wednesday, February 3rd, 2021, and is [available as a recording here - TODO](TODO) and embedded below.*
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Wednesday, February 3rd, 2021, and is [available as a recording here](https://web.microsoftstream.com/video/2eb9d408-3723-4179-b8b8-eb1641b2a40a) and embedded below.*
 
-<!-- <p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/video/f3b1ef12-798f-45fd-b75a-ddd3dd295fc8?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p> -->
+<p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/video/2eb9d408-3723-4179-b8b8-eb1641b2a40a?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p>
 
 # Today's Agenda
 
@@ -724,4 +726,4 @@ That's it! There are of course more things to learn about R data structures as y
 
 - [Introduction to R](https://learn.datacamp.com/courses/free-introduction-to-r) (4 hours)
 
-*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Wednesday, February 3rd, and is [available as a recording here](TODO) and embedded at the top of the page.*
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Wednesday, February 3rd, and is [available as a recording here](https://web.microsoftstream.com/video/2eb9d408-3723-4179-b8b8-eb1641b2a40a) and embedded at the top of the page.*

@@ -120,7 +120,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["R Programming Basics - Session 1"]},{"type":"character","attributes":{},"value":["An introduction to R data structures."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Bryan Blanc"]},{"type":"character","attributes":{},"value":["https://github.com/bpb824"]}]}]},{"type":"character","attributes":{},"value":["02-03-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/posts/2021-02-02-r-programming-basics-session-1/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["R Programming Basics - Session 1"]},{"type":"character","attributes":{},"value":["An introduction to R data structures."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Bryan Blanc"]},{"type":"character","attributes":{},"value":["https://github.com/bpb824"]}]}]},{"type":"character","attributes":{},"value":["02-03-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["r-knowledge"]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/posts/2021-02-02-r-programming-basics-session-1/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2437,6 +2437,9 @@ R Setup
 <div class="d-title">
 <h1>R Programming Basics - Session 1</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:r-knowledge" class="dt-tag">r-knowledge</a>
+</div>
 <!--/radix_placeholder_categories-->
 <p><p>An introduction to R data structures.</p></p>
 </div>
@@ -2505,8 +2508,11 @@ R Setup
 </ul>
 </nav>
 </div>
-<p><em>This content was presented to Nelson\Nygaard Staff at a Lunch and Learn webinar on Wednesday, February 3rd, 2021, and is <a href="TODO">available as a recording here - TODO</a> and embedded below.</em></p>
-<!-- <p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/video/f3b1ef12-798f-45fd-b75a-ddd3dd295fc8?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p> -->
+<p><em>This content was presented to Nelson\Nygaard Staff at a Lunch and Learn webinar on Wednesday, February 3rd, 2021, and is <a href="https://web.microsoftstream.com/video/2eb9d408-3723-4179-b8b8-eb1641b2a40a">available as a recording here</a> and embedded below.</em></p>
+<p align="center">
+<iframe width="640" height="360" src="https://web.microsoftstream.com/video/2eb9d408-3723-4179-b8b8-eb1641b2a40a?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;">
+</iframe>
+</p>
 <h1 id="todays-agenda">Today’s Agenda</h1>
 <ul>
 <li>Announcements (5 min)</li>
@@ -2750,12 +2756,12 @@ Figure 1: The hierarchy of R’s vector types
 <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>  <span class='co'># how many are greater than 10?</span>
 </code></pre>
 </div>
-<pre><code>[1] 48</code></pre>
+<pre><code>[1] 45</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='co'># what proportion are greater than 10?</span>
 </code></pre>
 </div>
-<pre><code>[1] 0.48</code></pre>
+<pre><code>[1] 0.45</code></pre>
 </div>
 <p>You may see some code (typically older) that relies on implicit coercion in the opposite direction, from integer to logical:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2875,12 +2881,12 @@ Figure 1: The hierarchy of R’s vector types
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span> <span class='op'>+</span> <span class='fl'>100</span>
 </code></pre>
 </div>
-<pre><code> [1] 108 106 104 102 110 103 101 105 107 109</code></pre>
+<pre><code> [1] 110 106 108 109 105 103 102 104 107 101</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span> <span class='op'>&gt;</span> <span class='fl'>0.5</span>
 </code></pre>
 </div>
-<pre><code> [1]  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE</code></pre>
+<pre><code> [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
 </div>
 <p>In R, basic mathematical operations work with vectors. That means that you should never need to perform explicit iteration when performing simple mathematical computations.</p>
 <p>It’s intuitive what should happen if you add two vectors of the same length, or a vector and a “scalar”, but what happens if you add two vectors of different lengths?</p>
@@ -3235,7 +3241,7 @@ $farewell
 </div>
 <pre><code>function (x, ...) 
 UseMethod(&quot;as.Date&quot;)
-&lt;bytecode: 0x0000000015c7ae98&gt;
+&lt;bytecode: 0x0000000015c60550&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>The call to “UseMethod” means that this is a generic function, and it will call a specific <strong>method</strong>, a function, based on the class of the first argument. (All methods are functions; not all functions are methods). You can list all the methods for a generic with <code>methods()</code>:</p>
@@ -3267,7 +3273,7 @@ see &#39;?methods&#39; for accessing help and source code</code></pre>
     else stop(gettextf(&quot;do not know how to convert &#39;%s&#39; to class %s&quot;, 
         deparse1(substitute(x)), dQuote(&quot;Date&quot;)), domain = NA)
 }
-&lt;bytecode: 0x000000001906d190&gt;
+&lt;bytecode: 0x0000000019097470&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/getS3method.html'>getS3method</a></span><span class='op'>(</span><span class='st'>"as.Date"</span>, <span class='st'>"numeric"</span><span class='op'>)</span>
@@ -3284,7 +3290,7 @@ see &#39;?methods&#39; for accessing help and source code</code></pre>
     }
     as.Date(origin, ...) + x
 }
-&lt;bytecode: 0x000000002064eca8&gt;
+&lt;bytecode: 0x0000000020d25060&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>The most important S3 generic is <code>print()</code>: it controls how the object is printed when you type its name at the console. Other important generics are the subsetting functions <code>[</code>, <code>[[</code>, and <code>$</code>.</p>
@@ -3591,7 +3597,7 @@ $row.names
 <ul>
 <li><a href="https://learn.datacamp.com/courses/free-introduction-to-r">Introduction to R</a> (4 hours)</li>
 </ul>
-<p><em>This content was presented to Nelson\Nygaard Staff at a Lunch and Learn webinar on Wednesday, February 3rd, and is <a href="TODO">available as a recording here</a> and embedded at the top of the page.</em></p>
+<p><em>This content was presented to Nelson\Nygaard Staff at a Lunch and Learn webinar on Wednesday, February 3rd, and is <a href="https://web.microsoftstream.com/video/2eb9d408-3723-4179-b8b8-eb1641b2a40a">available as a recording here</a> and embedded at the top of the page.</em></p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

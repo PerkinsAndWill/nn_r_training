@@ -19,9 +19,9 @@ categories:
     - r-knowledge
 ---
 
-*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Tuesday, October 13th, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/f3b1ef12-798f-45fd-b75a-ddd3dd295fc8) and embedded below.*
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Tuesday, October 13th, 2020, and is [available as a recording here](https://web.microsoftstream.com/video/a0ef1f1d-fec8-47c9-b7da-17466d82e21a) and embedded below.*
 
-<p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/video/f3b1ef12-798f-45fd-b75a-ddd3dd295fc8?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p>
+<p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/video/a0ef1f1d-fec8-47c9-b7da-17466d82e21a?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p>
 
 # Today's Agenda
 
@@ -584,4 +584,4 @@ For production code projects, where a client will be continuously re-using code 
 
 - [Intermediate Tidyverse Toolbox course track (4 courses, 16 hours)](https://learn.datacamp.com/skill-tracks/intermediate-tidyverse-toolbox?version=1)
 
-*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Tuesday, October 13th, and is [available as a recording here](https://web.microsoftstream.com/video/f3b1ef12-798f-45fd-b75a-ddd3dd295fc8) and embedded at the top of the page.*
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Tuesday, October 13th, and is [available as a recording here](https://web.microsoftstream.com/video/a0ef1f1d-fec8-47c9-b7da-17466d82e21a) and embedded at the top of the page.*

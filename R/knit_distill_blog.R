@@ -1,15 +1,28 @@
 library(knitr)
 library(rmarkdown)
 library(distill)
+library(tidyverse)
+library(scales)
 
-rmarkdown::render('_posts/welcome/welcome.Rmd')
-rmarkdown::render('_posts/2021-01-15-google-travel-time-querying/google-travel-time-querying.Rmd')
-rmarkdown::render('_posts/2021-01-14-tidyverse/tidyverse.Rmd')
-rmarkdown::render('_posts/2021-01-14-census-data/census-data.Rmd')
-rmarkdown::render("_posts/2021-01-14-geospatial-data/geospatial-data.Rmd")
-rmarkdown::render("_posts/2021-01-14-gtfs-data/gtfs-data.Rmd")
-rmarkdown::render("_posts/2021-01-14-miscellaneous-questions/miscellaneous-questions.Rmd")
-rmarkdown::render("_posts/2021-01-14-shiny-session-1/shiny-session-1.Rmd")
-rmarkdown::render("_posts/2021-01-14-shiny-session-2/shiny-session-2.Rmd")
-rmarkdown::render("_posts/2021-01-14-shiny-session-3/shiny-session-3.Rmd")
-rmarkdown::render("_posts/2021-01-14-shiny-session-4/shiny-session-4.Rmd")
+knit_all_posts = function(post_folder){
+  folders = list.files(post_folder)
+  
+  for(i in 1:length(folders)){
+    folder = folders[i]
+    
+    rmd_file = paste0(post_folder,'/',folder,'/',str_sub(folder,12,-1),'.Rmd')
+    
+    rmarkdown::render(rmd_file)
+    
+    print(paste0(percent(i/length(folders)),' done'))
+  }
+}
+
+#Posts
+knit_all_posts('_posts')
+
+#User Resources
+knit_all_posts('_user-resources')
+
+#Example Analyses
+knit_all_posts('_example-analyses')

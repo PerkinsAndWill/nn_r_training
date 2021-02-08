@@ -14,7 +14,7 @@ output:
     toc_float: true
 categories:
   - geospatial
-  - google-apis
+  - google-APIs
 ---
 
 # Background
