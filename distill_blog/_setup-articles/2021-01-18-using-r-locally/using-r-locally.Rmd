@@ -8,88 +8,149 @@ date: 01-18-2021
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc_depth: 3
+    toc_float: true
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
-# Neccessary Setup 
+# R/RStudio Setup
 
 ## How to Relocate Local R Package Folder
 
-These steps redefine the R user packages folder in R to use a "Local" folder within your R user profile, which for me is: `C:/Users/EshelO/Local/R/win-library/3.4`. 
+These steps redefine the R user packages folder in R to use a "Local"
+folder within your R user profile, which for me is:
+`C:/Users/EshelO/Local/R/win-library/3.4`.
 
-- The username will need to be modified 
-- The R version will need to be modified 
-- Any user-writable folder will work; IT has agreed on this as a standard location. The same folder can be used for the ArcGIS default geodatabase, Github repository directory, etc.). 
+-   The username will need to be modified
+-   The R version will need to be modified
+-   Any user-writable folder will work; IT has agreed on this as a
+    standard location. The same folder can be used for the ArcGIS
+    default geodatabase, Github repository directory, etc.).
 
-1. Relocate your existing R user library folder (which for me was in `C:/Users/EshelO/Document/R/win-library/3.4` (if Documents has already been migrated, this would be `C:/Users/EshelO/OneDrive - Perkins and Will/Documents) to C:/Users/EshelO/Local/R/win-library` (or per above)  
+1.  Relocate your existing R user library folder (which for me was in
+    `C:/Users/EshelO/Document/R/win-library/3.4` (if Documents has
+    already been migrated, this would be
+    `C:/Users/EshelO/OneDrive - Perkins and Will/Documents) to C:/Users/EshelO/Local/R/win-library`
+    (or per above)
 
-2. Test the change:  
+2.  Test the change:
 
-Run `.libPaths("C:/Users/EshelO/Local/R/win-library/3.4")` (modifying as necessary) - this is only for your current R session  
+Run `.libPaths("C:/Users/EshelO/Local/R/win-library/3.4")` (modifying as
+necessary) - this is only for your current R session
 
-Run `.libPaths()` and you should be able to validate this worked  
+Run `.libPaths()` and you should be able to validate this worked
 
-Run a test `require()` and `install.packages()` to verify R can both read and install to the new location  
+Run a test `require()` and `install.packages()` to verify R can both
+read and install to the new location
 
 ```{r,eval=FALSE}
 require(dplyr)  
-install.packages("tidycensus”) 
+install.packages("tidycensus") 
 ```
 
-3. Find your R user directory 
-  - You can determine your home directory using: `path.expand("~/")` in R which for me is the Documents folder in my OneDrive  
-  - By default this should be your Documents folder. This would get relocated to OneDrive, which is fine. 
+<!-- 3.  Find your R user directory -->
 
-4. Update either or both of these files in the folder determined in (1) - I did both in case some applications only reference one, although one should suffice:
+<!-- -   You can determine your home directory using: `path.expand("~/")` in -->
+<!--     R which for me is the Documents folder in my OneDrive\ -->
+<!-- -   By default this should be your Documents folder. This would get -->
+<!--     relocated to OneDrive, which is fine. -->
 
-  a) Run the following line in the R console to change your R library environment variable `Sys.setenv(R_LIBS_USER=C:/Users/EshelO/Local/R/win-library/3.4)`  
-  b) add a libpaths setting in the .Rprofile file in your R home directory: `.libPaths("C:/Users/EshelO/Local/R/win-library/3.4")`
-  c) I've attached sample files for both in this folder, if they don't exist. Modify them to reflect the location where you have your R user libraries. 
-    - You may need to do a Save As to these names, since you may not be able to rename them to have the leading “.” 
-    - Use Notepad++ if you have it. Notepad also works; you may need to set file type as All Files so it does not append “.txt” 
-  d) After restarting run .libPaths() and/or  Sys.getenv() and you should be able to validate this worked (for the latter check the R_LIBS_USER setting) and do the same require and packages.install() tests as above. 
+<!-- 4.  Update either or both of these files in the folder determined in -->
+<!--     (1) - I did both in case some applications only reference one, -->
+<!--     although one should suffice: -->
 
-# Optional Setup
+<!-- ```{=html} -->
+<!-- <!-- --> -->
+<!-- ``` -->
+<!-- a)  Run the following line in the R console to change your R library -->
+<!--     environment variable -->
+<!--     `Sys.setenv(R_LIBS_USER=C:/Users/EshelO/Local/R/win-library/3.4)`\ -->
+<!-- b)  add a libpaths setting in the .Rprofile file in your R home -->
+<!--     directory: `.libPaths("C:/Users/EshelO/Local/R/win-library/3.4")` -->
+<!-- c)  I've attached sample files for both in this folder, if they don't -->
+<!--     exist. Modify them to reflect the location where you have your R -->
+<!--     user libraries. - You may need to do a Save As to these names, since -->
+<!--     you may not be able to rename them to have the leading "." - Use -->
+<!--     Notepad++ if you have it. Notepad also works; you may need to set -->
+<!--     file type as All Files so it does not append ".txt" -->
+<!-- d)  After restarting run .libPaths() and/or  Sys.getenv() and you should -->
+<!--     be able to validate this worked (for the latter check the -->
+<!--     R_LIBS_USER setting) and do the same require and packages.install() -->
+<!--     tests as above. -->
+
+# Other  Setup
 
 ## Installing and Configuring Git & GitHub
-Git is a version control system, a tool that tracks changes to your code and shares those changes with others. Git is most useful when combined with GitHub, a website that allows you to share your code with the world, solicit improvements via pull requests and track issues. Git + GitHub is the most popular version control system for developers of R packages (thousands of R packages are hosted on GitHub) and many other types of software. 
 
-Git and GitHub are generally useful for all software development and data analysis, not just R packages. 
+Git is a version control system, a tool that tracks changes to your code
+and shares those changes with others. Git is most useful when combined
+with GitHub, a website that allows you to share your code with the
+world, solicit improvements via pull requests and track issues. Git +
+GitHub is the most popular version control system for developers of R
+packages (thousands of R packages are hosted on GitHub) and many other
+types of software.
 
-To use Git/GitHub with R, you will need to set up a GitHub account and configure RStudio to interface with GitHub. Detailed instructions for this can be found [here](http://r-pkgs.had.co.nz/git.html). 
+Git and GitHub are generally useful for all software development and
+data analysis, not just R packages.
 
-**- To get an Enterprise P+W account:**
-  - Create your own personal github account; recommend setting up using your personal e-mail
-  - Email [Joel Register](mailto:joel.register@perkinswill.com) your github username and ask to be added to the Nelson\Nygaard team 
-    - “Could I request to join the enterprise GitHub account? My username is XXXXX.”  
-  - Uses Git; Esther suggests using command-line 
-  - Integration with RStudio also an option 
-  - Follow up brownbag (Esther action?) 
-  - 3/25/2020: Esther has developed resources; see PPT file and Wiki page 
+To use Git/GitHub with R, you will need to set up a GitHub account and
+configure RStudio to interface with GitHub. Detailed instructions for
+this can be found [here](http://r-pkgs.had.co.nz/git.html). 
 
-## Installing RTools 
+File a help ticket with IT to have Git installed. 
 
-RTools is a collection of development tools that are essential for writing and releasing packages.  The latest RTools  package can be  downloaded from the [CRAN website](https://cran.r-project.org/bin/windows/Rtools/).  Download the latest package and run the executable file. If everything goes well, you will have a new directory on your computer called C:/Rtools. More detailed information and instructions can be found [here](https://cran.r-project.org/doc/manuals/R-admin.html#The-Windows-toolset). 
+**- To get an Enterprise P+W account:** - Create your own personal
+github account; recommend setting up using your personal e-mail - Email
+[Joel Register](mailto:joel.register@perkinswill.com) your github
+username and ask to be added to the Nelson\Nygaard team - "Could I
+request to join the enterprise GitHub account? My username is XXXXX."
+
+## Installing RTools
+
+RTools is a collection of development tools that are essential for
+writing and releasing packages. The latest RTools package can be
+downloaded from the [CRAN
+website](https://cran.r-project.org/bin/windows/Rtools/). File a help ticket to have it installed. If everything goes well, you
+will have a new directory on your computer called C:/Rtools. More
+detailed information and instructions can be found
+[here](https://cran.r-project.org/doc/manuals/R-admin.html#The-Windows-toolset).
 
 # Script Management
 
 ## Folder Conventions
 
-- Create R folder within G: Drive 
-  - Talk to GIS team about adding this to the template (Oren to discuss) 
-- Folder structure 
-  - README.txt 
-    - Title block for code with author, date, purpose 
-  - Add shortcuts to P - Analysis 
-  - Esther suggests three subfolders: 
-    - Raw: shortcuts to G - z.orig 
-    - Interim 
-    - Output: shortcut to P – Graphics or SharePoint – Graphics folders 
-- Start using R Projects? 
-  - Allows relative file paths 
-  
+-   Create R folder within G: Drive
+
+    -   Talk to GIS team about adding this to the template (Oren to
+        discuss)
+
+-   Folder structure
+
+    -   README.txt
+
+        -   Title block for code with author, date, purpose
+
+    -   Add shortcuts to P - Analysis
+
+    -   Esther suggests three subfolders:
+
+        -   Raw: shortcuts to G - z.orig
+        -   Interim
+        -   Output: shortcut to P -- Graphics or SharePoint -- Graphics
+            folders
+
+-   Start using R Projects?
+
+    -   Allows relative file paths
+
 ## Script Titleblock Snippet
 
-In R studio go to Tools -> global options --> code --> bottom of page "edit snippets" --> scroll to bottom and paste the below in, change your name in the Author field.
+In R studio go to Tools -\> global options --\> code --\> bottom of page
+"edit snippets" --\> scroll to bottom and paste the below in, change
+your name in the Author field.
 
 ```{r, eval=FALSE}
 snippet header
@@ -125,47 +186,72 @@ snippet header
 	# source("functions/summarise_data.R") #example
 	## ---------------------------
 ```
-  
+
 # ShinyApps Web Hosting
 
 ## Management Dashboard
 
-- [https://www.shinyapps.io/admin/#/profile](https://www.shinyapps.io/admin/#/profile)
+-   <https://www.shinyapps.io/admin/#/profile>
 
 ## Management Account
 
-- shinyapps@nelsonnygaard.com
-- This account is accessible to various people (Bryan, Tomoko, Esther, Oren)
-- You can add it to your email by: 
-  - Outlook -> Accounting Settings 
-  - Email Tab -> New 
-  - Enter shinyapps@nelsonnygaard.com -> Next 
-  - Restart Outlook and you should see the mailbox at the bottom of the left navigation toolbar. 
-- Email is also forwarded to each of the above individuals. Forwarding is set up using a server side rule by logging into Outlook 365 web mail. If others need to be added, this can be done by: 
-  - Log into [Outlook 365](https://outlook.office.com/mail/shinyapps@nelsonnygaard.com/inbox) (this link should take you straight to the account) 
-    - If not, go to icon in upper right -> Open Another Mailbox -> Shinyapps@nelsonygaard.com 
-  - Settings icon in upper right of Outlook 
-  - Mail settings -> Rules 
-  - “Shinyapps Email Forwarding” Rule -> Edit Rule 
-  
+-   [shinyapps\@nelsonnygaard.com](mailto:shinyapps@nelsonnygaard.com){.email}
+
+-   This account is accessible to various people (Bryan, Tomoko, Esther,
+    Oren)
+
+-   You can add it to your email by:
+
+    -   Outlook -\> Accounting Settings
+    -   Email Tab -\> New
+    -   Enter
+        [shinyapps\@nelsonnygaard.com](mailto:shinyapps@nelsonnygaard.com){.email}
+        -\> Next
+    -   Restart Outlook and you should see the mailbox at the bottom of
+        the left navigation toolbar.
+
+-   Email is also forwarded to each of the above individuals. Forwarding
+    is set up using a server side rule by logging into Outlook 365 web
+    mail. If others need to be added, this can be done by:
+
+    -   Log into [Outlook
+        365](https://outlook.office.com/mail/shinyapps@nelsonnygaard.com/inbox)
+        (this link should take you straight to the account)
+
+        -   If not, go to icon in upper right -\> Open Another Mailbox
+            -\>
+            [Shinyapps\@nelsonygaard.com](mailto:Shinyapps@nelsonygaard.com){.email}
+
+    -   Settings icon in upper right of Outlook
+
+    -   Mail settings -\> Rules
+
+    -   "Shinyapps Email Forwarding" Rule -\> Edit Rule
+
 ### Password
 
-- Oren requested that this account be added to Okta, which hopefully can then be used to save our password. 
+-   Oren requested that this account be added to Okta, which hopefully
+    can then be used to save our password.
 
 ### Uploading to shinyapps.io
 
-- Use rsconnect package in RStudio to deploy using a token in the Shiny dashboard 
-- In Shiny Dashboard, go to Account -> tokens -> Show -> Copy to Clipboard 
-- One-time: paste the commend from the Shiny Dashboard – rsconnect::setaccount…  
-- In RStudio, run: rsconnect::deployApp() 
-- Set working directory to where Shiny app lives 
-- Setwd… (may need to comment and uncomment) 
+-   Use rsconnect package in RStudio to deploy using a token in the
+    Shiny dashboard
+-   In Shiny Dashboard, go to Account -\> tokens -\> Show -\> Copy to
+    Clipboard
+-   One-time: paste the commend from the Shiny Dashboard --
+    rsconnect::setaccount...\
+-   In RStudio, run: rsconnect::deployApp()
+-   Set working directory to where Shiny app lives
+-   Setwd... (may need to comment and uncomment)
 
 ## AWS SQL Server Hosting
 
-- How do we charge costs do a credit card? Bryan needs to hook in a credit card for this.  
+-   How do we charge costs do a credit card? Bryan needs to hook in a
+    credit card for this.
 
 ## Google API Access
 
-- Individual accounts needed, threshold beyond (~2500 per day) which you are billed per query 
-- Action: re-investigate central account/billing – Oren and/or Tomoko 
+-   Individual accounts needed, threshold beyond (\~2500 per day) which
+    you are billed per query
+-   Action: re-investigate central account/billing -- Oren and/or Tomoko

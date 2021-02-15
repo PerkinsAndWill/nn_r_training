@@ -7,14 +7,14 @@
     <description>Nelson\\Nygaard R Training Blog
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 18 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 15 Feb 2021 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Using R on Node</title>
       <dc:creator>Bryan Blanc</dc:creator>
       <link>https://perkinsandwill.github.io/nn_r_training/setup-articles/2021-01-18-node-usage</link>
       <description>Setup information for using R on a node computer.</description>
       <guid>https://perkinsandwill.github.io/nn_r_training/setup-articles/2021-01-18-node-usage</guid>
-      <pubDate>Mon, 18 Jan 2021 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Using R Locally</title>

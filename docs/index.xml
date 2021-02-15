@@ -11,116 +11,116 @@
     <item>
       <title>R Programming Basics - Session 1</title>
       <dc:creator>Bryan Blanc</dc:creator>
-      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-02-02-r-programming-basics-session-1</link>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/r-basics-1</link>
       <description>An introduction to R data structures.</description>
       <category>r-knowledge</category>
-      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-02-02-r-programming-basics-session-1</guid>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/r-basics-1</guid>
       <pubDate>Wed, 03 Feb 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/2021-02-02-r-programming-basics-session-1/diagrams/data-structures-overview.png" medium="image" type="image/png" width="1354" height="1145"/>
+      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/r-basics-1/diagrams/data-structures-overview.png" medium="image" type="image/png" width="1354" height="1145"/>
     </item>
     <item>
       <title>Google Travel Time Querying</title>
       <dc:creator>Bryan Blanc</dc:creator>
-      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-15-google-travel-time-querying</link>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/github-best-practices</link>
       <description>Usage of the googleway package for travel time querying.</description>
       <category>geospatial</category>
       <category>google-APIs</category>
-      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-15-google-travel-time-querying</guid>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/github-best-practices</guid>
       <pubDate>Fri, 15 Jan 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-15-google-travel-time-querying/google-travel-time-querying_files/figure-html5/tti-fig-1-1.png" medium="image" type="image/png" width="2304" height="1536"/>
+      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/github-best-practices/google-travel-time-querying_files/figure-html5/tti-fig-1-1.png" medium="image" type="image/png" width="2304" height="1536"/>
     </item>
     <item>
       <title>Census Data</title>
       <dc:creator>Bryan Blanc</dc:creator>
-      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-census-data</link>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/census-data</link>
       <description>Demonstration of downloading and summarizing U.S. Census Bureau data in R</description>
       <category>census</category>
       <category>geospatial</category>
       <category>leaflet</category>
-      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-census-data</guid>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/census-data</guid>
       <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-census-data/census-data_files/figure-html5/tigris-1.png" medium="image" type="image/png" width="1248" height="768"/>
+      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/census-data/census-data_files/figure-html5/tigris-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
       <title>Geospatial Data</title>
       <dc:creator>Bryan Blanc</dc:creator>
-      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-geospatial-data</link>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/geospatial-data</link>
       <description>An introduction to geospatial data in R with a focus on sf and leaflet</description>
       <category>geospatial</category>
       <category>leaflet</category>
-      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-geospatial-data</guid>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/geospatial-data</guid>
       <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-geospatial-data/geospatial-data_files/figure-html5/unnamed-chunk-9-1.png" medium="image" type="image/png" width="1248" height="576"/>
+      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/geospatial-data/geospatial-data_files/figure-html5/unnamed-chunk-9-1.png" medium="image" type="image/png" width="1248" height="576"/>
     </item>
     <item>
       <title>GTFS Data</title>
       <dc:creator>Bryan Blanc</dc:creator>
-      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-gtfs-data</link>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/gtfs-data</link>
       <description>Understanding GTFS data and usage within R</description>
       <category>gtfs</category>
       <category>geospatial</category>
-      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-gtfs-data</guid>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/gtfs-data</guid>
       <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-gtfs-data/gtfs-data_files/figure-html5/unnamed-chunk-11-1.png" medium="image" type="image/png" width="1920" height="1152"/>
+      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/gtfs-data/gtfs-data_files/figure-html5/unnamed-chunk-11-1.png" medium="image" type="image/png" width="1920" height="1152"/>
     </item>
     <item>
       <title>Miscellaneous Questions</title>
       <dc:creator>Bryan Blanc</dc:creator>
-      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-miscellaneous-questions</link>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/miscellaneous-questions</link>
       <description>A short description of the post.</description>
       <category>markdown</category>
       <category>gtfs</category>
       <category>purrr</category>
       <category>r-knowledge</category>
-      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-miscellaneous-questions</guid>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/miscellaneous-questions</guid>
       <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-miscellaneous-questions/graphics/diagrams/lists-map2.png" medium="image" type="image/png" width="810" height="306"/>
+      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/miscellaneous-questions/graphics/diagrams/lists-map2.png" medium="image" type="image/png" width="810" height="306"/>
     </item>
     <item>
       <title>Shiny Session 1</title>
       <dc:creator>Bryan Blanc</dc:creator>
-      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-1</link>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/shiny-session-1</link>
       <description>First Shiny training session in series of four</description>
       <category>shiny</category>
-      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-1</guid>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/shiny-session-1</guid>
       <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Shiny Session 2</title>
       <dc:creator>Bryan Blanc</dc:creator>
-      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-2</link>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/shiny-session-2</link>
       <description>Second Shiny Training Session: Leaflet and shinydashboards</description>
       <category>shiny</category>
       <category>geospatial</category>
-      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-2</guid>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/shiny-session-2</guid>
       <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Shiny Session 3</title>
       <dc:creator>Bryan Blanc</dc:creator>
-      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-3</link>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/shiny-session-3</link>
       <description>Third Shiny Training Session: App Deployment and Full Demo Application</description>
       <category>shiny</category>
-      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-3</guid>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/shiny-session-3</guid>
       <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Shiny Session 4</title>
       <dc:creator>Bryan Blanc</dc:creator>
-      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-4</link>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/shiny-session-4</link>
       <description>A presentation of demo applications from Shiny training series.</description>
       <category>shiny</category>
-      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-shiny-session-4</guid>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/shiny-session-4</guid>
       <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Introduction to the Tidyverse</title>
       <dc:creator>Bryan Blanc</dc:creator>
-      <link>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse</link>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/tidyverse</link>
       <description>An initial training on the philosophy and elements of the tidyverse.</description>
       <category>tidyverse</category>
       <category>purrr</category>
-      <guid>https://perkinsandwill.github.io/nn_r_training/posts/2021-01-14-tidyverse</guid>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/tidyverse</guid>
       <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
     </item>
   </channel>

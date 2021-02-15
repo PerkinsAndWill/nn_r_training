@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <link rel="canonical" href="https://perkinsandwill.github.io/nn_r_training/setup-articles/2021-01-18-node-usage/"/>
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2021-01-18"/>
-<meta property="article:created" itemprop="dateCreated" content="2021-01-18"/>
+<meta property="article:published" itemprop="datePublished" content="2021-02-15"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-02-15"/>
 <meta name="article:author" content="Bryan Blanc"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -114,12 +114,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Using R on Node"]},{"type":"character","attributes":{},"value":["Setup information for using R on a node computer."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Bryan Blanc"]}]}]},{"type":"character","attributes":{},"value":["01-18-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/setup-articles/2021-01-18-node-usage/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Using R on Node"]},{"type":"character","attributes":{},"value":["Setup information for using R on a node computer."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Bryan Blanc"]}]}]},{"type":"character","attributes":{},"value":["02-15-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/setup-articles/2021-01-18-node-usage/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["node-usage_files/anchor-4.2.2/anchor.min.js","node-usage_files/bowser-1.9.3/bowser.min.js","node-usage_files/distill-2.2.21/template.v2.js","node-usage_files/header-attrs-2.6.1/header-attrs.js","node-usage_files/jquery-1.11.3/jquery.min.js","node-usage_files/popper-2.6.0/popper.min.js","node-usage_files/tippy-6.2.7/tippy-bundle.umd.min.js","node-usage_files/tippy-6.2.7/tippy-light-border.css","node-usage_files/tippy-6.2.7/tippy.css","node-usage_files/tippy-6.2.7/tippy.umd.min.js","node-usage_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["images/node_setup_1.PNG","images/node_setup_2.PNG","images/node_setup_3.PNG","images/node_setup_4.PNG","node-usage_files/anchor-4.2.2/anchor.min.js","node-usage_files/bowser-1.9.3/bowser.min.js","node-usage_files/distill-2.2.21/template.v2.js","node-usage_files/header-attrs-2.6.1/header-attrs.js","node-usage_files/jquery-1.11.3/jquery.min.js","node-usage_files/popper-2.6.0/popper.min.js","node-usage_files/tippy-6.2.7/tippy-bundle.umd.min.js","node-usage_files/tippy-6.2.7/tippy-light-border.css","node-usage_files/tippy-6.2.7/tippy.css","node-usage_files/tippy-6.2.7/tippy.umd.min.js","node-usage_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2376,7 +2376,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Using R on Node","description":"Setup information for using R on a node computer.","authors":[{"author":"Bryan Blanc","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-01-18T00:00:00.000-08:00","citationText":"Blanc, 2021"}
+{"title":"Using R on Node","description":"Setup information for using R on a node computer.","authors":[{"author":"Bryan Blanc","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-02-15T00:00:00.000-08:00","citationText":"Blanc, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2438,19 +2438,46 @@ R Setup
 <div class="d-byline">
   Bryan Blanc  
   
-<br/>01-18-2021
+<br/>02-15-2021
 </div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#first-steps">First Steps</a>
+<ul>
+<li><a href="#do-this-first-setting-up-your-r-package-library">DO THIS FIRST – SETTING UP YOUR R PACKAGE LIBRARY</a>
+<ul>
+<li><a href="#step-1-open-the-environment-variables-settings-for-your-user-account">Step 1: Open the Environment Variables Settings for your User Account</a></li>
+<li><a href="#step-2-create-a-new-environment-variable">Step 2: Create a New Environment Variable</a></li>
+<li><a href="#step-3-confirm-your-new-variable-has-been-saved">Step 3: Confirm Your New Variable has been Saved</a></li>
+<li><a href="#step-4-verify-settings-in-rstudio">Step 4: Verify Settings in RStudio</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</div>
 <h1 id="first-steps">First Steps</h1>
 <h2 id="do-this-first-setting-up-your-r-package-library">DO THIS FIRST – SETTING UP YOUR R PACKAGE LIBRARY</h2>
-<p>The <strong>first</strong> thing to do upon opening RStudio on node is to set your R package library to the shared package library on the G Drive. You will only have to do this once, as the environment variable should be remembered on your user account even if you are using a different node computer. Copy and paste the below line of code directly into the RStudio console.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Sys.setenv.html'>Sys.setenv</a></span><span class='op'>(</span><span class='st'>'R_LIBS_USER'</span><span class='op'>=</span><span class='st'>'G:/Management/r_package_library'</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
+<p>The <strong>first</strong> thing to do <strong>before</strong> opening RStudio on node is to set your R package library to the shared package library on the G Drive. You will only have to do this once, as the environment variable should be remembered on your user account even if you are using a different node computer. Previously, I recommended you do this by setting the environment variable with a line of R code. This does not appear to have a high enough level of permissions to make sure the change is consistent across node computers, so instead I have laid out steps below to do this through the Windows Control Panel.</p>
+<h3 id="step-1-open-the-environment-variables-settings-for-your-user-account">Step 1: Open the Environment Variables Settings for your User Account</h3>
+<p>The easiest way to access the environment variables settings is to open up Control Panel (within your Start menu), and then search for the settings using the keyword ‘environment’. You will want to click on <strong>‘edit the environment variables’</strong> link to open the dialog, as shown in the screenshot below.</p>
+<figure>
+<img src="images/node_setup_1.PNG" alt="Step 1" /><figcaption aria-hidden="true">Step 1</figcaption>
+</figure>
+<h3 id="step-2-create-a-new-environment-variable">Step 2: Create a New Environment Variable</h3>
+<p>Click the ‘New’ button to create a new environment variable. Type in <code>R_LIBS_USER</code> for the variable name and <code>G:/Management/r_package_library</code> for the variable value. Press OK.</p>
+<figure>
+<img src="images/node_setup_2.PNG" alt="Step 2" /><figcaption aria-hidden="true">Step 2</figcaption>
+</figure>
+<h3 id="step-3-confirm-your-new-variable-has-been-saved">Step 3: Confirm Your New Variable has been Saved</h3>
+<p>Confirm your new variable is reflected in the list of user environment variables as below. Press OK to confirm.</p>
+<figure>
+<img src="images/node_setup_3.PNG" alt="Step 3" /><figcaption aria-hidden="true">Step 3</figcaption>
+</figure>
+<h3 id="step-4-verify-settings-in-rstudio">Step 4: Verify Settings in RStudio</h3>
 <p>You can verify that this environment variable is set to the correct value you set above anytime by running the following line of code:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2458,7 +2485,10 @@ R Setup
 </code></pre>
 </div>
 </div>
-<p>It should return the path you just set above. If it does not for some reason, please contact <a href="mailto:bblanc@nelsonnygaard.com">Bryan Blanc</a> to make him aware of the issue, and he will work with IT to help you resolve the issue.</p>
+<figure>
+<img src="images/node_setup_4.PNG" alt="Step 4" /><figcaption aria-hidden="true">Step 4</figcaption>
+</figure>
+<p>It should return the path you just set above (<code>'G:/Management/r_package_library'</code>) . If it does not for some reason, please contact <a href="mailto:bblanc@nelsonnygaard.com">Bryan Blanc</a> to make him aware of the issue, and he will work with IT to help you resolve the issue.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
