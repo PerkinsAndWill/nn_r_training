@@ -20,9 +20,11 @@ output:
 
 # Today's Agenda
 
-- [Functions (20 min)](#functions)
-- [Choice-based control flows (20 min)](#choices)
-- [Simple iteration (20 min)](#iteration)
+- [Functions (30 min)](#functions)
+- [Choice-based control flows (15 min)](#choices)
+- [Simple iteration (15 min)](#iteration)
+
+__Acknowledgement:__ This module heavily draws upon Hadley Wickham's (the progenitor of the Tidyverse) book (available for free online), [R for Data Science](https://r4ds.had.co.nz/), including text, pictures, and code directly copied from that book and slightly modified to suit a shorter narrative. Printed copies are available generally wherever you get your books. It is recommended that you read this book for a deeper understanding of the topics contained hereien -- only basic concepts are able to be covered within the time available. 
 
 # Functions
 
@@ -39,13 +41,13 @@ One of the best ways to improve your reach as a data scientist is to write funct
 1.  You eliminate the chance of making incidental mistakes when you copy and 
     paste (i.e. updating a variable name in one place, but not in another).
 
-Writing good functions is a lifetime journey. Even after using R for many years I still learn new techniques and better ways of approaching old problems. The goal of this section is not to teach you every esoteric detail of functions but to get you started with some pragmatic advice that you can apply immediately.
+Writing good functions is a lifetime journey. Even after using R for many years, I still learn new techniques and better ways of approaching old problems. The goal of this section is not to teach you every esoteric detail of functions but to get you started with some pragmatic advice that you can apply immediately.
 
 As well as practical advice for writing functions, this section also gives you some suggestions for how to style your code. Good code style is like correct punctuation. Youcanmanagewithoutit, but it sure makes things easier to read! As with styles of punctuation, there are many possible variations. Here we present the style we use in our code, but the most important thing is to be consistent.
 
 ## When should you write a function?
 
-You should consider writing a function whenever you've copied and pasted a block of code more than twice (i.e. you now have three copies of the same code). For example, take a look at this code. What does it do?
+You should consider writing a function whenever you've copied and pasted a block of code more than twice (i.e., you now have three copies of the same code). For example, take a look at this code. What does it do?
 
 ```{r}
 library(tidyverse)
@@ -68,7 +70,7 @@ df$d <- (df$d - min(df$d, na.rm = TRUE)) /
 
 You might be able to puzzle out that this rescales each column to have a range from 0 to 1. But did you spot the mistake? I made an error when copying-and-pasting the code for `df$b`: I forgot to change an `a` to a `b`. Extracting repeated code out into a function is a good idea because it prevents you from making this type of mistake.
 
-To write a function you need to first analyse the code. How many inputs does it have?
+To write a function you need to first analyze the code. How many inputs does it have?
 
 ```{r, eval = FALSE}
 (df$a - min(df$a, na.rm = TRUE)) /
@@ -120,7 +122,7 @@ rescale01(c(-10, 0, 10))
 rescale01(c(1, 2, 3, NA, 5))
 ```
 
-As you write more and more functions you'll eventually want to convert these informal, interactive tests into formal, automated tests. That process is called unit testing. Unfortunately, it's beyond the scope of this book, but you can learn about it in <http://r-pkgs.had.co.nz/tests.html>.
+As you write more and more functions you'll eventually want to convert these informal, interactive tests into formal, automated tests. That process is called unit testing. Unfortunately, it's beyond the scope of this module, but you can learn about it in <http://r-pkgs.had.co.nz/tests.html>.
 
 We can simplify the original example now that we have a function:
 
@@ -154,9 +156,9 @@ rescale01(x)
 
 It's important to remember that functions are not just for the computer, but are also for humans. R doesn't care what your function is called, or what comments it contains, but these are important for human readers. This section discusses some things that you should bear in mind when writing functions that humans can understand.
 
-The name of a function is important. Ideally, the name of your function will be short, but clearly evoke what the function does. That's hard! But it's better to be clear than short, as RStudio's autocomplete makes it easy to type long names.
+The name of a function is important. Ideally, the name of your function will be short, but clearly evoke what the function does. That's hard! But it's better to be clear than short, as RStudio's auto-complete makes it easy to type long names.
 
-Generally, function names should be verbs, and arguments should be nouns. There are some exceptions: nouns are ok if the function computes a very well known noun (i.e. `mean()` is better than `compute_mean()`), or accessing some property of an object (i.e. `coef()` is better than `get_coefficients()`). A good sign that a noun might be a better choice is if you're using a very broad verb like "get", "compute", "calculate", or "determine". Use your best judgement and don't be afraid to rename a function if you figure out a better name later.
+Generally, function names should be verbs, and arguments should be nouns. There are some exceptions: nouns are OK if the function computes a very well known noun (i.e. `mean()` is better than `compute_mean()`), or accessing some property of an object (i.e. `coef()` is better than `get_coefficients()`). A good sign that a noun might be a better choice is if you're using a very broad verb like "get", "compute", "calculate", or "determine". Use your best judgment and don't be afraid to rename a function if you figure out a better name later.
 
 ```{r, eval = FALSE}
 # Too short
@@ -178,7 +180,7 @@ col_mins <- function(x, y) {}
 rowMaxes <- function(y, x) {}
 ```
 
-If you have a family of functions that do similar things, make sure they have consistent names and arguments. Use a common prefix to indicate that they are connected. That's better than a common suffix because autocomplete allows you to type the prefix and see all the members of the family. 
+If you have a family of functions that do similar things, make sure they have consistent names and arguments. Use a common prefix to indicate that they are connected. That's better than a common suffix because auto-complete allows you to type the prefix and see all the members of the family. 
 
 ```{r, eval = FALSE}
 # Good
