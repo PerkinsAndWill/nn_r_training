@@ -1,0 +1,54 @@
+---
+title: "Recommended Reading"
+description: |
+  A regularly updated list of the best books & websites to read for gaining R skills and knowledge.
+author:
+  - name: Bryan Blanc
+    url: {}
+date: "`r strftime(Sys.Date(),'%B %d, %Y')`"
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+Below is a regularly updated list of the best books (with web reading links where available) for general and specific R skills/knowledge. You can likely use your tech and/or professional development benefits if you would like to purchase your own printed copy, or check with other folks in the #r-users Slack channel to see if someone has a copy they could lend you. 
+
+```{r, echo = FALSE, out.width=1200}
+library(googlesheets4)
+library(googledrive)
+library(tidyverse)
+library(DT)
+
+gs4_auth(email = 'bryanpblanc@gmail.com')
+raw_reading_list = as_id('https://docs.google.com/spreadsheets/d/1FlUvEhTikxxnQYV5CP1T4M5wgudnZJ88f4T44C9RSpc/edit?usp=sharing') %>%
+  read_sheet('Reading List')  
+
+raw_reading_list %>%
+  mutate(Title = ifelse(!is.na(`Web Reading Link (if applicable)`),
+                        paste0("<a href='",`Web Reading Link (if applicable)`,"'>",Title,"</a>"),
+                        Title),
+         `Goodreads Link` =paste0("<a href='",`Goodreads Link`,"'>",'Goodreads Page',"</a>") ) %>%
+  select(-`Web Reading Link (if applicable)`) %>%
+  rename(`Title (with web link if available)`=Title,
+         `ID`=`Internal ID`) %>%
+  mutate(`Relevant Tags` = map_chr(`Relevant Tags`,function(tags){
+    
+    tags_split = str_split(tags,', ') %>% unlist()
+    
+    html_vec = character(0)
+    
+    for(i in 1:length(tags_split)){
+      tag = tags_split[i]
+      
+      tag_link = paste0("<a href='https://perkinsandwill.github.io/nn_r_training/#category:",tag,"'>",tag,"</a>")
+      html_vec[i]=tag_link
+    }
+    
+    pasted_html = paste(html_vec,collapse = '<br>')
+    
+  })) %>%
+  DT::datatable(rownames=FALSE, escape=FALSE,
+          options = list(paging=FALSE,info=FALSE,autoWidth=TRUE), filter = 'top',
+          width = 1200) 
+
+```

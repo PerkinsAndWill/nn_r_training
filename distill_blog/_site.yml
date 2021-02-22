@@ -12,7 +12,7 @@ navbar:
         - text: 'Training Module Index'
           href: index.html
         - text: 'Upcoming Training Schedule'
-          href: user-resources/2021-01-23-lnl-schedule/index.html
+          href: user-resources/lnl-schedule/index.html
     - text: "Recipes"
       href: recipes-listing.html
     - text: "Example Analyses"
@@ -20,13 +20,13 @@ navbar:
     - text: "User Resources"
       menu: 
         - text: 'Upcoming Training Schedule'
-          href: user-resources/2021-01-23-lnl-schedule/index.html
+          href: user-resources/lnl-schedule/index.html
         - text: 'Request a 1-on-1 R Help Session'
           href: https://forms.gle/mMU2Pt3TRAoEnntPA
         - text: 'Current R Software Versions and Users'
-          href: user-resources/2021-01-23-nn-r-user-list/index.html
+          href: user-resources/nn-r-user-list/index.html
         - text: 'Recommended Reading List'
-          href: user-resources/2021-01-23-recommended-reading/index.html
+          href: user-resources/recommended-reading/index.html
     - text: "R Setup"
       menu:
         - text: 'Setup R Locally'

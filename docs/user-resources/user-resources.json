@@ -1,6 +1,23 @@
 [
   {
-    "path": "user-resources/2021-01-23-recommended-reading/",
+    "path": "user-resources/lnl-schedule/",
+    "title": "Lunch and Learn Webinar Schedule",
+    "description": "A regularly updated schedule of Lunch and Learn Webinars for R users at Nelson\\\\Nygaard.",
+    "author": [
+      {
+        "name": "Bryan Blanc",
+        "url": {}
+      }
+    ],
+    "date": "2021-02-22",
+    "categories": [],
+    "contents": "\r\nBelow is a regularly updated list of the upcoming scheduled Lunch and Learn webinars for R users at Nelson\\Nygaard. Until such a time as we decided to change the time slot, these will be scheduled in perpetuity from 12 - 1 p.m. Pacific time on Wednesdays on a bi-weekly basis. Refer to the table below for specific dates and topics. Occasionally, if Bryan has an especially busy project load, is taking vacation, there is an intersecting NN holiday, or there is a lack of topics, these will be canceled or moved. Advanced notice will be provided for these occasions. Please provide feedback on the schedule if you would like a topic scheduled sooner or would like to add additional topics by contacting Bryan directly.\r\n\r\n\r\n{\"x\":{\"filter\":\"top\",\"filterHTML\":\"<tr>\\n  <td data-type=\\\"date\\\" style=\\\"vertical-align: top;\\\">\\n    <div class=\\\"form-group has-feedback\\\" style=\\\"margin-bottom: auto;\\\">\\n      <input type=\\\"search\\\" placeholder=\\\"All\\\" class=\\\"form-control\\\" style=\\\"width: 100%;\\\"/>\\n      <span class=\\\"glyphicon glyphicon-remove-circle form-control-feedback\\\"><\\/span>\\n    <\\/div>\\n    <div style=\\\"display: none; position: absolute; width: 200px;\\\">\\n      <div data-min=\\\"1614729600000\\\" data-max=\\\"1640131200000\\\"><\\/div>\\n      <span style=\\\"float: left;\\\"><\\/span>\\n      <span style=\\\"float: right;\\\"><\\/span>\\n    <\\/div>\\n  <\\/td>\\n  <td data-type=\\\"character\\\" style=\\\"vertical-align: top;\\\">\\n    <div class=\\\"form-group has-feedback\\\" style=\\\"margin-bottom: auto;\\\">\\n      <input type=\\\"search\\\" placeholder=\\\"All\\\" class=\\\"form-control\\\" style=\\\"width: 100%;\\\"/>\\n      <span class=\\\"glyphicon glyphicon-remove-circle form-control-feedback\\\"><\\/span>\\n    <\\/div>\\n  <\\/td>\\n  <td data-type=\\\"character\\\" style=\\\"vertical-align: top;\\\">\\n    <div class=\\\"form-group has-feedback\\\" style=\\\"margin-bottom: auto;\\\">\\n      <input type=\\\"search\\\" placeholder=\\\"All\\\" class=\\\"form-control\\\" style=\\\"width: 100%;\\\"/>\\n      <span class=\\\"glyphicon glyphicon-remove-circle form-control-feedback\\\"><\\/span>\\n    <\\/div>\\n  <\\/td>\\n<\\/tr>\",\"data\":[[\"2021-03-03\",\"2021-03-17\",\"2021-03-31\",\"2021-04-14\",\"2021-04-28\",\"2021-05-12\",\"2021-05-26\",\"2021-06-09\",\"2021-06-23\",\"2021-07-07\",\"2021-07-21\",\"2021-08-04\",\"2021-08-18\",\"2021-09-01\",\"2021-09-15\",\"2021-09-29\",\"2021-10-13\",\"2021-10-27\",\"2021-11-10\",\"2021-11-24\",\"2021-12-08\",\"2021-12-22\"],[\"2021.03\",\"2021.04\",\"2021.05\",\"2021.06\",\"2021.07\",\"2021.08\",\"2021.09\",\"2021.10\",\"2021.11\",\"2021.12\",\"2021.13\",\"2021.14\",\"2021.15\",\"2021.16\",\"2021.17\",\"2021.18\",\"2021.19\",\"2021.20\",\"2021.21\",\"2021.22\",\"2021.23\",\"2021.24\"],[\"Working with Text Strings and Regular Expressions\",\"GitHub + Best Practices for Starting an R Project\",\"Work Share Session 1\",\"Working with Dates and Times\",\"Plotting with R\",\"Survey Analysis\",\"Work Share Session 2\",\"Using R as GIS Software, Static Map to Illustrator Process\",\"A Deeper Dive into TidyCensus and Using Census/ACS Data in R\",\"More Google APIs: Geocoding, Places, Distance Matrix, Isochrones\",\"Work Share Session 3\",\"Leaflet mapping best practices\",\"Shiny Session 5: Advanced UI Elements and Layout\",\"Shiny Session 6: Advanced Server Side Topics\",\"Work Share Session 4\",\"R Markdown\",\"Bookdown, distill, Github pages\",\"TBD\",\"Work Share Session 5\",\"Database basics\",\"Using R with SQL Databases\",\"Work Share Session 6\"]],\"container\":\"<table class=\\\"display\\\">\\n  <thead>\\n    <tr>\\n      <th>Date<\\/th>\\n      <th>Session ID<\\/th>\\n      <th>Topic<\\/th>\\n    <\\/tr>\\n  <\\/thead>\\n<\\/table>\",\"options\":{\"paging\":false,\"info\":false,\"autoWidth\":true,\"order\":[],\"orderClasses\":false,\"orderCellsTop\":true}},\"evals\":[],\"jsHooks\":[]}\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-02-22T07:50:23-08:00",
+    "input_file": {}
+  },
+  {
+    "path": "user-resources/recommended-reading/",
     "title": "Recommended Reading",
     "description": "A regularly updated list of the best books & websites to read for gaining R skills and knowledge.",
     "author": [
@@ -17,24 +34,7 @@
     "input_file": {}
   },
   {
-    "path": "user-resources/2021-01-23-lnl-schedule/",
-    "title": "Lunch and Learn Webinar Schedule",
-    "description": "A regularly updated schedule of Lunch and Learn Webinars for R users at Nelson\\\\Nygaard.",
-    "author": [
-      {
-        "name": "Bryan Blanc",
-        "url": {}
-      }
-    ],
-    "date": "2021-02-08",
-    "categories": [],
-    "contents": "\r\nBelow is a regularly updated list of the upcoming scheduled Lunch and Learn webinars for R users at Nelson\\Nygaard. Until such a time as we decided to change the time slot, these will be scheduled in perpetuity from 12 - 1 p.m. Pacific time on Wednesdays on a bi-weekly basis. Refer to the table below for specific dates and topics. Occasionally, if Bryan has an especially busy project load, is taking vacation, there is an intersecting NN holiday, or there is a lack of topics, these will be canceled or moved. Advanced notice will be provided for these occasions. Please provide feedback on the schedule if you would like a topic scheduled sooner or would like to add additional topics by contacting Bryan directly.\r\n\r\n\r\n{\"x\":{\"filter\":\"top\",\"filterHTML\":\"<tr>\\n  <td data-type=\\\"date\\\" style=\\\"vertical-align: top;\\\">\\n    <div class=\\\"form-group has-feedback\\\" style=\\\"margin-bottom: auto;\\\">\\n      <input type=\\\"search\\\" placeholder=\\\"All\\\" class=\\\"form-control\\\" style=\\\"width: 100%;\\\"/>\\n      <span class=\\\"glyphicon glyphicon-remove-circle form-control-feedback\\\"><\\/span>\\n    <\\/div>\\n    <div style=\\\"display: none; position: absolute; width: 200px;\\\">\\n      <div data-min=\\\"1.61352e+12\\\" data-max=\\\"1640131200000\\\"><\\/div>\\n      <span style=\\\"float: left;\\\"><\\/span>\\n      <span style=\\\"float: right;\\\"><\\/span>\\n    <\\/div>\\n  <\\/td>\\n  <td data-type=\\\"character\\\" style=\\\"vertical-align: top;\\\">\\n    <div class=\\\"form-group has-feedback\\\" style=\\\"margin-bottom: auto;\\\">\\n      <input type=\\\"search\\\" placeholder=\\\"All\\\" class=\\\"form-control\\\" style=\\\"width: 100%;\\\"/>\\n      <span class=\\\"glyphicon glyphicon-remove-circle form-control-feedback\\\"><\\/span>\\n    <\\/div>\\n  <\\/td>\\n  <td data-type=\\\"character\\\" style=\\\"vertical-align: top;\\\">\\n    <div class=\\\"form-group has-feedback\\\" style=\\\"margin-bottom: auto;\\\">\\n      <input type=\\\"search\\\" placeholder=\\\"All\\\" class=\\\"form-control\\\" style=\\\"width: 100%;\\\"/>\\n      <span class=\\\"glyphicon glyphicon-remove-circle form-control-feedback\\\"><\\/span>\\n    <\\/div>\\n  <\\/td>\\n<\\/tr>\",\"data\":[[\"2021-02-17\",\"2021-03-03\",\"2021-03-17\",\"2021-03-31\",\"2021-04-14\",\"2021-04-28\",\"2021-05-12\",\"2021-05-26\",\"2021-06-09\",\"2021-06-23\",\"2021-07-07\",\"2021-07-21\",\"2021-08-04\",\"2021-08-18\",\"2021-09-01\",\"2021-09-15\",\"2021-09-29\",\"2021-10-13\",\"2021-10-27\",\"2021-11-10\",\"2021-11-24\",\"2021-12-08\",\"2021-12-22\"],[\"2021.02\",\"2021.03\",\"2021.04\",\"2021.05\",\"2021.06\",\"2021.07\",\"2021.08\",\"2021.09\",\"2021.10\",\"2021.11\",\"2021.12\",\"2021.13\",\"2021.14\",\"2021.15\",\"2021.16\",\"2021.17\",\"2021.18\",\"2021.19\",\"2021.20\",\"2021.21\",\"2021.22\",\"2021.23\",\"2021.24\"],[\"R Programming Basics Session 2\",\"GitHub + Best Practices for Starting an R Project\",\"Work Share Session 1\",\"Working with Dates and Times\",\"Working with Text Strings and Regular Expressions\",\"Plotting with R\",\"Survey Analysis\",\"Work Share Session 2\",\"Using R as GIS Software, Static Map to Illustrator Process\",\"A Deeper Dive into TidyCensus and Using Census/ACS Data in R\",\"More Google APIs: Geocoding, Places, Distance Matrix, Isochrones\",\"Work Share Session 3\",\"Leaflet mapping best practices\",\"Shiny Session 5: Advanced UI Elements and Layout\",\"Shiny Session 6: Advanced Server Side Topics\",\"Work Share Session 4\",\"R Markdown\",\"Bookdown, distill, Github pages\",\"TBD\",\"Work Share Session 5\",\"Database basics\",\"Using R with SQL Databases\",\"Work Share Session 6\"]],\"container\":\"<table class=\\\"display\\\">\\n  <thead>\\n    <tr>\\n      <th>Date<\\/th>\\n      <th>Session ID<\\/th>\\n      <th>Topic<\\/th>\\n    <\\/tr>\\n  <\\/thead>\\n<\\/table>\",\"options\":{\"paging\":false,\"info\":false,\"autoWidth\":true,\"order\":[],\"orderClasses\":false,\"orderCellsTop\":true}},\"evals\":[],\"jsHooks\":[]}\r\n\r\n\r\n\r\n",
-    "preview": {},
-    "last_modified": "2021-02-08T07:55:32-08:00",
-    "input_file": {}
-  },
-  {
-    "path": "user-resources/2021-01-23-nn-r-user-list/",
+    "path": "user-resources/nn-r-user-list/",
     "title": "R Software Versions and Users",
     "description": "A regularly updated list of R Software Versions and Users at Nelson\\\\Nygaard.",
     "author": [
