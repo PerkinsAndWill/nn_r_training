@@ -30,7 +30,7 @@ ui = dashboardPage(
     tabItems(
       tabItem('geogs',
               h5('This is a demonstration app based on the live Belmont Station bottle shop inventory available here: https://www.belmont-station.com/bottles'),
-              h5('The training content for this app is linked here: https://perkinsandwill.github.io/nn_r_training/topics_output/shiny_3.html'),
+              h5('The training content for this app is linked here: https://perkinsandwill.github.io/nn_r_training/posts/shiny-session-3/'),
               h4('Select countries and/or US states of origin you would like to see inventory for.'),
               leafletOutput('select_map',height = 600),
               actionButton('select_all','Select All States',icon =  icon('check')),

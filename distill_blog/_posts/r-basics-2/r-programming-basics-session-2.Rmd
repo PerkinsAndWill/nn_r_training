@@ -12,11 +12,13 @@ output:
     toc: true
     toc_depth: 3
     toc_float: true
+categories: 
+  - r-knowledge
 ---
 
-*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Wednesday, February 17th, 2021, and is [available as a recording here - TODO](TODO) and embedded below.*
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Wednesday, February 17th, 2021, and is [available as a recording here](https://web.microsoftstream.com/video/98f36726-76c1-4143-994f-6ecc55eace0b) and embedded below.*
 
-<!-- <p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/video/f3b1ef12-798f-45fd-b75a-ddd3dd295fc8?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p> -->
+<p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/video/98f36726-76c1-4143-994f-6ecc55eace0b?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p>
 
 # Today's Agenda
 
@@ -1013,4 +1015,4 @@ It is also recommended to read the [iteration chapter in R for Data Science](htt
 
 - [Intermediate R](https://learn.datacamp.com/courses/intermediate-r) (4 hours)
 
-*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Wednesday, February 17th, 2021, and is [available as a recording here](TODO) and embedded at the top of the page.*
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Wednesday, February 17th, 2021, and is [available as a recording here](https://web.microsoftstream.com/video/98f36726-76c1-4143-994f-6ecc55eace0b) and embedded at the top of the page.*

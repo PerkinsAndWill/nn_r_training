@@ -114,7 +114,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["R Programming Basics - Session 2"]},{"type":"character","attributes":{},"value":["A second session on the basics of R: functions, choice-based control flows, and iteration"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Bryan Blanc"]},{"type":"character","attributes":{},"value":["https://github.com/bpb824"]}]}]},{"type":"character","attributes":{},"value":["02-17-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/posts/r-basics-2/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["R Programming Basics - Session 2"]},{"type":"character","attributes":{},"value":["A second session on the basics of R: functions, choice-based control flows, and iteration"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Bryan Blanc"]},{"type":"character","attributes":{},"value":["https://github.com/bpb824"]}]}]},{"type":"character","attributes":{},"value":["02-17-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["r-knowledge"]},{"type":"character","attributes":{},"value":["https://perkinsandwill.github.io/nn_r_training/posts/r-basics-2/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2388,8 +2388,18 @@ d-appendix d-footnote-list a.footnote-backlink {
 <input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
 </div>
 <div class="nav-right">
-<a href="../../index.html">Training Modules</a>
-<a href="../../recipes-index.html">Recipes</a>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Training Modules
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="../../index.html">Training Module Index</a>
+<a href="../../user-resources/2021-01-23-lnl-schedule/index.html">Upcoming Training Schedule</a>
+</div>
+</div>
+<a href="../../recipes-listing.html">Recipes</a>
 <a href="../../example-analyses.html">Example Analyses</a>
 <div class="nav-dropdown">
 <button class="nav-dropbtn">
@@ -2398,7 +2408,7 @@ User Resources
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<a href="../../user-resources/2021-01-23-lnl-schedule/index.html">Upcoming LnL Webinar Schedule</a>
+<a href="../../user-resources/2021-01-23-lnl-schedule/index.html">Upcoming Training Schedule</a>
 <a href="https://forms.gle/mMU2Pt3TRAoEnntPA">Request a 1-on-1 R Help Session</a>
 <a href="../../user-resources/2021-01-23-nn-r-user-list/index.html">Current R Software Versions and Users</a>
 <a href="../../user-resources/2021-01-23-recommended-reading/index.html">Recommended Reading List</a>
@@ -2413,7 +2423,7 @@ R Setup
 <div class="nav-dropdown-content">
 <a href="../../setup-articles/2021-01-18-using-r-locally/index.html">Setup R Locally</a>
 <a href="../../setup-articles/2021-01-18-node-usage/index.html">Setup R on Node</a>
-<a href="../../setup-articles-index.html">All Setup Articles</a>
+<a href="../../setup-articles-listing.html">All Setup Articles</a>
 </div>
 </div>
 <a href="../../about.html">About</a>
@@ -2431,6 +2441,9 @@ R Setup
 <div class="d-title">
 <h1>R Programming Basics - Session 2</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:r-knowledge" class="dt-tag">r-knowledge</a>
+</div>
 <!--/radix_placeholder_categories-->
 <p><p>A second session on the basics of R: functions, choice-based control flows, and iteration</p></p>
 </div>
@@ -2492,8 +2505,11 @@ R Setup
 </ul>
 </nav>
 </div>
-<p><em>This content was presented to Nelson\Nygaard Staff at a Lunch and Learn webinar on Wednesday, February 17th, 2021, and is <a href="TODO">available as a recording here - TODO</a> and embedded below.</em></p>
-<!-- <p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/video/f3b1ef12-798f-45fd-b75a-ddd3dd295fc8?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p> -->
+<p><em>This content was presented to Nelson\Nygaard Staff at a Lunch and Learn webinar on Wednesday, February 17th, 2021, and is <a href="https://web.microsoftstream.com/video/98f36726-76c1-4143-994f-6ecc55eace0b">available as a recording here</a> and embedded below.</em></p>
+<p align="center">
+<iframe width="640" height="360" src="https://web.microsoftstream.com/video/98f36726-76c1-4143-994f-6ecc55eace0b?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;">
+</iframe>
+</p>
 <h1 id="todays-agenda">Today’s Agenda</h1>
 <ul>
 <li><a href="#functions">Functions (30 min)</a></li>
@@ -2550,8 +2566,8 @@ R Setup
 <span class='op'>(</span><span class='va'>x</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>x</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>/</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>x</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>x</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> [1] 0.4046908 0.7473833 0.9100713 0.0000000 0.4136868 0.3878246
- [7] 0.3282385 0.2819529 0.3833847 1.0000000</code></pre>
+<pre><code> [1] 0.0000000 0.3212149 0.6461677 0.3807324 0.5022921 0.5610323
+ [7] 0.6931002 0.6544424 1.0000000 0.1536904</code></pre>
 </div>
 <p>There is some duplication in this code. We’re computing the range of the data three times, so it makes sense to do it in one step:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2560,8 +2576,8 @@ R Setup
 <span class='op'>(</span><span class='va'>x</span> <span class='op'>-</span> <span class='va'>rng</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>/</span> <span class='op'>(</span><span class='va'>rng</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>-</span> <span class='va'>rng</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> [1] 0.4046908 0.7473833 0.9100713 0.0000000 0.4136868 0.3878246
- [7] 0.3282385 0.2819529 0.3833847 1.0000000</code></pre>
+<pre><code> [1] 0.0000000 0.3212149 0.6461677 0.3807324 0.5022921 0.5610323
+ [7] 0.6931002 0.6544424 1.0000000 0.1536904</code></pre>
 </div>
 <p>Pulling out intermediate calculations into named variables is a good practice because it makes it more clear what the code is doing. Now that I’ve simplified the code, and checked that it still works, I can turn it into a function:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2714,12 +2730,12 @@ R Setup
 <span class='fu'>mean_ci</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 0.4567924 0.5559639</code></pre>
+<pre><code>[1] 0.4387887 0.5546397</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>mean_ci</span><span class='op'>(</span><span class='va'>x</span>, conf <span class='op'>=</span> <span class='fl'>0.99</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 0.4412114 0.5715449</code></pre>
+<pre><code>[1] 0.4205872 0.5728412</code></pre>
 </div>
 <p>The default value should almost always be the most common value. The few exceptions to this rule are to do with safety. For example, it makes sense for <code>na.rm</code> to default to <code>FALSE</code> because missing values are important. Even though <code>na.rm = TRUE</code> is what you usually put in your code, it’s a bad idea to silently ignore missing values by default.</p>
 <p>When you call a function, you typically omit the names of the data arguments, because they are used so commonly. If you override the default value of a detail argument, you should use the full name:</p>
@@ -3039,7 +3055,7 @@ Missing values: 18</code></pre>
 </div>
 <pre><code>
   3 3.3 
-102 898 </code></pre>
+110 890 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='va'>`+`</span><span class='op'>)</span>
 </code></pre>
@@ -3303,22 +3319,22 @@ Missing values: 18</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/median.html'>median</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>a</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 0.02269051</code></pre>
+<pre><code>[1] 0.299398</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/median.html'>median</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>b</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 0.2597113</code></pre>
+<pre><code>[1] -0.5005192</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/median.html'>median</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>c</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] -0.3869149</code></pre>
+<pre><code>[1] -0.144395</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/median.html'>median</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>d</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] -0.0234064</code></pre>
+<pre><code>[1] -0.2095482</code></pre>
 </div>
 <p>But that breaks our rule of thumb: never copy and paste more than twice. Instead, we could use a for loop:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3330,7 +3346,7 @@ Missing values: 18</code></pre>
 <span class='va'>output</span>
 </code></pre>
 </div>
-<pre><code>[1]  0.02269051  0.25971127 -0.38691487 -0.02340640</code></pre>
+<pre><code>[1]  0.2993980 -0.5005192 -0.1443950 -0.2095482</code></pre>
 </div>
 <p>Every for loop has three components:</p>
 <ol type="1">
@@ -3438,7 +3454,7 @@ Missing values: 18</code></pre>
 <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>output</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> num [1:108] -0.762 1.9854 -1.1487 0.1592 0.0126 ...</code></pre>
+<pre><code> num [1:125] -0.414 1.401 0.706 -0.101 -1.706 ...</code></pre>
 </div>
 <p>But this is not very efficient because in each iteration, R has to copy all the data from the previous iterations. In technical terms you get “quadratic” (<span class="math inline">\(O(n^2)\)</span>) behaviour which means that a loop with three times as many elements would take nine (<span class="math inline">\(3^2\)</span>) times as long to run.</p>
 <p>A better solution to save the results in a list, and then combine into a single vector after the loop is done:</p>
@@ -3453,14 +3469,14 @@ Missing values: 18</code></pre>
 </code></pre>
 </div>
 <pre><code>List of 3
- $ : num [1:58] 0.9089 0.0821 0.0426 -0.1751 0.4386 ...
- $ : num [1:19] 0.422 0.617 1.022 -0.2 1.029 ...
- $ : num [1:42] 1.25 3.14 2.66 1.39 2.09 ...</code></pre>
+ $ : num [1:42] 0.567 -1.2545 -0.8033 -2.2664 0.0231 ...
+ $ : num [1:35] 2.877 0.117 2.138 1.561 1.62 ...
+ $ : num [1:32] 3.077 2.658 -0.308 1.395 2.188 ...</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='va'>out</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> num [1:119] 0.9089 0.0821 0.0426 -0.1751 0.4386 ...</code></pre>
+<pre><code> num [1:109] 0.567 -1.2545 -0.8033 -2.2664 0.0231 ...</code></pre>
 </div>
 <p>Here I’ve used <code>unlist()</code> to flatten a list of vectors into a single vector. A stricter option is to use <code>purrr::flatten_dbl()</code> — it will throw an error if the input isn’t a list of doubles.</p>
 <p>This pattern occurs in other places too:</p>
@@ -3514,7 +3530,7 @@ Missing values: 18</code></pre>
 <span class='va'>flips</span>
 </code></pre>
 </div>
-<pre><code>[1] 33</code></pre>
+<pre><code>[1] 3</code></pre>
 </div>
 <p>I mention while loops only briefly, because I hardly ever use them. They’re most often used for simulation, which is outside the scope of this module. However, it is good to know they exist so that you’re prepared for problems where the number of iterations is not known in advance.</p>
 <h3 id="functional-iteration">Functional Iteration</h3>
@@ -3538,7 +3554,7 @@ Missing values: 18</code></pre>
 <ul>
 <li><a href="https://learn.datacamp.com/courses/intermediate-r">Intermediate R</a> (4 hours)</li>
 </ul>
-<p><em>This content was presented to Nelson\Nygaard Staff at a Lunch and Learn webinar on Wednesday, February 17th, 2021, and is <a href="TODO">available as a recording here</a> and embedded at the top of the page.</em></p>
+<p><em>This content was presented to Nelson\Nygaard Staff at a Lunch and Learn webinar on Wednesday, February 17th, 2021, and is <a href="https://web.microsoftstream.com/video/98f36726-76c1-4143-994f-6ecc55eace0b">available as a recording here</a> and embedded at the top of the page.</em></p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

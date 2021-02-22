@@ -3,7 +3,7 @@
   <channel>
     <title>Nelson\Nygaard R Training Blog</title>
     <link>https://perkinsandwill.github.io/nn_r_training/</link>
-    <atom:link href="https://perkinsandwill.github.io/nn_r_training/setup-articles-index.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://perkinsandwill.github.io/nn_r_training/setup-articles-listing.xml" rel="self" type="application/rss+xml"/>
     <description>Nelson\\Nygaard R Training Blog
 </description>
     <generator>Distill</generator>

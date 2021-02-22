@@ -8,14 +8,18 @@ base_url: https://perkinsandwill.github.io/nn_r_training/
 navbar:
   right:
     - text: "Training Modules"
-      href: index.html
+      menu: 
+        - text: 'Training Module Index'
+          href: index.html
+        - text: 'Upcoming Training Schedule'
+          href: user-resources/2021-01-23-lnl-schedule/index.html
     - text: "Recipes"
-      href: recipes-index.html
+      href: recipes-listing.html
     - text: "Example Analyses"
       href: example-analyses.html
     - text: "User Resources"
       menu: 
-        - text: 'Upcoming LnL Webinar Schedule'
+        - text: 'Upcoming Training Schedule'
           href: user-resources/2021-01-23-lnl-schedule/index.html
         - text: 'Request a 1-on-1 R Help Session'
           href: https://forms.gle/mMU2Pt3TRAoEnntPA
@@ -30,7 +34,7 @@ navbar:
         - text: 'Setup R on Node'
           href: setup-articles/2021-01-18-node-usage/index.html
         - text: 'All Setup Articles'
-          href: setup-articles-index.html
+          href: setup-articles-listing.html
     - text: "About"
       href: about.html
   source_url: https://github.com/PerkinsAndWill/nn_r_training

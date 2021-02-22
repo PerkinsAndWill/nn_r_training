@@ -5,6 +5,6 @@ account: nelsonnygaard
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2871109
-bundleId: 3663300
+bundleId: 4257100
 url: https://nelsonnygaard.shinyapps.io/training_app/
-when: 1600891704.01481
+when: 1614006666.47241
