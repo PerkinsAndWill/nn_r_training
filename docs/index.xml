@@ -7,7 +7,17 @@
     <description>Nelson\\Nygaard R Training Blog
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 17 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 03 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Working with Text Strings and Regular Expressions</title>
+      <dc:creator>Bryan Blanc</dc:creator>
+      <link>https://perkinsandwill.github.io/nn_r_training/posts/strings-regex</link>
+      <description>Learn the basics of working with text strings in R, using regular expressions, and using tools from the `stringr` package.</description>
+      <category>r-knowledge</category>
+      <guid>https://perkinsandwill.github.io/nn_r_training/posts/strings-regex</guid>
+      <pubDate>Wed, 03 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://perkinsandwill.github.io/nn_r_training/posts/strings-regex/images/stringr-autocomplete.png" medium="image" type="image/png" width="1356" height="362"/>
+    </item>
     <item>
       <title>R Programming Basics - Session 2</title>
       <dc:creator>Bryan Blanc</dc:creator>
