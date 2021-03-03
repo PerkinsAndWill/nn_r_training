@@ -6,42 +6,42 @@
       "description": "About Nelson\\\\Nygaard's R Training Blog",
       "author": [],
       "contents": "\r\nWelcome to Nelson\\Nygaard’s R Training Blog! The data and spatial analytics team at Nelson\\Nygaard uses this as a repository for tutorials of commonly used R tools for our transportation planning work. New posts and training sessions will be periodically posted here – schedule and details to come!\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-03-02T08:52:21-08:00"
+      "last_modified": "2021-03-03T08:19:31-08:00"
     },
     {
       "path": "example-analyses.html",
       "title": "Example Analyses",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-03-02T08:52:22-08:00"
+      "last_modified": "2021-03-03T08:19:32-08:00"
     },
     {
       "path": "index.html",
       "title": "Nelson\\Nygaard R Training Modules",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-03-02T08:52:23-08:00"
+      "last_modified": "2021-03-03T08:19:33-08:00"
     },
     {
       "path": "recipes-index.html",
       "title": "Nelson\\Nygaard R Recipes",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-03-02T08:52:24-08:00"
+      "last_modified": "2021-03-03T08:19:34-08:00"
     },
     {
       "path": "recipes-listing.html",
       "title": "Nelson\\Nygaard R Recipes",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-03-02T08:52:25-08:00"
+      "last_modified": "2021-03-03T08:19:35-08:00"
     },
     {
       "path": "setup-articles-listing.html",
       "title": "Nelson\\Nygaard R Training",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-03-02T08:52:26-08:00"
+      "last_modified": "2021-03-03T08:19:35-08:00"
     }
   ],
   "collections": ["posts/posts.json", "setup-articles/setup-articles.json", "user-resources/user-resources.json", "example-analyses/example-analyses.json", "recipes/recipes.json"]
