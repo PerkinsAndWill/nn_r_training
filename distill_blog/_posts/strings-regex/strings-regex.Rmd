@@ -16,9 +16,9 @@ categories:
   - r-knowledge
 ---
 
-*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Wednesday, March 3rd, 2021, and is [available as a recording here - TODO](TODO) and embedded below.*
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Wednesday, March 3rd, 2021, and is [available as a recording here](https://web.microsoftstream.com/video/89d6ac28-ddde-4e8f-863c-438b166f3e2b) and embedded below.*
 
-<!-- <p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/video/98f36726-76c1-4143-994f-6ecc55eace0b?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p> -->
+<p align="center"><iframe width="640" height="360" src="https://web.microsoftstream.com/video/89d6ac28-ddde-4e8f-863c-438b166f3e2b?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe></p>
 
 __Acknowledgement:__ This module heavily draws upon Hadley Wickham's (the progenitor of the Tidyverse) book (available for free online), [R for Data Science](https://r4ds.had.co.nz/), including text, pictures, and code directly copied from that book and slightly modified to suit a shorter narrative. Printed copies are available generally wherever you get your books. It is recommended that you read this book for a deeper understanding of the topics contained hereien -- only basic concepts are able to be covered within the time available. 
 
@@ -843,4 +843,4 @@ If you find yourself struggling to do something in stringr, it's worth taking a 
 
 - [String Manipulation with `stringr` in R](https://learn.datacamp.com/courses/string-manipulation-with-stringr-in-r) (4 hours)
 
-*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Wednesday, March 3rd, 2021, and is [available as a recording here - TODO](TODO) and embedded at the top of the page.*
+*This content was presented to Nelson\\Nygaard Staff at a Lunch and Learn webinar on Wednesday, March 3rd, 2021, and is [available as a recording here](https://web.microsoftstream.com/video/89d6ac28-ddde-4e8f-863c-438b166f3e2b) and embedded at the top of the page.*
